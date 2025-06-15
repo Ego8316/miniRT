@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:11:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/15 17:25:55 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	print_usage(void)
 
 /**
  * @brief Prints on the standard error up to three strings and returns the
- * given bool.
+ * given bool, prefixed by "minirt: ". If `status` is false, puts the
+ * strings in red.
  * 
  * @param s1 First string to be printed.
  * @param s2 Second string to be printed.
@@ -36,13 +37,19 @@ int	print_usage(void)
  */
 bool	errmsg(char *s1, char *s2, char *s3, bool status)
 {
-	ft_putstr_fd(COLOR_R, STDERR_FILENO);
+	if (s1 || s2 || s3)
+		ft_putstr_fd(PREFIX, STDERR_FILENO);
+	if (!status)
+		ft_putstr_fd(COLOR_R, STDERR_FILENO);
 	if (s1)
 		ft_putstr_fd(s1, STDERR_FILENO);
 	if (s2)
 		ft_putstr_fd(s2, STDERR_FILENO);
 	if (s3)
 		ft_putstr_fd(s3, STDERR_FILENO);
-	ft_putstr_fd(C_RESET, STDERR_FILENO);
+	if (!status)
+		ft_putstr_fd(C_RESET, STDERR_FILENO);
+	if (s1 || s2 || s3)
+		ft_putchar_fd('\n', STDERR_FILENO);
 	return (status);
 }

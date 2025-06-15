@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:12:09 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/15 17:28:25 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 
 # define USAGE_MSG "Usage: ./minirt <scene.rt>"
 # define PREFIX "minirt: "
-# define ERRMSG_NO_ARG "need argument\n"
-# define ERRMSG_TOO_ARG "too many arguments\n"
+# define ERRMSG_NO_ARG "need argument"
+# define ERRMSG_TOO_ARG "too many arguments"
+# define ERRMSG_EMPTY_FILE "file is empty"
 
 #endif
