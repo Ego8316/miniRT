@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2025/06/11 11:23:47 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/15 16:31:49 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,11 +75,11 @@ WRITE_READ			=	ft_get_next_line.c ft_putchar_fd.c \
 SRCS_WRITE_READ		=	$(addprefix write_read/, $(WRITE_READ))
 OBJS_WRITE_READ 	=	$(patsubst write_read/%.c, objs/%.o, $(SRCS_WRITE_READ))
 
-SRCS =	$(SRCS_CHARACTERS) $(SRCS_CONVERSIONS) $(SRCS_LISTS) $(SRCS_MATH) \
+SRCS =	$(SRCS_CHARACTERS) $(SRCS_CONVERSIONS) $(SRCS_LISTS) \
 		$(SRCS_MEMORY) $(SRCS_MISCS) $(SRCS_STRINGS) $(SRCS_WRITE_READ)\
 		$(SRCS_TREE)
 
-OBJS =	$(OBJS_CHARACTERS) $(OBJS_CONVERSIONS) $(OBJS_LISTS) $(OBJS_MATH) \
+OBJS =	$(OBJS_CHARACTERS) $(OBJS_CONVERSIONS) $(OBJS_LISTS) \
         $(OBJS_MEMORY) $(OBJS_MISCS) $(OBJS_STRINGS) $(OBJS_WRITE_READ) \
         $(OBJS_TREE)
 
