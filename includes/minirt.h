@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:00:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/15 18:55:40 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,76 @@
 # include "../lib/libft/libft.h"
 # include "../lib/mlx/mlx.h"
 
-// Main data structure
+// Typedefs and enums
 
+typedef enum e_object_type
+{
+	SP,
+	PL,
+	CY,
+	CO,
+	HY,
+	PA
+}	t_object_type;
+
+// Structures
+
+/**
+ * @brief Ambient lighting settings for the scene.
+ */
+typedef struct s_ambient
+{
+	double	ratio;	/** Intensity ratio of the ambient light. */
+	t_coor	color;	/** Color of the ambient light. */
+}	t_ambient;
+
+/**
+ * @brief Camera settings for the scene.
+ */
+typedef struct s_camera
+{
+	t_vec	vector;	/** Position and direction of the camera. */
+	int		fov;	/** Field of view of the camera in degrees. */
+}	t_camera;
+
+/**
+ * @brief Linked list of point light sources in the scene.
+ */
+typedef struct s_light
+{
+	t_coor			pos;		/** Position of the light source. */
+	double			brightness;	/** Brightness ratio of the light. */
+	t_coor			color;		/** Color of the light. */
+	struct s_light	*next;		/** Pointer to the next light. */
+}	t_light;
+
+/**
+ * @brief Linked list of objects in the scene.
+ */
+typedef struct s_object
+{
+	t_object_type	type;			/** Type of the object. */
+	t_coor			pos;			/** Position of the object. */
+	t_coor			vector;			/**	Orientation vector (if applicable). */
+	t_coor			args;			/**	Additional parameters. */
+	double			reflectivity;	/**	Reflectivity coefficient. */
+	bool			checkerboard;	/** Flag to enable checkerboard texture. */
+	t_coor			color;			/**	Color of the object. */
+	bool			bump;			/** Flag to enable bump mapping. */
+	double			bump_strength;	/** Strength of the bump mapping effect. */
+	struct s_object	*next;			/**	Pointer to the next object. */
+}	t_object;
+
+/**
+ * @brief The main scene structure containing all scene elements.
+ */
 typedef struct s_scene
 {
-	int		fd;
+	int			fd;			/** File descriptor of the scene file. */
+	t_ambient	ambient;	/** Ambient light settings. */
+	t_camera	camera;		/** Camera settings. */
+	t_light		*lights;	/** Linked list of lights in the scene. */
+	t_object	*objects;	/**	Linked list of objects in the scene. */
 }	t_scene;
 
 // Parsing

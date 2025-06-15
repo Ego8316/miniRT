@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:25:55 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/15 17:35:26 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	print_usage(void)
 
 /**
  * @brief Prints on the standard error up to three strings and returns the
- * given bool, prefixed by "minirt: ". If `status` is false, puts the
+ * given bool, prefixed by "minirt: ". If `status` is `false`, puts the
  * strings in red.
  * 
  * @param s1 First string to be printed.
