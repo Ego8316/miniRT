@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/15 17:17:11 by ego              ###   ########.fr        #
+#    Updated: 2025/06/16 05:56:09 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,26 @@ LDIR		=	lib/
 ODIR		=	objs/
 
 SRC			=	main.c
-SRC			+=	debug/print.c
-SRC			+=	parsing/argument.c	\
-				parsing/scene.c
-SRC			+=	utils/error.c
+SRC			+=	debug/lights.c			\
+				debug/objects.c			\
+				debug/parsing.c			\
+				debug/scene.c
+SRC			+=	parsing/argument.c		\
+				parsing/convert.c		\
+				parsing/coordinates.c	\
+				parsing/identifier.c	\
+				parsing/lights.c		\
+				parsing/scale.c			\
+				parsing/scene.c			\
+				parsing/utils.c
+SRC			+=	utils/error.c	\
+				utils/free.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
-LFLAGS		=	-lm -L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -lXext -lX11
+LFLAGS		=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -lXext -lX11 -lm
 IFLAGS		=	-I $(IDIR)
 RM			=	rm -rf
 
@@ -51,7 +61,7 @@ $(LIBX)		:
 				printf "$(COLOR_B)Building mlx...$(C_RESET)\n"
 				make -sC $(LDIR)mlx
 				printf "$(COLOR_G)[OK] mlx is ready!$(C_RESET)\n" || \
-				(printf "$(COLOR_R)[KO] Failed to mlx libft.$(C_RESET)\n" && false)
+				(printf "$(COLOR_R)[KO] Failed to build mlx.$(C_RESET)\n" && false)
 
 $(ODIR)		:
 				mkdir -p $(ODIR)

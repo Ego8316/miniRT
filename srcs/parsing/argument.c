@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:40:45 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:33:37 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 01:14:42 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ bool	handle_argument(int ac, char **av)
 	if (r == 0)
 		return (errmsg(av[1], ": ", ERRMSG_EMPTY_FILE, false));
 	if (r < 0)
-		return (errmsg(av[1], ": ", strerror(errno), false)); 
+		return (errmsg(av[1], ": ", strerror(errno), false));
 	return (true);
 }

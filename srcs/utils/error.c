@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/15 17:35:26 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 06:04:39 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,70 @@ bool	errmsg(char *s1, char *s2, char *s3, bool status)
 	if (s1 || s2 || s3)
 		ft_putchar_fd('\n', STDERR_FILENO);
 	return (status);
+}
+
+/**
+ * @brief Prints the given line with a caret pointing at the specified index.
+ * 
+ * Outputs the line prefixed with "line : " in a colored format, followed by
+ * a newline (if not already present). Then prints spaces or tabs up to the
+ * given index (adjusted by the prefix length), and finally prints a caret '^'
+ * underneath to visually indicate the error position.
+ * 
+ * @param line The input line string where the error occurred.
+ * @param i The zero-based index in `line` to point the caret at.
+ */
+static void	print_error(char *line, int i)
+{
+	int	j;
+
+	printf("%s", VERBOSE_PREFIX);
+	printf("%s", COLOR_O);
+	j = 0;
+	while (line[j])
+	{
+		if (ft_isspace(line[j]))
+			printf(" ");
+		else
+			printf("%c", line[j]);
+		j++;
+	}
+	if (!ft_strchr(line, '\n'))
+		printf("\n");
+	i += ft_strlen(VERBOSE_PREFIX);
+	while (--i >= 0)
+		printf(" ");
+	printf("^\n");
+	printf("%s", C_RESET);
+}
+
+/**
+ * @brief Prints a detailed parsing error message to standard error.
+ * 
+ * Displays a formatted error message indicating the location (line and column)
+ * of a parsing error in the input file. Prefixes the message with
+ * "miniRT: Error".
+ * 
+ * @param error The error message describing what went wrong.
+ * @param line The line number where the error occured.
+ * @param col The column number where the error occured.
+ * 
+ * @return Always returns `false` for convenience.
+ */
+bool	parse_errmsg(const char *error, t_parse_data *data)
+{
+	if (error)
+	{
+		errmsg("Error", 0, 0, false);
+		if (data->verbose)
+			print_error(data->line, data->i);
+		ft_putstr_fd("File syntax error: ", STDERR_FILENO);
+		ft_putstr_fd((char *)error, STDERR_FILENO);
+		ft_putstr_fd(" at line ", STDERR_FILENO);
+		ft_putnbr_fd(data->line_number + 1, STDERR_FILENO);
+		ft_putstr_fd(", col ", STDERR_FILENO);
+		ft_putnbr_fd(data->i + 1, STDERR_FILENO);
+		ft_putchar_fd('\n', STDERR_FILENO);
+	}
+	return (false);
 }

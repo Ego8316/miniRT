@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"functional": "c",
+		"__locale": "c",
+		"vector": "c",
+		"random": "c",
+		"iosfwd": "c",
+		"iterator": "c",
+		"queue": "c",
+		"version": "c"
+	}
+}
