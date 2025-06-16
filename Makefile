@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/16 17:46:44 by ego              ###   ########.fr        #
+#    Updated: 2025/06/16 18:03:54 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRC			+=	parsing/argument.c		\
 				parsing/coordinates.c	\
 				parsing/error.c			\
 				parsing/identifier.c	\
-				parsing/lights.c		\
+				parsing/light.c			\
+				parsing/lists.c			\
+				parsing/object.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c

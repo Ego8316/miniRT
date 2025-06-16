@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:44:59 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:06:33 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
  *
  * @return `true` on successful parsing, `false` on error.
  */
-bool	get_ambient_light(t_parse_data *data, t_scene *scene)
+static bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 {
 	t_ambient	a;
 
@@ -49,6 +49,7 @@ bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 	scene->ambient = a;
 	return (true);
 }
+
 
 /**
  * @brief Parses the camera data from the current line and stores it in the
@@ -71,7 +72,7 @@ bool	get_ambient_light(t_parse_data *data, t_scene *scene)
  *
  * @return `true` on successful parsing, `false` on error.
  */
-bool	get_camera(t_parse_data *data, t_scene *scene)
+static bool	get_camera(t_parse_data *data, t_scene *scene)
 {
 	int			i;
 	t_camera	c;
@@ -108,6 +109,8 @@ bool	parse_line(t_parse_data *data, t_scene *scene)
 	if (data->id == CAMERA && !get_camera(data, scene))
 		return (false);
 	if (data->id == LIGHT && !add_light(data, scene))
+		return (false);
+	if (data->id > LIGHT && !add_object(data, scene))
 		return (false);
 	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights.c                                           :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 05:37:17 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:36:22 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:06:24 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,6 @@ static bool	get_light(t_parse_data *data, t_light *light)
 		return (false);
 	*light = l;
 	return (true);
-}
-
-/**
- * @brief Adds a new light to the end of a linked list of lights. If the list
- * is empty, the new light becomes the head.
- * 
- * @param new New light to add.
- * @param lights Pointer to the head of the lights list.
- */
-static void	add_light_to_list(t_light *new, t_light **lights)
-{
-	t_light	*l;
-
-	if (!*lights)
-	{
-		*lights = new;
-		return ;
-	}
-	l = *lights;
-	while (l->next)
-		l = l->next;
-	l->next = new;
-	return ;
 }
 
 /**

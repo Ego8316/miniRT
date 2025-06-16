@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:37:00 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:09:21 by ego              ###   ########.fr       */
+/*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
+/*   Updated: 2025/06/16 18:06:00 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ static bool	get_object_args(t_parse_data *data, t_coor *args)
 	return (true);
 }
 
-static bool	get_object_reflectivity(t_parse_data *data, double *r)
+static bool	get_object_attribute(t_parse_data *d, double *v, const char *a)
 {
-	data->field_count++;
-	*r = 0;
-	return (true);
-}
-
-static bool	get_object_bump_strengh(t_parse_data *data, double *b)
-{
-	data->field_count++;
-	*b = 0;
+	d->field_count++;
+	if (!ft_strcmp(a, "r"))
+		printf("looking for reflecivity");
+	*v = 0;
 	return (true);
 }
 
@@ -82,37 +77,12 @@ static bool	get_object(t_parse_data *data, t_object *object)
 	if (!get_next_object_color(data, &o.color))
 		return (false);
 	scale_color(&o.color.coor);
-	if (!get_object_reflectivity(data, &o.reflectivity))
-		return (false);
-	if (!get_object_bump_strength(data, &o.bump_strength))
+	if (!get_object_attribute(data, &o.reflectivity, "r"))
 		return (false);
 	if (trailing_data(data))
 		return (false);
 	*object = o;
 	return (true);
-}
-
-/**
- * @brief Adds a new object to the end of a linked list of objects. If the list
- * is empty, the new object becomes the head.
- * 
- * @param new New object to add.
- * @param objects Pointer to the head of the objects list.
- */
-static void	add_object_to_list(t_object *new, t_object **objects)
-{
-	t_object	*o;
-
-	if (!*objects)
-	{
-		*objects = new;
-		return ;
-	}
-	o = *objects;
-	while (o->next)
-		o = o ->next;
-	o->next = new;
-	return ;
 }
 
 /**
