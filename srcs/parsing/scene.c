@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:12:14 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:13:02 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 	scene->ambient = a;
 	return (true);
 }
-
 
 /**
  * @brief Parses the camera data from the current line and stores it in the

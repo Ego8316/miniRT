@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:32:53 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:12:49 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ bool	check_duplicates(t_parse_data *data)
 	{
 		if (data->ambient_found)
 			return (parse_errmsg(PARSE_ERR_AMBIENT_DUPLICATE, data,
-				true, false));
+					true, false));
 		data->ambient_found = true;
 	}
 	else if (data->id == CAMERA)
 	{
 		if (data->camera_found)
 			return (parse_errmsg(PARSE_ERR_CAMERA_DUPLICATE, data,
-				true, false));
+					true, false));
 		data->camera_found = true;
 	}
 	return (true);
