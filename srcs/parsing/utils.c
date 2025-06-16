@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:19:09 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:08:12 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,47 @@ bool	trailing_data(t_parse_data *data)
 }
 
 /**
- * @brief Checks if a string is only made of one given type.
+ * @brief Adds a new light to the end of a linked list of lights. If the list
+ * is empty, the new light becomes the head.
  * 
- * @param s String to be checked.
- * @param f Function used to check the type (isspace for example).
- * 
- * @return `true` if it is only made of the given type, `false` otherwise.
+ * @param new New light to add.
+ * @param lights Pointer to the head of the lights list.
  */
-bool	stristype(const char *s, bool (*f)(int))
+void	add_light_to_list(t_light *new, t_light **lights)
 {
-	int	i;
+	t_light	*l;
 
-	i = 0;
-	while (s[i])
+	if (!*lights)
 	{
-		if (!f(s[i]))
-			return (false);
-		i++;
+		*lights = new;
+		return ;
 	}
-	return (true);
+	l = *lights;
+	while (l->next)
+		l = l->next;
+	l->next = new;
+	return ;
 }
 
-/** 
- * @brief Checks if a character is a space.
+/**
+ * @brief Adds a new object to the end of a linked list of objects. If the list
+ * is empty, the new object becomes the head.
  * 
- * @param c The character to check.
- * 
- * @return 1 if the character is a space, 0 otherwise.
+ * @param new New object to add.
+ * @param objects Pointer to the head of the objects list.
  */
-bool	ft_isspace(int c)
+void	add_object_to_list(t_object *new, t_object **objects)
 {
-	return ((9 <= c && c <= 13) || c == 32);
+	t_object	*o;
+
+	if (!*objects)
+	{
+		*objects = new;
+		return ;
+	}
+	o = *objects;
+	while (o->next)
+		o = o ->next;
+	o->next = new;
+	return ;
 }

@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/16 18:03:54 by ego              ###   ########.fr        #
+#    Updated: 2025/06/16 18:08:48 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC			+=	parsing/argument.c		\
 				parsing/scene.c			\
 				parsing/utils.c
 SRC			+=	utils/display.c			\
-				utils/free.c
+				utils/free.c			\
+				utils/string.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))
 
