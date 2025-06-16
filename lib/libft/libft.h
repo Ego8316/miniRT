@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/11 11:13:20 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/12 01:35:05 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,14 @@ typedef struct s_coor {
 }	t_coor;
 
 typedef struct s_vec {
-	t_coor	pos;
-	t_coor	dir;
+	double	*val;
+	size_t	size;
 }	t_vec;
+
+typedef struct s_ray {
+	t_coor	orig;
+	t_coor	dir;
+}	t_ray;
 
 typedef struct s_mat {
 	size_t			dim[2];

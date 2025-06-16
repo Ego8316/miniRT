@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 06:14:07 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 11:16:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_parse_data
 	int			field_count;	/** Number of data fields parsed. */
 	t_bound		boundaries;		/**	Boundaries for the current parsed value. */
 	bool		verbose;		/** Enables detailed parsing error messages. */
+	bool		valid;
 }	t_parse_data;
 
 /**
@@ -110,7 +111,7 @@ typedef struct s_ambient
  */
 typedef struct s_camera
 {
-	t_vec	vector;	/** Position and direction of the camera. */
+	t_ray	vector;	/** Position and direction of the camera. */
 	double	fov;	/** Field of view of the camera in degrees. */
 }	t_camera;
 
