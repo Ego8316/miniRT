@@ -6,18 +6,18 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:11:27 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/11 11:15:05 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:29:46 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-float	*ft_getcofac(t_mat mat, int m, int n);
+double	*ft_getcofac(t_mat mat, int m, int n);
 
-float	*ft_getcofac(t_mat mat, int m, int n)
+double	*ft_getcofac(t_mat mat, int m, int n)
 {
 	t_mat	*submat;
-	float	*subdet;
+	double	*subdet;
 
 	submat = ft_getsubmat(mat, m, n);
 	if (!submat)

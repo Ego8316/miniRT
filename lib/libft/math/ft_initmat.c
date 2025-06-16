@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:34:23 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/10 15:55:53 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:28:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_mat	*ft_initmat(int m, int n)
+t_mat	*ft_initmat(size_t m, size_t n)
 {
 	t_mat	*mat;
 	size_t	i;

@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:28:05 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/09 18:09:03 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:28:00 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_mat	*ft_getsubmat(t_mat	mat, int m, int n)
+t_mat	*ft_getsubmat(t_mat	mat, size_t m, size_t n)
 {
 	t_mat	*submat;
 	size_t	i;

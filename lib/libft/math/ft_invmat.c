@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:26:45 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/11 11:23:23 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:29:31 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_mat	*ft_invmat(t_mat mat)
 {
 	t_mat	*inv;
-	float	*det;
-	float	*cofac;
+	double	*det;
+	double	*cofac;
 	size_t	i;
 	size_t	j;
 
@@ -42,4 +42,5 @@ t_mat	*ft_invmat(t_mat mat)
 		}
 		i++;
 	}
+	return (inv);
 }
