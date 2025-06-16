@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/16 05:56:09 by ego              ###   ########.fr        #
+#    Updated: 2025/06/16 17:15:57 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,13 @@ SRC			+=	debug/lights.c			\
 SRC			+=	parsing/argument.c		\
 				parsing/convert.c		\
 				parsing/coordinates.c	\
+				parsing/error.c			\
 				parsing/identifier.c	\
 				parsing/lights.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
-SRC			+=	utils/error.c	\
+SRC			+=	utils/display.c			\
 				utils/free.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))

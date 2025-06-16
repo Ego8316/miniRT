@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 11:22:53 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:08:21 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 
 	data->boundaries = (t_bound){BRIGHTNESS_MIN,
 		BRIGHTNESS_MAX, PARSE_ERR_BOUND_BRIGHTNESS};
-	if (!get_next_double(data, &a.ratio, false))
+	if (!get_next_double(data, &a.ratio, false, true))
 		return (false);
 	skip_spaces(data);
-	data->boundaries = (t_bound){COLOR_MIN, COLOR_MAX, PARSE_ERR_BOUND_COLOR};
 	if (!get_next_color(data, &a.color))
 		return (false);
 	scale_color(&a.color);
-	skip_spaces(data);
-	if (data->line[data->i])
-		return (parse_errmsg(PARSE_ERR_EXTRA_DATA, data));
+	if (trailing_data(data))
+		return (false);
 	scene->ambient = a;
 	return (true);
 }
@@ -88,14 +86,13 @@ bool	get_camera(t_parse_data *data, t_scene *scene)
 	if (!normalize_vector(&c.vector.dir))
 	{
 		data->i = i;
-		return (parse_errmsg(PARSE_ERR_BOUND_NORM, data));
+		return (parse_errmsg(PARSE_ERR_NORM, data, true, false));
 	}
 	data->boundaries = (t_bound){FOV_MIN, FOV_MAX, PARSE_ERR_BOUND_FOV};
 	if (!get_next_integer(data, &c.fov, false))
 		return (false);
-	skip_spaces(data);
-	if (data->line[data->i])
-		return (parse_errmsg(PARSE_ERR_EXTRA_DATA, data));
+	if (trailing_data(data))
+		return (false);
 	scene->camera = c;
 	return (true);
 }
@@ -117,6 +114,8 @@ bool	parse_line(t_parse_data *data, t_scene *scene)
 
 /**
  * @brief Builds up the scene structure from the filename.
+ * Sets up all global fields of the given data structure to their initial
+ * values before parsing the file.
  * 
  * @return `true` if everything goes fine,`false` otherwise.
  */
@@ -128,7 +127,10 @@ bool	parse_file(char *filename, t_scene *s)
 	if (s->fd < 0)
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	s->filename = filename;
-	init_parse_global_data(&data);
+	data.ambient_found = false;
+	data.camera_found = false;
+	data.line_number = -1;
+	data.verbose = true;
 	while (true)
 	{
 		++data.line_number;

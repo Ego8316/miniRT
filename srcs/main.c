@@ -6,11 +6,22 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 06:02:32 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:18:46 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+/**
+ * @brief Displays the usage help message and returns 1.
+ * 
+ * @return 1.
+ */
+static int	print_usage(void)
+{
+	printf("%s%s%s\n", COLOR_B, USAGE_MSG, C_RESET);
+	return (1);
+}
 
 int	main(int ac, char **av)
 {

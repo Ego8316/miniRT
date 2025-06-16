@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 13:37:15 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:12:05 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ bool	handle_argument(int ac, char **av);
 double	ft_strtod(const char *str, char **endptr);
 long	ft_strtol(const char *str, char **endptr, int base);
 
-bool	get_next_double(t_parse_data *data, double *value, bool expect_comma);
+bool	get_next_double(t_parse_data *d, double *v, bool comma, bool verb);
 bool	get_next_coordinate(t_parse_data *data, t_coor *coor);
 bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma);
 bool	get_next_color(t_parse_data *data, t_coor *coor);
@@ -177,17 +177,16 @@ bool	normalize_vector(t_coor *vec);
 
 bool	parse_file(char *filename, t_scene *s);
 
-void	init_parse_global_data(t_parse_data *data);
 void	init_parse_line_data(t_parse_data *data);
 void	skip_spaces(t_parse_data *data);
+bool	trailing_data(t_parse_data *data);
 bool	ft_isspace(int c);
 bool	stristype(const char *s, bool (*f)(int));
 
 // Utils
 
-int		print_usage(void);
 bool	errmsg(char *s1, char *s2, char *s3, bool status);
-bool	parse_errmsg(const char *error, t_parse_data *data);
+bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound);
 
 bool	*free_str(char **s);
 void	free_lights(t_light *lights);

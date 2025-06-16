@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 01:47:17 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:32:53 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*get_id_string(t_id id)
  * encountered before. If so, print the appropriate message. Otherwise, updates
  * the current parsing state.
  * 
- * @param data Current parsing state.
+ * @param data Parsing data.
  * 
  * @return `true` the current identifier is not a duplicate, `false` otherwise.
  */
@@ -62,13 +62,15 @@ bool	check_duplicates(t_parse_data *data)
 	if (data->id == AMBIENT)
 	{
 		if (data->ambient_found)
-			return (parse_errmsg(PARSE_ERR_AMBIENT_DUPLICATE, data));
+			return (parse_errmsg(PARSE_ERR_AMBIENT_DUPLICATE, data,
+				true, false));
 		data->ambient_found = true;
 	}
 	else if (data->id == CAMERA)
 	{
 		if (data->camera_found)
-			return (parse_errmsg(PARSE_ERR_CAMERA_DUPLICATE, data));
+			return (parse_errmsg(PARSE_ERR_CAMERA_DUPLICATE, data,
+				true, false));
 		data->camera_found = true;
 	}
 	return (true);
@@ -77,7 +79,7 @@ bool	check_duplicates(t_parse_data *data)
 /**
  * @brief Parses the identifier from the current line.
  * 
- * @param s String to be checked.
+ * @param data Parsing data.
  * 
  * @return `true` if it is an identifier, `false` otherwise.
  */
@@ -98,7 +100,7 @@ bool	get_identifier(t_parse_data *data)
 		}
 	}
 	if (data->id == NONE || !ft_isspace(data->line[data->i + g_ids[i].len]))
-		return (parse_errmsg(PARSE_ERR_UNKNOWN_IDENTIFIER, data));
+		return (parse_errmsg(PARSE_ERR_UNKNOWN_IDENTIFIER, data, true, false));
 	if (!check_duplicates(data))
 		return (false);
 	data->i += g_ids[i].len;

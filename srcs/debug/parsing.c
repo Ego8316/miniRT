@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 00:38:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 13:37:43 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:34:21 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Displays current line number and content, parsing progress, identifier and
  * parsing flags.
  * 
- * @param data Current parsing data.
+ * @param data Parsing data.
  */
 void	print_parse_data(t_parse_data *data)
 {

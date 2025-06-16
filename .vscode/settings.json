@@ -7,6 +7,17 @@
 		"iosfwd": "c",
 		"iterator": "c",
 		"queue": "c",
-		"version": "c"
+		"version": "c",
+		"array": "c",
+		"deque": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"__bit_reference": "c",
+		"__hash_table": "c",
+		"__split_buffer": "c",
+		"ios": "c",
+		"minirt.h": "c"
 	}
 }

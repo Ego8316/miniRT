@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:40:45 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 01:14:42 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:17:41 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Validates the program's command-line argument as readable file.
  * 
- * Ensures that the argument count is exactly 2, attempts to open the allegedly
+ * Ensures that the argument count is exactly 2, attempts to open the alleged
  * file in read-only mode, and ensures that the file is readable and not empty.
  * 
  * If any check fails, a descriptive error message is printed with `errmsg`.

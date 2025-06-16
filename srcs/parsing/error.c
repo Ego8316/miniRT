@@ -6,21 +6,41 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 13:36:09 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:31:16 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /**
- * @brief Displays the usage help message and returns 1.
+ * @brief Prints a double-precision floating-point number to a file descriptor
+ * up to `precision` decimal digits. Only used to display bound values for
+ * parsing errors.
  * 
- * @return 1.
+ * @param nbr The double value to print.
+ * @param precision Number of decimal places to print.
+ * @param fd File descriptor where the output is written.
  */
-int	print_usage(void)
+static void	ft_putdouble_fd(double nbr, int precision, int fd)
 {
-	printf("%s%s%s\n", COLOR_B, USAGE_MSG, C_RESET);
-	return (1);
+	int		integer_part;
+	double	frac;
+
+	integer_part = (long)nbr;
+	frac = nbr - integer_part;
+	if (frac < 0)
+		frac *= -1;
+	ft_putnbr_fd(integer_part, fd);
+	if (frac < DBL_EPSILON)
+		return ;
+	ft_putchar_fd('.', fd);
+	while (precision-- > 0)
+	{
+		frac *= 10;
+		ft_putchar_fd((long)frac + '0', fd);
+		frac -= (long)frac;
+	}
+	return ;
 }
 
 /**
@@ -28,12 +48,12 @@ int	print_usage(void)
  * given bool, prefixed by "minirt: ". If `status` is `false`, puts the
  * strings in red.
  * 
- * @param s1 First string to be printed.
- * @param s2 Second string to be printed.
- * @param s3 Third string to be printed.
+ * @param s1 First string to be printed (can be `NULL`).
+ * @param s2 Second string to be printed (can be `NULL`).
+ * @param s3 Third string to be printed (can be `NULL`).
  * @param status Status to return.
  * 
- * @return `status`.
+ * @return The input `status` value.
  */
 bool	errmsg(char *s1, char *s2, char *s3, bool status)
 {
@@ -63,7 +83,7 @@ bool	errmsg(char *s1, char *s2, char *s3, bool status)
  * underneath to visually indicate the error position.
  * 
  * @param line The input line string where the error occurred.
- * @param i The zero-based index in `line` to point the caret at.
+ * @param i Zero-based index in `line` to point the caret at.
  */
 static void	print_error(char *line, int i)
 {
@@ -88,31 +108,55 @@ static void	print_error(char *line, int i)
 }
 
 /**
+ * @brief Prints detailed boundary error information to standard error.
+ * 
+ * Displays the error message describing a boundary violation, including the
+ * allowed minimum and maximum values.
+ * 
+ * @param data Parsing data.
+ */
+static void	print_bound_error(t_parse_data *data)
+{
+	ft_putstr_fd((char *)data->boundaries.err, STDERR_FILENO);
+	ft_putchar_fd(' ', STDERR_FILENO);
+	ft_putstr_fd((char *)PARSE_ERR_BOUND, STDERR_FILENO);
+	ft_putstr_fd(" (", STDERR_FILENO);
+	ft_putdouble_fd(data->boundaries.min, 1, STDERR_FILENO);
+	ft_putstr_fd(" to ", STDERR_FILENO);
+	ft_putdouble_fd(data->boundaries.max, 1, STDERR_FILENO);
+	ft_putstr_fd(") ", STDERR_FILENO);
+}
+
+/**
  * @brief Prints a detailed parsing error message to standard error.
  * 
  * Displays a formatted error message indicating the location (line and column)
  * of a parsing error in the input file. Prefixes the message with
- * "miniRT: Error".
+ * "miniRT: Error". Optionally prints detailed boundary violation info.
  * 
- * @param error The error message describing what went wrong.
- * @param line The line number where the error occured.
- * @param col The column number where the error occured.
+ * @param err Error message describing what went wrong.
+ * @param d Parsing data.
+ * @param verb Enable verbose error output including line context.
+ * @param bound If true, print boundary violation details.
  * 
- * @return Always returns `false` for convenience.
+ * @return Always returns `false` for convenience in error handling.
  */
-bool	parse_errmsg(const char *error, t_parse_data *data)
+bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound)
 {
-	if (error)
+	if (verb)
 	{
 		errmsg("Error", 0, 0, false);
-		if (data->verbose)
-			print_error(data->line, data->i);
+		if (d->verbose)
+			print_error(d->line, d->i);
 		ft_putstr_fd("File syntax error: ", STDERR_FILENO);
-		ft_putstr_fd((char *)error, STDERR_FILENO);
+		if (bound)
+			print_bound_error(d);
+		else
+			ft_putstr_fd((char *)err, STDERR_FILENO);
 		ft_putstr_fd(" at line ", STDERR_FILENO);
-		ft_putnbr_fd(data->line_number + 1, STDERR_FILENO);
+		ft_putnbr_fd(d->line_number + 1, STDERR_FILENO);
 		ft_putstr_fd(", col ", STDERR_FILENO);
-		ft_putnbr_fd(data->i + 1, STDERR_FILENO);
+		ft_putnbr_fd(d->i + 1, STDERR_FILENO);
 		ft_putchar_fd('\n', STDERR_FILENO);
 	}
 	return (false);

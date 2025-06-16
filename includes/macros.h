@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 05:17:30 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 16:44:37 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,20 @@
 # define BRIGHTNESS_MAX 1.0
 # define FOV_MIN 0.0
 # define FOV_MAX 180.0
-# define ARG_MIN 0.0
-# define ARG_MAX 1000.0
+# define SP_DIAMETER_MIN 0.1
+# define SP_DIAMETER_MAX 1000.0
+# define CY_DIAMETER_MIN 0.1
+# define CY_DIAMETER_MAX 500.0
+# define CY_HEIGHT_MIN 0.001
+# define CY_HEIGHT_MAX 1000.0
+# define CO_ANGLE_MIN 0.1
+# define CO_ANGLE_MAX 179.9
+# define PA_K_MIN 0.1
+# define PA_K_MAX 100.0
+# define HY_A_MIN 0.1
+# define HY_A_MAX 500.0
+# define HY_C_MIN 0.1
+# define HY_C_MAX 500.0
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -80,12 +92,19 @@
 # define PARSE_ERR_EXTRA_DATA "unexpected trailing data after valid fields"
 
 # define PARSE_ERR_INVALID_COLOR "invalid color, expected `checkerboard'"
-# define PARSE_ERR_BOUND_COLOR "color value out of range (0 to 255)"
-# define PARSE_ERR_BOUND_COORD "coordinate out of range (-1000 to 1000)"
-# define PARSE_ERR_BOUND_BRIGHTNESS "brightness out of range (0 to 1)"
-# define PARSE_ERR_BOUND_FOV "fov out of range (0 to 180)"
-# define PARSE_ERR_BOUND_ARG "parameter out of range (0 to 1000)"
-# define PARSE_ERR_BOUND_VECT "component out of range (-1 to 1)"
-# define PARSE_ERR_BOUND_NORM "vector has zero (or near-zero) norm"
+# define PARSE_ERR_BOUND "out of range"
+# define PARSE_ERR_BOUND_COLOR "color value"
+# define PARSE_ERR_BOUND_COORD "coordinate"
+# define PARSE_ERR_BOUND_BRIGHTNESS "brightness value"
+# define PARSE_ERR_BOUND_FOV "fov value"
+# define PARSE_ERR_BOUND_SP_RAD "sphere diameter"
+# define PARSE_ERR_BOUND_CY_RAD "cylinder diameter"
+# define PARSE_ERR_BOUND_CY_HEIGHT "cylinder height"
+# define PARSE_ERR_BOUND_CO_ANGLE "cone angle"
+# define PARSE_ERR_BOUND_PA_SPREAD "paraboloid spread value"
+# define PARSE_ERR_BOUND_HY_RADIAL "hyperboloid radial value"
+# define PARSE_ERR_BOUND_HY_VERTICAL "hyperboloid vertical value"
+# define PARSE_ERR_BOUND_VECT "component"
+# define PARSE_ERR_NORM "vector has zero (or near-zero) norm"
 
 #endif

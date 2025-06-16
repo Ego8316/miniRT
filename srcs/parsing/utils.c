@@ -6,28 +6,11 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 06:05:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:19:09 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/**
- * @brief Initializes the parse data structure for file parsing.
- * 
- * Sets up all global fields of the given data structure to their initial
- * values before parsing the file.
- * 
- * @param Pointer to the parse data structure being initialized.
- */
-void	init_parse_global_data(t_parse_data *data)
-{
-	data->ambient_found = false;
-	data->camera_found = false;
-	data->line_number = -1;
-	data->verbose = true;
-	return ;
-}
 
 /**
  * @brief Initalizes a parse data structure for line parsing.
@@ -45,11 +28,32 @@ void	init_parse_line_data(t_parse_data *data)
 	return ;
 }
 
+/**
+ * @brief Advances the parsing index past all whitespace characters.
+ * 
+ * @param data Parsing data.
+ */
 void	skip_spaces(t_parse_data *data)
 {
 	while (ft_isspace(data->line[data->i]))
 		++data->i;
 	return ;
+}
+
+/**
+ * @brief Checks for unexpected trailing data after parsing expected fields.
+ * If found, prints the appropriate error message.
+ * 
+ * @param data Parsing data.
+ * 
+ * @return `true` if unexpected trailing data exists, `false` otherwise.
+ */
+bool	trailing_data(t_parse_data *data)
+{
+	skip_spaces(data);
+	if (data->line[data->i])
+		return (!parse_errmsg(PARSE_ERR_EXTRA_DATA, data, true, false));
+	return (false);
 }
 
 /**
