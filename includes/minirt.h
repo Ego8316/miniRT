@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 11:16:36 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:37:15 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_parse_data
 	int			field_count;	/** Number of data fields parsed. */
 	t_bound		boundaries;		/**	Boundaries for the current parsed value. */
 	bool		verbose;		/** Enables detailed parsing error messages. */
-	bool		valid;
 }	t_parse_data;
 
 /**

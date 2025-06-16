@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 06:04:39 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 13:36:09 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,11 @@ static void	print_error(char *line, int i)
 			printf("%c", line[j]);
 		j++;
 	}
-	if (!ft_strchr(line, '\n'))
-		printf("\n");
+	printf("\n");
 	i += ft_strlen(VERBOSE_PREFIX);
 	while (--i >= 0)
 		printf(" ");
-	printf("^\n");
-	printf("%s", C_RESET);
+	printf("^%s\n", C_RESET);
 }
 
 /**

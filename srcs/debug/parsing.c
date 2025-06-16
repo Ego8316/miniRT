@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 00:38:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 04:54:42 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 13:37:43 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ void	print_parse_data(t_parse_data *data)
 	printf("Ambient found:\t\t%i\n", data->ambient_found);
 	printf("Camera found:\t\t%i\n", data->camera_found);
 	printf("Field count:\t\t%i\n", data->field_count);
-	printf("Line valid:\t\t%i\n", data->valid);
 	printf("-----------------------------------------------------\n");
 }
