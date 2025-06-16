@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:04:52 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:12:02 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_parse_data
 	int			line_number;	/** Line number in the scene file. */
 	int			i;				/** Current character index in the line. */
 	t_id		id;				/** Current identifier found in the line. */
-	int			field_count;	/** Number of data fields parsed. */
 	t_bound		boundaries;		/**	Boundaries for the current parsed value. */
 	bool		verbose;		/** Enables detailed parsing error messages. */
 }	t_parse_data;
@@ -184,14 +183,11 @@ bool	normalize_vector(t_coor *vec);
 
 bool	parse_file(char *filename, t_scene *s);
 
-void	add_light_to_list(t_light *new, t_light **lights);
-void	add_object_to_list(t_object *new, t_object **objects);
 
-void	init_parse_line_data(t_parse_data *data);
 void	skip_spaces(t_parse_data *data);
 bool	trailing_data(t_parse_data *data);
-bool	ft_isspace(int c);
-bool	stristype(const char *s, bool (*f)(int));
+void	add_light_to_list(t_light *new, t_light **lights);
+void	add_object_to_list(t_object *new, t_object **objects);
 
 // Utils
 
@@ -202,6 +198,9 @@ bool	*free_str(char **s);
 void	free_lights(t_light *lights);
 void	free_objects(t_object *objects);
 int		free_scene(t_scene *s);
+
+bool	ft_isspace(int c);
+bool	stristype(const char *s, bool (*f)(int));
 
 // Debug
 

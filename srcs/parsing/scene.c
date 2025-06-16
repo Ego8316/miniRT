@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:06:33 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:12:14 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ static bool	get_camera(t_parse_data *data, t_scene *scene)
 
 bool	parse_line(t_parse_data *data, t_scene *scene)
 {
-	init_parse_line_data(data);
 	if (!get_identifier(data))
 		return (false);
 	print_parse_data(data);
@@ -142,7 +141,8 @@ bool	parse_file(char *filename, t_scene *s)
 			return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 		if (!data.line)
 			break ;
-		init_parse_line_data(&data);
+		data.i = 0;
+		data.id = NONE;
 		if (!stristype(data.line, ft_isspace) && !parse_line(&data, s))
 			return (free_str(&data.line));
 		free_str(&data.line);

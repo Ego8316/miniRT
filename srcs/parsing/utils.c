@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:08:12 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:10:56 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init_parse_line_data(t_parse_data *data)
 {
 	data->i = 0;
 	data->id = NONE;
-	data->field_count = 0;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:06:00 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:10:50 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 
 static bool	get_object_args(t_parse_data *data, t_coor *args)
 {
-	data->field_count++;
+	if (data->id == NONE)
+		data->id = 3;
 	args->x = 1;
 	return (true);
 }
 
 static bool	get_object_attribute(t_parse_data *d, double *v, const char *a)
 {
-	d->field_count++;
+	if (d->id == NONE)
+		d->id = 3;
 	if (!ft_strcmp(a, "r"))
 		printf("looking for reflecivity");
 	*v = 0;
