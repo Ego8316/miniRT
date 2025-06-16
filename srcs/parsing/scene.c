@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:13:02 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/17 01:50:09 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 	skip_spaces(data);
 	if (!get_next_color(data, &a.color))
 		return (false);
-	scale_color(&a.color);
 	if (trailing_data(data))
 		return (false);
 	scene->ambient = a;
@@ -97,17 +96,21 @@ static bool	get_camera(t_parse_data *data, t_scene *scene)
 	return (true);
 }
 
-bool	parse_line(t_parse_data *data, t_scene *scene)
+static bool	parse_line(t_parse_data *data, t_scene *scene)
 {
 	if (!get_identifier(data))
 		return (false);
+	if (data->id == NONE)
+		return (true);
 	print_parse_data(data);
+	data->verbose = false;
 	if (data->id == AMBIENT && !get_ambient_light(data, scene))
 		return (false);
 	if (data->id == CAMERA && !get_camera(data, scene))
 		return (false);
 	if (data->id == LIGHT && !add_light(data, scene))
 		return (false);
+	data->verbose = true;
 	if (data->id > LIGHT && !add_object(data, scene))
 		return (false);
 	return (true);
@@ -120,31 +123,43 @@ bool	parse_line(t_parse_data *data, t_scene *scene)
  * 
  * @return `true` if everything goes fine,`false` otherwise.
  */
-bool	parse_file(char *filename, t_scene *s)
+static bool	parse_file(t_parse_data *data, t_scene *s)
+{
+	data->ambient_found = false;
+	data->camera_found = false;
+	data->line_number = -1;
+	while (true)
+	{
+		++data->line_number;
+		data->line = ft_get_next_line(s->fd);
+		if (!data->line && errno == ENOMEM)
+			return (errmsg(ERRMSG_MALLOC, 0, 0, false));
+		if (!data->line)
+			break ;
+		data->i = 0;
+		data->id = NONE;
+		if (!stristype(data->line, ft_isspace) && !parse_line(data, s))
+			return (free_str(&data->line));
+		free_str(&data->line);
+	}
+	return (true);
+}
+
+bool	init_scene(char *filename, t_scene *s)
 {
 	t_parse_data	data;
 
+	ft_memset(&data, 0, sizeof(t_parse_data));
 	s->fd = open(filename, O_RDONLY);
 	if (s->fd < 0)
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	s->filename = filename;
-	data.ambient_found = false;
-	data.camera_found = false;
-	data.line_number = -1;
-	data.verbose = true;
-	while (true)
-	{
-		++data.line_number;
-		data.line = ft_get_next_line(s->fd);
-		if (!data.line && errno == ENOMEM)
-			return (errmsg(ERRMSG_MALLOC, 0, 0, false));
-		if (!data.line)
-			break ;
-		data.i = 0;
-		data.id = NONE;
-		if (!stristype(data.line, ft_isspace) && !parse_line(&data, s))
-			return (free_str(&data.line));
-		free_str(&data.line);
-	}
+	if (!parse_file(&data, s))
+		return (false);
+	if (!data.ambient_found)
+		return (parse_errmsg(PARSE_ERR_AMBIENT_MISSING, 0, true, false));
+	print_scene(s);
+	if (!data.camera_found)
+		return (parse_errmsg(PARSE_ERR_CAMERA_MISSING, 0, true, false));
 	return (true);
 }

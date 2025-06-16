@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 05:37:17 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:06:24 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:09:57 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static bool	get_light(t_parse_data *data, t_light *light)
 	data->boundaries = (t_bound){COLOR_MIN, COLOR_MAX, PARSE_ERR_BOUND_COLOR};
 	if (!get_next_color(data, &l.color))
 		return (false);
-	scale_color(&l.color);
 	if (trailing_data(data))
 		return (false);
 	*light = l;

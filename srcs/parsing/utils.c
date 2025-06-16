@@ -6,26 +6,11 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:10:56 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:14:56 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/**
- * @brief Initalizes a parse data structure for line parsing.
- * 
- * Sets up all line fields of the given data structure to their initial values
- * before parsing a new line from the scene file.
- * 
- * @param data Pointer to the parse data structure being initialized.
- */
-void	init_parse_line_data(t_parse_data *data)
-{
-	data->i = 0;
-	data->id = NONE;
-	return ;
-}
 
 /**
  * @brief Advances the parsing index past all whitespace characters.

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:12:02 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:51:52 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,25 @@ typedef struct s_bound
 	double		max;	/** Upper bound value. */
 	const char	*err;	/**	Error message to display. */
 }	t_bound;
+
+/**
+ * @brief Dictionary entry linking object identifier to argument bound values.
+ */
+typedef struct s_obj_args
+{
+	t_id	id;				/** Object identifier */
+	t_bound	arg_bounds[3];	/** Argument boundaries */
+}	t_obj_args;
+
+/**
+ * @brief
+ */
+typedef struct s_obj_attribute
+{
+	double		*value;
+	const char	*attribute;
+	const char	*err;
+}	t_obj_attribute;
 
 /**
  * @brief Parsing state data for a single line of the scene file.
@@ -181,7 +200,7 @@ bool	add_object(t_parse_data *data, t_scene *scene);
 void	scale_color(t_coor *color);
 bool	normalize_vector(t_coor *vec);
 
-bool	parse_file(char *filename, t_scene *s);
+bool	init_scene(char *filename, t_scene *s);
 
 
 void	skip_spaces(t_parse_data *data);
@@ -193,6 +212,7 @@ void	add_object_to_list(t_object *new, t_object **objects);
 
 bool	errmsg(char *s1, char *s2, char *s3, bool status);
 bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound);
+void	ft_putdouble_fd(double nbr, int precision, int fd);
 
 bool	*free_str(char **s);
 void	free_lights(t_light *lights);

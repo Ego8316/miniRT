@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 16:44:37 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:36:26 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define C_RESET "\033[0m"
 
 // Identifiers
+
 # define AMBIENT_ID "A"
 # define CAMERA_ID "C"
 # define LIGHT_ID "L"
@@ -35,6 +36,11 @@
 # define PARABOLOID_ID "pa"
 # define SETTING_ID_SIZE 1
 # define OBJECT_ID_SIZE 2
+
+// Attributes
+
+# define ATTR_REFLECTIVITY "r"
+# define ATTR_BUMP_STRENGTH "b"
 
 // Max values
 # define COLOR_MIN 0.0
@@ -55,12 +61,14 @@
 # define CY_HEIGHT_MAX 1000.0
 # define CO_ANGLE_MIN 0.1
 # define CO_ANGLE_MAX 179.9
-# define PA_K_MIN 0.1
-# define PA_K_MAX 100.0
-# define HY_A_MIN 0.1
-# define HY_A_MAX 500.0
-# define HY_C_MIN 0.1
-# define HY_C_MAX 500.0
+# define PA_SPREAD_MIN 0.1
+# define PA_SPREAD_MAX 100.0
+# define HY_RADIAL_MIN 0.1
+# define HY_RADIAL_MAX 500.0
+# define HY_VERTICAL_MIN 0.1
+# define HY_VERTICAL_MAX 500.0
+# define ATT_MIN 0.0
+# define ATT_MAX 1.0
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -81,11 +89,14 @@
 # define PARSE_ERR_UNKNOWN_IDENTIFIER "identifier does not match known types"
 # define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient lighting definition"
 # define PARSE_ERR_CAMERA_DUPLICATE "duplicate camera definition"
+# define PARSE_ERR_AMBIENT_MISSING "no ambient lighting definition"
+# define PARSE_ERR_CAMERA_MISSING "no camera definition"
 
 # define PARSE_ERR_UNEXPECTED_COMMA "unexpected comma"
 # define PARSE_ERR_EXPECTED_COMMA "expected comma"
 # define PARSE_ERR_EXPECTED_DOUBLE "expected double number"
 # define PARSE_ERR_EXPECTED_INTEGER "expected integer number"
+# define PARSE_ERR_UNEXPECTED_ARGUMENT "unexpected argument"
 
 # define PARSE_ERR_TOO_FEW_ARGUMENTS "not enough data fields after identifier"
 # define PARSE_ERR_TOO_MANY_ARGUMENTS "more than expected data fields"
@@ -97,13 +108,14 @@
 # define PARSE_ERR_BOUND_COORD "coordinate"
 # define PARSE_ERR_BOUND_BRIGHTNESS "brightness value"
 # define PARSE_ERR_BOUND_FOV "fov value"
-# define PARSE_ERR_BOUND_SP_RAD "sphere diameter"
-# define PARSE_ERR_BOUND_CY_RAD "cylinder diameter"
-# define PARSE_ERR_BOUND_CY_HEIGHT "cylinder height"
-# define PARSE_ERR_BOUND_CO_ANGLE "cone angle"
-# define PARSE_ERR_BOUND_PA_SPREAD "paraboloid spread value"
-# define PARSE_ERR_BOUND_HY_RADIAL "hyperboloid radial value"
-# define PARSE_ERR_BOUND_HY_VERTICAL "hyperboloid vertical value"
+# define PARSE_ERR_BOUND_DIAMETER "diameter"
+# define PARSE_ERR_BOUND_HEIGHT "height"
+# define PARSE_ERR_BOUND_ANGLE "angle"
+# define PARSE_ERR_BOUND_SPREAD "spread value"
+# define PARSE_ERR_BOUND_RADIAL "radial value"
+# define PARSE_ERR_BOUND_VERTICAL "vertical value"
+# define PARSE_ERR_BOUND_REFLECTIVITY "reflectivity"
+# define PARSE_ERR_BOUND_BUMP_STRENGTH "bump strength"
 # define PARSE_ERR_BOUND_VECT "component"
 # define PARSE_ERR_NORM "vector has zero (or near-zero) norm"
 

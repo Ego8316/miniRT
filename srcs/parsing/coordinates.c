@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 01:38:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:32 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:10:35 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,20 @@ bool	get_next_double(t_parse_data *d, double *v, bool comma, bool verb)
 	result = ft_strtod(d->line + d->i, &end);
 	if (end == d->line + d->i)
 		return (parse_errmsg(PARSE_ERR_EXPECTED_DOUBLE, d, verb, false));
-	*v = result;
-	if (*v < d->boundaries.min || *v > d->boundaries.max)
-		return (parse_errmsg(d->boundaries.err, d, verb, true));
-	d->i += end - (d->line + d->i);
+	if (v)
+	{
+		*v = result;
+		if (*v < d->boundaries.min || *v > d->boundaries.max)
+			return (parse_errmsg(d->boundaries.err, d, verb, true));
+		d->i += end - (d->line + d->i);
+	}
 	if (*end == ',' && !comma)
 		return (parse_errmsg(PARSE_ERR_UNEXPECTED_COMMA, d, verb, false));
 	if (*end != ',' && comma)
 		return (parse_errmsg(PARSE_ERR_EXPECTED_COMMA, d, verb, false));
 	if (*end && !ft_isspace(*end) && !comma)
 		return (parse_errmsg(PARSE_ERR_EXPECTED_DOUBLE, d, verb, false));
-	if (*end)
+	if (*end && v)
 		d->i++;
 	return (true);
 }
@@ -123,6 +126,7 @@ bool	get_next_color(t_parse_data *data, t_coor *coor)
 		return (false);
 	if (!get_next_integer(data, &coor->z, false))
 		return (false);
+	scale_color(coor);
 	return (true);
 }
 

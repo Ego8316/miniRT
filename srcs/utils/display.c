@@ -6,12 +6,21 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:26:08 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 16:45:36 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:05:34 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief Prints a double-precision floating-point number to a file descriptor
+ * up to `precision` decimal digits. Only used to display bound values for
+ * parsing errors.
+ * 
+ * @param nbr The double value to print.
+ * @param precision Number of decimal places to print.
+ * @param fd File descriptor where the output is written.
+ */
 void	ft_putdouble_fd(double nbr, int precision, int fd)
 {
 	int		integer_part;

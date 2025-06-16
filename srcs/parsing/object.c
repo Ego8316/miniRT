@@ -6,11 +6,49 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:10:50 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:32:58 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static const t_obj_args	g_obj_args[] = {
+{SPHERE, {
+{SP_DIAMETER_MIN, SP_DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL}
+}},
+{PLANE, {
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL}
+}},
+{CYLINDER, {
+{CY_DIAMETER_MIN, CY_DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
+{CY_HEIGHT_MIN, CY_HEIGHT_MAX, PARSE_ERR_BOUND_HEIGHT},
+{0.0, 0.0, NULL}
+}},
+{CONE, {
+{CO_ANGLE_MIN, CO_ANGLE_MAX, PARSE_ERR_BOUND_ANGLE},
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL}
+}},
+{PARABOLOID, {
+{PA_SPREAD_MIN, PA_SPREAD_MAX, PARSE_ERR_BOUND_SPREAD},
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL}
+}},
+{HYPERBOLOID, {
+{HY_RADIAL_MIN, HY_RADIAL_MAX, PARSE_ERR_BOUND_RADIAL},
+{HY_VERTICAL_MIN, HY_VERTICAL_MAX, PARSE_ERR_BOUND_VERTICAL},
+{0.0, 0.0, NULL}
+}},
+{NONE, {
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL},
+{0.0, 0.0, NULL}
+}}
+};
 
 static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 {
@@ -30,21 +68,48 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 
 static bool	get_object_args(t_parse_data *data, t_coor *args)
 {
-	if (data->id == NONE)
-		data->id = 3;
-	args->x = 1;
+	int		i;
+	int		j;
+	double	*components[3];
+
+	components[0] = &args->x;
+	components[1] = &args->y;
+	components[2] = &args->z;
+	i = -1;
+	while (g_obj_args[++i].id != NONE)
+	{
+		if (g_obj_args[i].id == data->id)
+		{
+			j = -1;
+			while (++j < 3)
+			{
+				data->boundaries = g_obj_args[i].arg_bounds[j];
+				if (data->boundaries.err
+					&& !get_next_double(data, components[j], false, true))
+					return (false);
+			}
+		}
+	}
+	if (get_next_double(data, 0, false, false))
+		return (parse_errmsg(PARSE_ERR_UNEXPECTED_ARGUMENT, data, true, false));
 	return (true);
 }
 
-static bool	get_object_attribute(t_parse_data *d, double *v, const char *a)
-{
-	if (d->id == NONE)
-		d->id = 3;
-	if (!ft_strcmp(a, "r"))
-		printf("looking for reflecivity");
-	*v = 0;
-	return (true);
-}
+// static bool	get_object_attributes(t_parse_data *d, t_object *obj)
+// {
+// 	char			next_word[2];
+// 	t_obj_attribute	attributes[2];
+
+// 	attributes[0] = (t_obj_attribute){&obj->reflectivity, "r", PARSE_ERR_BOUND_REFLECTIVITY};
+// 	attributes[1] = (t_obj_attribute){&obj->bump_strength, "b", PARSE_ERR_BOUND_REFLECTIVITY};
+// 	skip_spaces(d);
+// 	next_word[0] = d->line[d->i];
+// 	next_word[1] = d->line[d->i + 1];
+// 	if (!ft_strcmp(a, "r"))
+// 		printf("looking for reflecivity");
+// 	*v = 0;
+// 	return (true);
+// }
 
 /**
  * @brief Parses a object information from the current line and stores it in the
@@ -78,9 +143,8 @@ static bool	get_object(t_parse_data *data, t_object *object)
 		return (false);
 	if (!get_next_object_color(data, &o.color))
 		return (false);
-	scale_color(&o.color.coor);
-	if (!get_object_attribute(data, &o.reflectivity, "r"))
-		return (false);
+	// if (!get_object_attribute(data, &o.reflectivity, "r"))
+	// 	return (false);
 	if (trailing_data(data))
 		return (false);
 	*object = o;

@@ -6,41 +6,39 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:31:16 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/17 00:53:37 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /**
- * @brief Prints a double-precision floating-point number to a file descriptor
- * up to `precision` decimal digits. Only used to display bound values for
- * parsing errors.
+ * @brief Prints the string prefix corresponding to a given identifier.
  * 
- * @param nbr The double value to print.
- * @param precision Number of decimal places to print.
- * @param fd File descriptor where the output is written.
+ * @param id Identifier.
  */
-static void	ft_putdouble_fd(double nbr, int precision, int fd)
+static void	print_id_prefix(t_id id)
 {
-	int		integer_part;
-	double	frac;
-
-	integer_part = (long)nbr;
-	frac = nbr - integer_part;
-	if (frac < 0)
-		frac *= -1;
-	ft_putnbr_fd(integer_part, fd);
-	if (frac < DBL_EPSILON)
-		return ;
-	ft_putchar_fd('.', fd);
-	while (precision-- > 0)
-	{
-		frac *= 10;
-		ft_putchar_fd((long)frac + '0', fd);
-		frac -= (long)frac;
-	}
-	return ;
+	if (id == SPHERE)
+		ft_putstr_fd("sphere: ", STDERR_FILENO);
+	else if (id == PLANE)
+		ft_putstr_fd("plane: ", STDERR_FILENO);
+	else if (id == CYLINDER)
+		ft_putstr_fd("cylinder: ", STDERR_FILENO);
+	else if (id == CONE)
+		ft_putstr_fd("cone: ", STDERR_FILENO);
+	else if (id == PARABOLOID)
+		ft_putstr_fd("paraboloid: ", STDERR_FILENO);
+	else if (id == HYPERBOLOID)
+		ft_putstr_fd("hyperboloid: ", STDERR_FILENO);
+	else if (id == AMBIENT)
+		ft_putstr_fd("ambient: ", STDERR_FILENO);
+	else if (id == CAMERA)
+		ft_putstr_fd("camera: ", STDERR_FILENO);
+	else if (id == LIGHT)
+		ft_putstr_fd("light: ", STDERR_FILENO);
+	else
+		ft_putstr_fd("unknown id: ", STDERR_FILENO);
 }
 
 /**
@@ -136,7 +134,7 @@ static void	print_bound_error(t_parse_data *data)
  * 
  * @param err Error message describing what went wrong.
  * @param d Parsing data.
- * @param verb Enable verbose error output including line context.
+ * @param verb Enable prefix in the error.
  * @param bound If true, print boundary violation details.
  * 
  * @return Always returns `false` for convenience in error handling.
@@ -146,17 +144,22 @@ bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound)
 	if (verb)
 	{
 		errmsg("Error", 0, 0, false);
-		if (d->verbose)
+		if (d)
 			print_error(d->line, d->i);
 		ft_putstr_fd("File syntax error: ", STDERR_FILENO);
+		if (d && d->verbose)
+			print_id_prefix(d->id);
 		if (bound)
 			print_bound_error(d);
 		else
 			ft_putstr_fd((char *)err, STDERR_FILENO);
-		ft_putstr_fd(" at line ", STDERR_FILENO);
-		ft_putnbr_fd(d->line_number + 1, STDERR_FILENO);
-		ft_putstr_fd(", col ", STDERR_FILENO);
-		ft_putnbr_fd(d->i + 1, STDERR_FILENO);
+		if (d)
+		{
+			ft_putstr_fd(" at line ", STDERR_FILENO);
+			ft_putnbr_fd(d->line_number + 1, STDERR_FILENO);
+			ft_putstr_fd(", col ", STDERR_FILENO);
+			ft_putnbr_fd(d->i + 1, STDERR_FILENO);
+		}
 		ft_putchar_fd('\n', STDERR_FILENO);
 	}
 	return (false);

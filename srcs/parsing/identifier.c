@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:12:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/17 01:50:18 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ bool	get_identifier(t_parse_data *data)
 	int	i;
 
 	skip_spaces(data);
-	if (!data->line[data->i] || !data->line[data->i])
-		return (false);
+	if (!data->line[data->i])
+		return (true);
 	i = -1;
 	while (g_ids[++i].string)
 	{
