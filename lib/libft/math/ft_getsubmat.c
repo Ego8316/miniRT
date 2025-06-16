@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:28:05 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/16 11:28:00 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:52:43 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_mat	*ft_getsubmat(t_mat	mat, size_t m, size_t n)
 	t_mat	*submat;
 	size_t	i;
 	size_t	j;
-	
 
 	submat = ft_initmat(mat.dim[0] - 1, mat.dim[1] - 1);
 	if (!submat)

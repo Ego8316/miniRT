@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:26:45 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/16 11:29:31 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:01:50 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ t_mat	*ft_invmat(t_mat mat)
 	double	*det;
 	double	*cofac;
 	size_t	i;
-	size_t	j;
 
-	if (mat.dim[0] != mat.dim[1])
-		return (NULL);
 	det = ft_detmat(mat);
 	if (!det || !*det)
 		return (NULL);
@@ -29,17 +26,13 @@ t_mat	*ft_invmat(t_mat mat)
 	if (!inv)
 		return (NULL);
 	i = 0;
-	while (i < mat.dim[0])
+	while (i < mat.dim[0] * mat.dim[1])
 	{
-		j = 0;
-		while (j < mat.dim[1])
-		{
-			cofac = ft_getcofac(mat, i, j);
-			if (!cofac)
-				return (ft_free_mat(inv), NULL);
-			inv->val[j][i] = mat.val[i][j] * *cofac / *det;
-			j++;
-		}
+		cofac = ft_getcofac(mat, i / mat.dim[0], i % mat.dim[0]);
+		if (!cofac)
+			return (ft_free_mat(inv), NULL);
+		inv->val[i % mat.dim[0]][i / mat.dim[0]] =
+			mat.val[i / mat.dim[0]][i % mat.dim[0]] * *cofac / *det;
 		i++;
 	}
 	return (inv);

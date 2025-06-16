@@ -6,9 +6,10 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 17:12:05 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 17:47:36 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -57,6 +58,11 @@ typedef struct s_dict
 	t_id		id;			/** Corresponding enum identifier */
 	int			len;		/** Length of the string */
 }	t_dict;
+
+typedef struct t_intersec {
+	size_t	count;
+	double	*inters;
+}	t_intersec;
 
 /**
  * @brief Boundaries structure for validating parsed values.
