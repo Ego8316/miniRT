@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 08:43:44 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/02/14 17:59:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:02:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 		{
 			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
 			i++;
-		}	
+		}
 	}
 	return (dst);
 }

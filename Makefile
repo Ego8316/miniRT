@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
+#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/16 05:56:09 by ego              ###   ########.fr        #
+#    Updated: 2025/06/16 12:17:59 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC			+=	parsing/argument.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
+SRC			+=	raycasting/ft_getinstersec.c
 SRC			+=	utils/error.c	\
 				utils/free.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))

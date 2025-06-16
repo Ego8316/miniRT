@@ -7,6 +7,10 @@
 		"iosfwd": "c",
 		"iterator": "c",
 		"queue": "c",
-		"version": "c"
+		"version": "c",
+		"chrono": "c",
+		"limits": "c",
+		"ratio": "c",
+		"algorithm": "c"
 	}
 }
