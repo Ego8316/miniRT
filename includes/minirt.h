@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 02:17:23 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 11:02:55 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,12 +180,12 @@ typedef struct s_scene
 
 /* Parsing */
 
-bool	handle_argument(int ac, char **av);
+// bool	handle_argument(int ac, char **av);
 double	ft_strtod(const char *str, char **endptr);
 long	ft_strtol(const char *str, char **endptr, int base);
-bool	get_next_double(t_parse_data *d, double *v, bool comma, bool verb);
+// bool	get_next_double(t_parse_data *d, double *v, bool comma, bool verb);
 bool	get_next_coordinate(t_parse_data *data, t_coor *coor);
-bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma);
+// bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma);
 bool	get_next_color(t_parse_data *data, t_coor *coor);
 bool	get_next_object_color(t_parse_data *data, t_color *color);
 
@@ -198,12 +198,12 @@ bool	add_object(t_parse_data *data, t_scene *scene);
 
 bool	init_scene(char *filename, t_scene *s);
 
-bool	get_next_word(t_parse_data *data, char *word, int *word_start);
+// bool	get_next_word(t_parse_data *data, char *word, int *word_start);
 void	skip_spaces(t_parse_data *data);
 bool	trailing_data(t_parse_data *data);
 void	add_light_to_list(t_light *new, t_light **lights);
 void	add_object_to_list(t_object *new, t_object **objects);
-bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *w);
+// bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *w);
 
 
 /* Utils */
@@ -211,7 +211,7 @@ bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *w);
 void	scale_color(t_coor *color);
 bool	normalize_vector(t_coor *vec);
 
-bool	errmsg(char *s1, char *s2, char *s3, bool status);
+// bool	errmsg(char *s1, char *s2, char *s3, bool status);
 bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound);
 void	ft_putdouble_fd(double nbr, int precision, int fd);
 
