@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 00:38:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 13:37:43 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:09:57 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Displays current line number and content, parsing progress, identifier and
  * parsing flags.
  * 
- * @param data Current parsing data.
+ * @param data Parsing data.
  */
 void	print_parse_data(t_parse_data *data)
 {
@@ -38,6 +38,5 @@ void	print_parse_data(t_parse_data *data)
 	printf("Current identifier:\t%s\n", get_id_string(data->id));
 	printf("Ambient found:\t\t%i\n", data->ambient_found);
 	printf("Camera found:\t\t%i\n", data->camera_found);
-	printf("Field count:\t\t%i\n", data->field_count);
 	printf("-----------------------------------------------------\n");
 }

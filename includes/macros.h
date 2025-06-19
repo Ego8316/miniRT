@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 05:17:30 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:02:22 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define C_RESET "\033[0m"
 
 // Identifiers
+
 # define AMBIENT_ID "A"
 # define CAMERA_ID "C"
 # define LIGHT_ID "L"
@@ -35,6 +36,13 @@
 # define PARABOLOID_ID "pa"
 # define SETTING_ID_SIZE 1
 # define OBJECT_ID_SIZE 2
+# define WORD_SIZE 15
+
+// Attributes
+
+# define REFLECTIVITY_ID "r"
+# define BUMP_STRENGTH_ID "b"
+# define MAX_ATTRIBUTES 2
 
 // Max values
 # define COLOR_MIN 0.0
@@ -47,8 +55,22 @@
 # define BRIGHTNESS_MAX 1.0
 # define FOV_MIN 0.0
 # define FOV_MAX 180.0
-# define ARG_MIN 0.0
-# define ARG_MAX 1000.0
+# define SP_DIAMETER_MIN 0.1
+# define SP_DIAMETER_MAX 1000.0
+# define CY_DIAMETER_MIN 0.1
+# define CY_DIAMETER_MAX 500.0
+# define CY_HEIGHT_MIN 0.001
+# define CY_HEIGHT_MAX 1000.0
+# define CO_ANGLE_MIN 0.1
+# define CO_ANGLE_MAX 179.9
+# define PA_SPREAD_MIN 0.1
+# define PA_SPREAD_MAX 100.0
+# define HY_RADIAL_MIN 0.1
+# define HY_RADIAL_MAX 500.0
+# define HY_VERTICAL_MIN 0.1
+# define HY_VERTICAL_MAX 500.0
+# define ATTR_MIN 0.0
+# define ATTR_MAX 1.0
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -66,26 +88,42 @@
 
 // Parsing error messages
 
+# define PARSE_ERR_NO_IDENTIFIER_FOUND "no identifier found"
 # define PARSE_ERR_UNKNOWN_IDENTIFIER "identifier does not match known types"
-# define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient lighting definition"
+# define PARSE_ERR_UNKNOWN_ATTRIBUTE "unknown attribute"
+# define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient light definition"
 # define PARSE_ERR_CAMERA_DUPLICATE "duplicate camera definition"
+# define PARSE_ERR_REFLECTIVITY_DUPLICATE "reflectivity already defined"
+# define PARSE_ERR_BUMP_STRENGTH_DUPLICATE "bump strength already defined"
+# define PARSE_ERR_BOTH_MISSING "no camera nor ambient light definition"
+# define PARSE_ERR_AMBIENT_MISSING "no ambient light definition"
+# define PARSE_ERR_CAMERA_MISSING "no camera definition"
 
 # define PARSE_ERR_UNEXPECTED_COMMA "unexpected comma"
 # define PARSE_ERR_EXPECTED_COMMA "expected comma"
 # define PARSE_ERR_EXPECTED_DOUBLE "expected double number"
 # define PARSE_ERR_EXPECTED_INTEGER "expected integer number"
+# define PARSE_ERR_UNEXPECTED_ARGUMENT "unexpected argument"
 
 # define PARSE_ERR_TOO_FEW_ARGUMENTS "not enough data fields after identifier"
 # define PARSE_ERR_TOO_MANY_ARGUMENTS "more than expected data fields"
 # define PARSE_ERR_EXTRA_DATA "unexpected trailing data after valid fields"
 
 # define PARSE_ERR_INVALID_COLOR "invalid color, expected `checkerboard'"
-# define PARSE_ERR_BOUND_COLOR "color value out of range (0 to 255)"
-# define PARSE_ERR_BOUND_COORD "coordinate out of range (-1000 to 1000)"
-# define PARSE_ERR_BOUND_BRIGHTNESS "brightness out of range (0 to 1)"
-# define PARSE_ERR_BOUND_FOV "fov out of range (0 to 180)"
-# define PARSE_ERR_BOUND_ARG "parameter out of range (0 to 1000)"
-# define PARSE_ERR_BOUND_VECT "component out of range (-1 to 1)"
-# define PARSE_ERR_BOUND_NORM "vector has zero (or near-zero) norm"
+# define PARSE_ERR_NORM "vector has zero (or near-zero) norm"
+# define PARSE_ERR_BOUND "out of range"
+# define PARSE_ERR_BOUND_COLOR "color value"
+# define PARSE_ERR_BOUND_COORD "coordinate"
+# define PARSE_ERR_BOUND_BRIGHTNESS "brightness value"
+# define PARSE_ERR_BOUND_FOV "fov value"
+# define PARSE_ERR_BOUND_DIAMETER "diameter"
+# define PARSE_ERR_BOUND_HEIGHT "height"
+# define PARSE_ERR_BOUND_ANGLE "angle"
+# define PARSE_ERR_BOUND_SPREAD "spread value"
+# define PARSE_ERR_BOUND_RADIAL "radial value"
+# define PARSE_ERR_BOUND_VERTICAL "vertical value"
+# define PARSE_ERR_BOUND_REFLECTIVITY "reflectivity"
+# define PARSE_ERR_BOUND_BUMP_STRENGTH "bump strength"
+# define PARSE_ERR_BOUND_VECT "component"
 
 #endif

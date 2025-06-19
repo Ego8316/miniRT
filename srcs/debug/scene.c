@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:49:29 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 11:22:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:18:55 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	print_scene(t_scene *s)
 		s->filename, s->fd);
 	if (s->ambient.ratio)
 		print_ambient(&s->ambient);
-	//if (&s->camera)
 	print_camera(&s->camera);
 	print_lights(&s->lights);
 	print_objects(&s->objects);

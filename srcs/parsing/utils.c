@@ -6,45 +6,48 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 06:05:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:09:44 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /**
- * @brief Initializes the parse data structure for file parsing.
+ * @brief Gets the next word and stores it inside the given buffer. Skips any
+ * leading whitespace and attempts to copy the next sequence of alphabetic
+ * character. The position of the word's start is stored in `word_start` for
+ * error reporting purposes.
  * 
- * Sets up all global fields of the given data structure to their initial
- * values before parsing the file.
+ * @param data Parsing data.
+ * @param word Buffer to store the word.
+ * @param word_start Start index of the next word.
  * 
- * @param Pointer to the parse data structure being initialized.
+ * @return `true` if a word was found, `false` otherwise.
+ * 
+ * @warning The word buffer must be at least `WORD_SIZE` bytes.
  */
-void	init_parse_global_data(t_parse_data *data)
+bool	get_next_word(t_parse_data *data, char *word, int *word_start)
 {
-	data->ambient_found = false;
-	data->camera_found = false;
-	data->line_number = -1;
-	data->verbose = true;
-	return ;
+	int	i;
+
+	skip_spaces(data);
+	*word_start = data->i;
+	if (!data->line[data->i] || !ft_isalpha(data->line[data->i]))
+		return (false);
+	i = 0;
+	while (ft_isalpha(data->line[data->i]) && i < WORD_SIZE)
+	{
+		word[i++] = data->line[data->i++];
+	}
+	word[i] = 0;
+	return (true);
 }
 
 /**
- * @brief Initalizes a parse data structure for line parsing.
+ * @brief Advances the parsing index past all whitespace characters.
  * 
- * Sets up all line fields of the given data structure to their initial values
- * before parsing a new line from the scene file.
- * 
- * @param data Pointer to the parse data structure being initialized.
+ * @param data Parsing data.
  */
-void	init_parse_line_data(t_parse_data *data)
-{
-	data->i = 0;
-	data->id = NONE;
-	data->field_count = 0;
-	return ;
-}
-
 void	skip_spaces(t_parse_data *data)
 {
 	while (ft_isspace(data->line[data->i]))
@@ -53,35 +56,56 @@ void	skip_spaces(t_parse_data *data)
 }
 
 /**
- * @brief Checks if a string is only made of one given type.
+ * @brief Checks for unexpected trailing data after parsing expected fields.
+ * If found, prints the appropriate error message.
  * 
- * @param s String to be checked.
- * @param f Function used to check the type (isspace for example).
+ * @param data Parsing data.
  * 
- * @return `true` if it is only made of the given type, `false` otherwise.
+ * @return `true` if unexpected trailing data exists, `false` otherwise.
  */
-bool	stristype(const char *s, bool (*f)(int))
+bool	trailing_data(t_parse_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (!f(s[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	skip_spaces(data);
+	if (data->line[data->i])
+		return (!parse_errmsg(PARSE_ERR_EXTRA_DATA, data, true, false));
+	return (false);
 }
 
-/** 
- * @brief Checks if a character is a space.
+/**
+ * @brief Parses and assigns an object attribute. Searches for the provided
+ * word `word` in the array of known attributes `a` and ensures this attribute
+ * has not already been set, then parses its value into the target memory
+ * location.
  * 
- * @param c The character to check.
+ * @param d Parsing data.
+ * @param a Array of attribute descriptors.
+ * @param i Position in the line where the attribute was found.
+ * @param word The attribute name to find and parse.
  * 
- * @return 1 if the character is a space, 0 otherwise.
+ * @return `true` if the attribute was successfully parsed and set, `false`
+ * otherwise.
  */
-bool	ft_isspace(int c)
+bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *word)
 {
-	return ((9 <= c && c <= 13) || c == 32);
+	int	j;
+
+	j = -1;
+	while (++j < MAX_ATTRIBUTES)
+	{
+		if (!ft_strcmp(word, a[j].id))
+		{
+			if (a[j].found)
+			{
+				d->i = i;
+				return (parse_errmsg(a[j].dup_err, d, true, false));
+			}
+			a[j].found = true;
+			d->boundaries = a[j].bound;
+			if (!get_next_double(d, a[j].value, false, true))
+				return (false);
+			return (true);
+		}
+	}
+	d->i = i;
+	return (parse_errmsg(PARSE_ERR_UNKNOWN_ATTRIBUTE, d, true, false));
 }

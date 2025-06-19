@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2025/06/16 15:02:24 by vviterbo         ###   ########.fr        #
+=======
+#    Updated: 2025/06/19 01:11:10 by ego              ###   ########.fr        #
+>>>>>>> 861fab421f2ced5b543c463f2dab258bcf7f9ca0
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +27,23 @@ SRC			+=	debug/lights.c			\
 SRC			+=	parsing/argument.c		\
 				parsing/convert.c		\
 				parsing/coordinates.c	\
+				parsing/error.c			\
 				parsing/identifier.c	\
-				parsing/lights.c		\
+				parsing/light.c			\
+				parsing/lists.c			\
+				parsing/object.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
+<<<<<<< HEAD
 SRC			+=	raycasting/ft_getintersec.c
 SRC			+=	utils/error.c	\
 				utils/free.c
+=======
+SRC			+=	utils/display.c			\
+				utils/free.c			\
+				utils/string.c
+>>>>>>> 861fab421f2ced5b543c463f2dab258bcf7f9ca0
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))
 

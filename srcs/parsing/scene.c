@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 12:03:35 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:47:52 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,19 @@
  *
  * @return `true` on successful parsing, `false` on error.
  */
-bool	get_ambient_light(t_parse_data *data, t_scene *scene)
+static bool	get_ambient_light(t_parse_data *data, t_scene *scene)
 {
 	t_ambient	a;
 
 	data->boundaries = (t_bound){BRIGHTNESS_MIN,
 		BRIGHTNESS_MAX, PARSE_ERR_BOUND_BRIGHTNESS};
-	if (!get_next_double(data, &a.ratio, false))
+	if (!get_next_double(data, &a.ratio, false, true))
 		return (false);
 	skip_spaces(data);
-	data->boundaries = (t_bound){COLOR_MIN, COLOR_MAX, PARSE_ERR_BOUND_COLOR};
 	if (!get_next_color(data, &a.color))
 		return (false);
-	scale_color(&a.color);
-	skip_spaces(data);
-	if (data->line[data->i])
-		return (parse_errmsg(PARSE_ERR_EXTRA_DATA, data));
+	if (trailing_data(data))
+		return (false);
 	scene->ambient = a;
 	return (true);
 }
@@ -73,7 +70,7 @@ bool	get_ambient_light(t_parse_data *data, t_scene *scene)
  *
  * @return `true` on successful parsing, `false` on error.
  */
-bool	get_camera(t_parse_data *data, t_scene *scene)
+static bool	get_camera(t_parse_data *data, t_scene *scene)
 {
 	int			i;
 	t_camera	c;
@@ -88,59 +85,104 @@ bool	get_camera(t_parse_data *data, t_scene *scene)
 	if (!normalize_vector(&c.vector.dir))
 	{
 		data->i = i;
-		return (parse_errmsg(PARSE_ERR_BOUND_NORM, data));
+		return (parse_errmsg(PARSE_ERR_NORM, data, true, false));
 	}
 	data->boundaries = (t_bound){FOV_MIN, FOV_MAX, PARSE_ERR_BOUND_FOV};
 	if (!get_next_integer(data, &c.fov, false))
 		return (false);
-	skip_spaces(data);
-	if (data->line[data->i])
-		return (parse_errmsg(PARSE_ERR_EXTRA_DATA, data));
+	if (trailing_data(data))
+		return (false);
 	scene->camera = c;
 	return (true);
 }
 
-bool	parse_line(t_parse_data *data, t_scene *scene)
+/**
+ * @brief Parses a single line from the scene file based on the identified
+ * object. Uses the identifier parsed from the line to determine which parsing
+ * delegate function to call.
+ * 
+ * @param Parsing data.
+ * @param Pointer to the scene structure.
+ * 
+ * @return `true` on success, `false` otherwise.
+ */
+static bool	parse_line(t_parse_data *data, t_scene *scene)
 {
-	init_parse_line_data(data);
 	if (!get_identifier(data))
 		return (false);
-	print_parse_data(data);
+	if (data->id == NONE)
+		return (true);
+	data->verbose = false;
 	if (data->id == AMBIENT && !get_ambient_light(data, scene))
 		return (false);
 	if (data->id == CAMERA && !get_camera(data, scene))
 		return (false);
 	if (data->id == LIGHT && !add_light(data, scene))
 		return (false);
+	data->verbose = true;
+	if (data->id > LIGHT && !add_object(data, scene))
+		return (false);
 	return (true);
 }
 
 /**
  * @brief Builds up the scene structure from the filename.
+ * Sets up all global fields of the given data structure to their initial
+ * values before parsing the file.
  * 
  * @return `true` if everything goes fine,`false` otherwise.
  */
-bool	parse_file(char *filename, t_scene *s)
+static bool	parse_file(t_parse_data *data, t_scene *s)
+{
+	data->ambient_found = false;
+	data->camera_found = false;
+	data->line_number = -1;
+	while (true)
+	{
+		++data->line_number;
+		data->line = ft_get_next_line(s->fd);
+		if (!data->line && errno == ENOMEM)
+			return (errmsg(ERRMSG_MALLOC, 0, 0, false));
+		if (!data->line)
+			break ;
+		data->i = 0;
+		data->id = NONE;
+		if (!stristype(data->line, ft_isspace) && !parse_line(data, s))
+			return (free_str(&data->line));
+		free_str(&data->line);
+	}
+	return (true);
+}
+
+/**
+ * @brief Initializes the scene structure by parsing the specified scene file.
+ * 
+ * Initializes the parsing data, opens the provided scene file and delegates
+ * the file parsing to `parse_file`. After parsing, ensures there is a camera
+ * and an ambient light.
+ * 
+ * @param filename Path to the scene description file.
+ * @param s Pointer to the scene structure.
+ * 
+ * @return `true` if the scene was successfully initialized and parsed, `false`
+ * otherwise.
+ */
+bool	init_scene(char *filename, t_scene *s)
 {
 	t_parse_data	data;
 
+	ft_memset(&data, 0, sizeof(t_parse_data));
 	s->fd = open(filename, O_RDONLY);
 	if (s->fd < 0)
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	s->filename = filename;
-	init_parse_global_data(&data);
-	while (true)
-	{
-		++data.line_number;
-		data.line = ft_get_next_line(s->fd);
-		if (!data.line && errno == ENOMEM)
-			return (errmsg(ERRMSG_MALLOC, 0, 0, false));
-		if (!data.line)
-			break ;
-		init_parse_line_data(&data);
-		if (!stristype(data.line, ft_isspace) && !parse_line(&data, s))
-			return (free_str(&data.line));
-		free_str(&data.line);
-	}
+	if (!parse_file(&data, s))
+		return (false);
+	if (!data.ambient_found && !data.camera_found)
+		return (parse_errmsg(PARSE_ERR_BOTH_MISSING, 0, true, false));
+	if (!data.ambient_found)
+		return (parse_errmsg(PARSE_ERR_AMBIENT_MISSING, 0, true, false));
+	if (!data.camera_found)
+		return (parse_errmsg(PARSE_ERR_CAMERA_MISSING, 0, true, false));
 	return (true);
 }
