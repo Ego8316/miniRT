@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/16 12:17:59 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/16 15:02:24 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC			+=	parsing/argument.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
-SRC			+=	raycasting/ft_getinstersec.c
+SRC			+=	raycasting/ft_getintersec.c
 SRC			+=	utils/error.c	\
 				utils/free.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
@@ -69,6 +69,7 @@ $(ODIR)		:
 				mkdir -p $(ODIR)debug
 				mkdir -p $(ODIR)parsing
 				mkdir -p $(ODIR)utils
+				mkdir -p $(ODIR)raycasting
 				printf "Object directory created.\n"
 
 $(ODIR)%.o	:	$(SDIR)%.c

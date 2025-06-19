@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 14:59:42 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:04:02 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_identifier
 	CAMERA,			/** Camera */
 	LIGHT,			/** Light source */
 	SPHERE,			/** Sphere object */
+	CUBE,			/** Sphere object */
 	PLANE,			/** Plane object */
 	CYLINDER,		/** Cylinder object */
 	CONE,			/** Cone object */
