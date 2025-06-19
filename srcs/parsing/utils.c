@@ -6,11 +6,42 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 18:14:56 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:09:44 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+/**
+ * @brief Gets the next word and stores it inside the given buffer. Skips any
+ * leading whitespace and attempts to copy the next sequence of alphabetic
+ * character. The position of the word's start is stored in `word_start` for
+ * error reporting purposes.
+ * 
+ * @param data Parsing data.
+ * @param word Buffer to store the word.
+ * @param word_start Start index of the next word.
+ * 
+ * @return `true` if a word was found, `false` otherwise.
+ * 
+ * @warning The word buffer must be at least `WORD_SIZE` bytes.
+ */
+bool	get_next_word(t_parse_data *data, char *word, int *word_start)
+{
+	int	i;
+
+	skip_spaces(data);
+	*word_start = data->i;
+	if (!data->line[data->i] || !ft_isalpha(data->line[data->i]))
+		return (false);
+	i = 0;
+	while (ft_isalpha(data->line[data->i]) && i < WORD_SIZE)
+	{
+		word[i++] = data->line[data->i++];
+	}
+	word[i] = 0;
+	return (true);
+}
 
 /**
  * @brief Advances the parsing index past all whitespace characters.
@@ -41,47 +72,40 @@ bool	trailing_data(t_parse_data *data)
 }
 
 /**
- * @brief Adds a new light to the end of a linked list of lights. If the list
- * is empty, the new light becomes the head.
+ * @brief Parses and assigns an object attribute. Searches for the provided
+ * word `word` in the array of known attributes `a` and ensures this attribute
+ * has not already been set, then parses its value into the target memory
+ * location.
  * 
- * @param new New light to add.
- * @param lights Pointer to the head of the lights list.
- */
-void	add_light_to_list(t_light *new, t_light **lights)
-{
-	t_light	*l;
-
-	if (!*lights)
-	{
-		*lights = new;
-		return ;
-	}
-	l = *lights;
-	while (l->next)
-		l = l->next;
-	l->next = new;
-	return ;
-}
-
-/**
- * @brief Adds a new object to the end of a linked list of objects. If the list
- * is empty, the new object becomes the head.
+ * @param d Parsing data.
+ * @param a Array of attribute descriptors.
+ * @param i Position in the line where the attribute was found.
+ * @param word The attribute name to find and parse.
  * 
- * @param new New object to add.
- * @param objects Pointer to the head of the objects list.
+ * @return `true` if the attribute was successfully parsed and set, `false`
+ * otherwise.
  */
-void	add_object_to_list(t_object *new, t_object **objects)
+bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *word)
 {
-	t_object	*o;
+	int	j;
 
-	if (!*objects)
+	j = -1;
+	while (++j < MAX_ATTRIBUTES)
 	{
-		*objects = new;
-		return ;
+		if (!ft_strcmp(word, a[j].id))
+		{
+			if (a[j].found)
+			{
+				d->i = i;
+				return (parse_errmsg(a[j].dup_err, d, true, false));
+			}
+			a[j].found = true;
+			d->boundaries = a[j].bound;
+			if (!get_next_double(d, a[j].value, false, true))
+				return (false);
+			return (true);
+		}
 	}
-	o = *objects;
-	while (o->next)
-		o = o ->next;
-	o->next = new;
-	return ;
+	d->i = i;
+	return (parse_errmsg(PARSE_ERR_UNKNOWN_ATTRIBUTE, d, true, false));
 }

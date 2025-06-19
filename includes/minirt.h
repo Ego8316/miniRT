@@ -6,10 +6,9 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 19:51:52 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:06:32 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -77,21 +76,23 @@ typedef struct s_bound
 /**
  * @brief Dictionary entry linking object identifier to argument bound values.
  */
-typedef struct s_obj_args
+typedef struct s_args
 {
 	t_id	id;				/** Object identifier */
 	t_bound	arg_bounds[3];	/** Argument boundaries */
-}	t_obj_args;
+}	t_args;
 
 /**
  * @brief
  */
-typedef struct s_obj_attribute
+typedef struct s_attribute
 {
-	double		*value;
-	const char	*attribute;
-	const char	*err;
-}	t_obj_attribute;
+	double		*value;		/** Pointer to the actual object attribute */
+	const char	*id;		/** Attribute string identifier ("r" or "b") */
+	bool		found;		/** Whether this attribute was already parsed */
+	const char	*dup_err;	/** Error message if attribute is duplicated */
+	t_bound		bound;		/** Boundaries for this attribute */
+}	t_attribute;
 
 /**
  * @brief Parsing state data for a single line of the scene file.
@@ -158,9 +159,8 @@ typedef struct s_object
 	t_coor			pos;			/** Position of the object. */
 	t_coor			vector;			/**	Orientation vector (if applicable). */
 	t_coor			args;			/**	Additional parameters. */
-	double			reflectivity;	/**	Reflectivity coefficient. */
 	t_color			color;			/** Color of the object. */
-	bool			bump;			/** Flag to enable bump mapping. */
+	double			reflectivity;	/**	Reflectivity coefficient. */
 	double			bump_strength;	/** Strength of the bump mapping effect. */
 	struct s_object	*next;			/**	Pointer to the next object. */
 }	t_object;
@@ -181,10 +181,8 @@ typedef struct s_scene
 // Parsing
 
 bool	handle_argument(int ac, char **av);
-
 double	ft_strtod(const char *str, char **endptr);
 long	ft_strtol(const char *str, char **endptr, int base);
-
 bool	get_next_double(t_parse_data *d, double *v, bool comma, bool verb);
 bool	get_next_coordinate(t_parse_data *data, t_coor *coor);
 bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma);
@@ -202,11 +200,13 @@ bool	normalize_vector(t_coor *vec);
 
 bool	init_scene(char *filename, t_scene *s);
 
-
+bool	get_next_word(t_parse_data *data, char *word, int *word_start);
 void	skip_spaces(t_parse_data *data);
 bool	trailing_data(t_parse_data *data);
 void	add_light_to_list(t_light *new, t_light **lights);
 void	add_object_to_list(t_object *new, t_object **objects);
+bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *w);
+
 
 // Utils
 

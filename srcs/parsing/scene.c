@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/17 01:50:09 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 01:47:52 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,22 @@ static bool	get_camera(t_parse_data *data, t_scene *scene)
 	return (true);
 }
 
+/**
+ * @brief Parses a single line from the scene file based on the identified
+ * object. Uses the identifier parsed from the line to determine which parsing
+ * delegate function to call.
+ * 
+ * @param Parsing data.
+ * @param Pointer to the scene structure.
+ * 
+ * @return `true` on success, `false` otherwise.
+ */
 static bool	parse_line(t_parse_data *data, t_scene *scene)
 {
 	if (!get_identifier(data))
 		return (false);
 	if (data->id == NONE)
 		return (true);
-	print_parse_data(data);
 	data->verbose = false;
 	if (data->id == AMBIENT && !get_ambient_light(data, scene))
 		return (false);
@@ -145,6 +154,19 @@ static bool	parse_file(t_parse_data *data, t_scene *s)
 	return (true);
 }
 
+/**
+ * @brief Initializes the scene structure by parsing the specified scene file.
+ * 
+ * Initializes the parsing data, opens the provided scene file and delegates
+ * the file parsing to `parse_file`. After parsing, ensures there is a camera
+ * and an ambient light.
+ * 
+ * @param filename Path to the scene description file.
+ * @param s Pointer to the scene structure.
+ * 
+ * @return `true` if the scene was successfully initialized and parsed, `false`
+ * otherwise.
+ */
 bool	init_scene(char *filename, t_scene *s)
 {
 	t_parse_data	data;
@@ -156,9 +178,10 @@ bool	init_scene(char *filename, t_scene *s)
 	s->filename = filename;
 	if (!parse_file(&data, s))
 		return (false);
+	if (!data.ambient_found && !data.camera_found)
+		return (parse_errmsg(PARSE_ERR_BOTH_MISSING, 0, true, false));
 	if (!data.ambient_found)
 		return (parse_errmsg(PARSE_ERR_AMBIENT_MISSING, 0, true, false));
-	print_scene(s);
 	if (!data.camera_found)
 		return (parse_errmsg(PARSE_ERR_CAMERA_MISSING, 0, true, false));
 	return (true);

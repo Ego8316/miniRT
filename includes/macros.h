@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 19:36:26 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:02:22 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@
 # define PARABOLOID_ID "pa"
 # define SETTING_ID_SIZE 1
 # define OBJECT_ID_SIZE 2
+# define WORD_SIZE 15
 
 // Attributes
 
-# define ATTR_REFLECTIVITY "r"
-# define ATTR_BUMP_STRENGTH "b"
+# define REFLECTIVITY_ID "r"
+# define BUMP_STRENGTH_ID "b"
+# define MAX_ATTRIBUTES 2
 
 // Max values
 # define COLOR_MIN 0.0
@@ -67,8 +69,8 @@
 # define HY_RADIAL_MAX 500.0
 # define HY_VERTICAL_MIN 0.1
 # define HY_VERTICAL_MAX 500.0
-# define ATT_MIN 0.0
-# define ATT_MAX 1.0
+# define ATTR_MIN 0.0
+# define ATTR_MAX 1.0
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -86,10 +88,15 @@
 
 // Parsing error messages
 
+# define PARSE_ERR_NO_IDENTIFIER_FOUND "no identifier found"
 # define PARSE_ERR_UNKNOWN_IDENTIFIER "identifier does not match known types"
-# define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient lighting definition"
+# define PARSE_ERR_UNKNOWN_ATTRIBUTE "unknown attribute"
+# define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient light definition"
 # define PARSE_ERR_CAMERA_DUPLICATE "duplicate camera definition"
-# define PARSE_ERR_AMBIENT_MISSING "no ambient lighting definition"
+# define PARSE_ERR_REFLECTIVITY_DUPLICATE "reflectivity already defined"
+# define PARSE_ERR_BUMP_STRENGTH_DUPLICATE "bump strength already defined"
+# define PARSE_ERR_BOTH_MISSING "no camera nor ambient light definition"
+# define PARSE_ERR_AMBIENT_MISSING "no ambient light definition"
 # define PARSE_ERR_CAMERA_MISSING "no camera definition"
 
 # define PARSE_ERR_UNEXPECTED_COMMA "unexpected comma"
@@ -103,6 +110,7 @@
 # define PARSE_ERR_EXTRA_DATA "unexpected trailing data after valid fields"
 
 # define PARSE_ERR_INVALID_COLOR "invalid color, expected `checkerboard'"
+# define PARSE_ERR_NORM "vector has zero (or near-zero) norm"
 # define PARSE_ERR_BOUND "out of range"
 # define PARSE_ERR_BOUND_COLOR "color value"
 # define PARSE_ERR_BOUND_COORD "coordinate"
@@ -117,6 +125,5 @@
 # define PARSE_ERR_BOUND_REFLECTIVITY "reflectivity"
 # define PARSE_ERR_BOUND_BUMP_STRENGTH "bump strength"
 # define PARSE_ERR_BOUND_VECT "component"
-# define PARSE_ERR_NORM "vector has zero (or near-zero) norm"
 
 #endif

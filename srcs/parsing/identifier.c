@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/17 01:50:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:08:38 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,23 @@ bool	check_duplicates(t_parse_data *data)
  */
 bool	get_identifier(t_parse_data *data)
 {
-	int	i;
+	char	id[WORD_SIZE];
+	int		i;
+	int		j;
 
-	skip_spaces(data);
-	if (!data->line[data->i])
-		return (true);
-	i = -1;
-	while (g_ids[++i].string)
+	if (!get_next_word(data, id, &i))
+		return (parse_errmsg(PARSE_ERR_NO_IDENTIFIER_FOUND, data, true, false));
+	j = -1;
+	while (g_ids[++j].string)
 	{
-		if (!ft_strncmp(g_ids[i].string, data->line + data->i, g_ids[i].len))
+		if (!ft_strcmp(g_ids[j].string, id))
 		{
-			data->id = g_ids[i].id;
-			break ;
+			data->id = g_ids[j].id;
+			if (!check_duplicates(data))
+				return (false);
+			return (true);
 		}
 	}
-	if (data->id == NONE || !ft_isspace(data->line[data->i + g_ids[i].len]))
-		return (parse_errmsg(PARSE_ERR_UNKNOWN_IDENTIFIER, data, true, false));
-	if (!check_duplicates(data))
-		return (false);
-	data->i += g_ids[i].len;
-	return (true);
+	data->i = i;
+	return (parse_errmsg(PARSE_ERR_UNKNOWN_IDENTIFIER, data, true, false));
 }

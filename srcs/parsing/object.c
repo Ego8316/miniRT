@@ -6,13 +6,13 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 19:32:58 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:01:09 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static const t_obj_args	g_obj_args[] = {
+static const t_args	g_args[] = {
 {SPHERE, {
 {SP_DIAMETER_MIN, SP_DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
 {0.0, 0.0, NULL},
@@ -50,6 +50,15 @@ static const t_obj_args	g_obj_args[] = {
 }}
 };
 
+/**
+ * @brief Parses and normalizes the orientation vector of an object.
+ * 
+ * @param data Parsing data.
+ * @param vector Pointer to the vector structure to fill.
+ * 
+ * @return `true` if the vector was successfully parsed and normalized,
+ * `false` otherwise.
+ */
 static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 {
 	int	i;
@@ -58,7 +67,7 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 	data->boundaries = (t_bound){VECT_MIN, VECT_MAX, PARSE_ERR_BOUND_VECT};
 	if (!get_next_coordinate(data, vector))
 		return (false);
-	if (data->id != SPHERE && !normalize_vector(vector))
+	if (!normalize_vector(vector))
 	{
 		data->i = i;
 		return (parse_errmsg(PARSE_ERR_NORM, data, true, false));
@@ -66,6 +75,17 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
 	return (true);
 }
 
+/**
+ * @brief Parses object-specific arguments such as diameter, height, angle,
+ * etc. Determines which arguments are required based on the object type and
+ * parses them within their defined boundaries.
+ * 
+ * @param data Parsing data.
+ * @param args Pointer to a coordinate structure where argument values will be
+ * stored.
+ * @param `true` if all expected arguments are successfully parsed, `false`
+ * otherwise.
+ */
 static bool	get_object_args(t_parse_data *data, t_coor *args)
 {
 	int		i;
@@ -76,14 +96,14 @@ static bool	get_object_args(t_parse_data *data, t_coor *args)
 	components[1] = &args->y;
 	components[2] = &args->z;
 	i = -1;
-	while (g_obj_args[++i].id != NONE)
+	while (g_args[++i].id != NONE)
 	{
-		if (g_obj_args[i].id == data->id)
+		if (g_args[i].id == data->id)
 		{
 			j = -1;
 			while (++j < 3)
 			{
-				data->boundaries = g_obj_args[i].arg_bounds[j];
+				data->boundaries = g_args[i].arg_bounds[j];
 				if (data->boundaries.err
 					&& !get_next_double(data, components[j], false, true))
 					return (false);
@@ -95,21 +115,39 @@ static bool	get_object_args(t_parse_data *data, t_coor *args)
 	return (true);
 }
 
-// static bool	get_object_attributes(t_parse_data *d, t_object *obj)
-// {
-// 	char			next_word[2];
-// 	t_obj_attribute	attributes[2];
+/**
+ * @brief Parses optional object attributes such as reflectivity and bump
+ * strength. Attributes are parsed as key-value pairs. Ensures that each
+ * attribute appears only once and that its value lies within specified
+ * boundaries.
+ * 
+ * @param d Parsing data.
+ * @param obj Pointer to the object being parsed.
+ * 
+ * @return `true` if all attributes are parsed successfully, `false`
+ * otherwise.
+ */
+static bool	get_object_attributes(t_parse_data *d, t_object *obj)
+{
+	char			attribute[WORD_SIZE];
+	int				i;
+	int				j;
+	t_attribute		attributes[MAX_ATTRIBUTES];
 
-// 	attributes[0] = (t_obj_attribute){&obj->reflectivity, "r", PARSE_ERR_BOUND_REFLECTIVITY};
-// 	attributes[1] = (t_obj_attribute){&obj->bump_strength, "b", PARSE_ERR_BOUND_REFLECTIVITY};
-// 	skip_spaces(d);
-// 	next_word[0] = d->line[d->i];
-// 	next_word[1] = d->line[d->i + 1];
-// 	if (!ft_strcmp(a, "r"))
-// 		printf("looking for reflecivity");
-// 	*v = 0;
-// 	return (true);
-// }
+	attributes[0] = (t_attribute){&obj->reflectivity, REFLECTIVITY_ID, false,
+		PARSE_ERR_REFLECTIVITY_DUPLICATE,
+		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_REFLECTIVITY}};
+	attributes[1] = (t_attribute){&obj->bump_strength, BUMP_STRENGTH_ID, false,
+		PARSE_ERR_BUMP_STRENGTH_DUPLICATE,
+		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_BUMP_STRENGTH}};
+	j = -1;
+	while (++j < MAX_ATTRIBUTES && get_next_word(d, attribute, &i))
+	{
+		if (!get_attribute(d, attributes, i, attribute))
+			return (false);
+	}
+	return (true);
+}
 
 /**
  * @brief Parses a object information from the current line and stores it in the
@@ -120,6 +158,8 @@ static bool	get_object_args(t_parse_data *data, t_coor *args)
  * `BRIGHTNESS_MAX`.
  * @brief - Each color component (R, G, B) must be between `COLOR_MIN` and
  * `COLOR_MAX`.
+ * 
+ * Also gets optional attributes such as reflectivity and bump strength.
  *
  * Any violation of boundaries or extra data at the end of the line will
  * produce an appropriate error message and stop parsing. Color is scaled down
@@ -143,8 +183,8 @@ static bool	get_object(t_parse_data *data, t_object *object)
 		return (false);
 	if (!get_next_object_color(data, &o.color))
 		return (false);
-	// if (!get_object_attribute(data, &o.reflectivity, "r"))
-	// 	return (false);
+	if (!get_object_attributes(data, &o))
+		return (false);
 	if (trailing_data(data))
 		return (false);
 	*object = o;
