@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 02:06:32 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 02:17:23 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "../lib/libft/libft.h"
 # include "../lib/mlx/mlx.h"
 
-// Typedefs and enums
+/* Enums */
 
 /**
  * @brief Possible scene element identifiers.
@@ -46,7 +46,7 @@ typedef enum e_identifier
 	NONE			/** No identifier */
 }	t_id;
 
-// Structures
+/* Structures */
 
 /**
  * @brief Dictionary entry linking string identifiers to enum and length.
@@ -58,7 +58,7 @@ typedef struct s_dict
 	int			len;		/** Length of the string */
 }	t_dict;
 
-typedef struct t_intersec {
+typedef struct s_intersec {
 	size_t	count;
 	double	*inters;
 }	t_intersec;
@@ -83,15 +83,15 @@ typedef struct s_args
 }	t_args;
 
 /**
- * @brief
+ * @brief Used to parse attributes such as reflectivity and bump strength.
  */
 typedef struct s_attribute
 {
-	double		*value;		/** Pointer to the actual object attribute */
-	const char	*id;		/** Attribute string identifier ("r" or "b") */
-	bool		found;		/** Whether this attribute was already parsed */
-	const char	*dup_err;	/** Error message if attribute is duplicated */
-	t_bound		bound;		/** Boundaries for this attribute */
+	double		*value;		/** Pointer to the actual object attribute. */
+	const char	*id;		/** Attribute string identifier ("r" or "b"). */
+	bool		found;		/** Whether this attribute was already parsed. */
+	const char	*dup_err;	/** Error message if attribute is duplicated. */
+	t_bound		bound;		/** Boundaries for this attribute. */
 }	t_attribute;
 
 /**
@@ -102,8 +102,8 @@ typedef struct s_attribute
  */
 typedef struct s_parse_data
 {
-	bool		ambient_found;	/** `true` if ambient has been found */
-	bool		camera_found;	/** `true` if camera has been found */
+	bool		ambient_found;	/** `true` if ambient has been found. */
+	bool		camera_found;	/** `true` if camera has been found. */
 	char		*line;			/** Current line being parsed. */
 	int			line_number;	/** Line number in the scene file. */
 	int			i;				/** Current character index in the line. */
@@ -113,7 +113,7 @@ typedef struct s_parse_data
 }	t_parse_data;
 
 /**
- * @brief Color structure only for objects.
+ * @brief Color data structure for objects.
  */
 typedef struct s_color
 {
@@ -178,7 +178,7 @@ typedef struct s_scene
 	t_object	*objects;	/**	Linked list of objects in the scene. */
 }	t_scene;
 
-// Parsing
+/* Parsing */
 
 bool	handle_argument(int ac, char **av);
 double	ft_strtod(const char *str, char **endptr);
@@ -195,8 +195,6 @@ bool	get_identifier(t_parse_data *data);
 bool	add_light(t_parse_data *data, t_scene *scene);
 bool	add_object(t_parse_data *data, t_scene *scene);
 
-void	scale_color(t_coor *color);
-bool	normalize_vector(t_coor *vec);
 
 bool	init_scene(char *filename, t_scene *s);
 
@@ -208,7 +206,10 @@ void	add_object_to_list(t_object *new, t_object **objects);
 bool	get_attribute(t_parse_data *d, t_attribute *a, int i, const char *w);
 
 
-// Utils
+/* Utils */
+
+void	scale_color(t_coor *color);
+bool	normalize_vector(t_coor *vec);
 
 bool	errmsg(char *s1, char *s2, char *s3, bool status);
 bool	parse_errmsg(const char *err, t_parse_data *d, bool verb, bool bound);
@@ -222,14 +223,14 @@ int		free_scene(t_scene *s);
 bool	ft_isspace(int c);
 bool	stristype(const char *s, bool (*f)(int));
 
-// Debug
+/* Debug */
 
 void	print_ambient(t_ambient *a);
 void	print_light(t_light *l, int i);
 void	print_lights(t_light **lights);
 void	print_object(t_object *o, int i);
 void	print_objects(t_object **objects);
-void 	print_parse_data(t_parse_data *data);
+void	print_parse_data(t_parse_data *data);
 void	print_camera(t_camera *c);
 void	print_scene(t_scene *s);
 
