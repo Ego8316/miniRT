@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmat.c                                       :+:      :+:    :+:   */
+/*   ft_coornormalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 17:34:23 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/18 10:50:20 by vviterbo         ###   ########.fr       */
+/*   Created: 2025/06/18 11:16:57 by vviterbo          #+#    #+#             */
+/*   Updated: 2025/06/18 11:19:51 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_mat	*ft_initmat(size_t m, size_t n)
-{
-	t_mat	*mat;
-	size_t	i;
+t_coor	ft_coornormalize(t_coor coor);
 
-	mat = ft_calloc(1, sizeof(t_mat));
-	mat->val = ft_calloc(m, sizeof(double *));
-	if (!mat->val)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		mat->val[i] = ft_calloc(m, sizeof(double));
-		if (!mat->val[i])
-		{
-			while (i)
-			{
-				free(mat->val[i - 1]);
-				i--;
-			}
-			return (free(mat->val), free(mat), NULL);
-		}
-		i++;
-	}
-	return (mat);
+t_coor	ft_coornormalize(t_coor coor)
+{
+	double	norm_fac;
+	t_coor	normal;
+
+	norm_fac = 1/ sqrt(ft_dotprod(coor, coor));
+	normal.x = coor.x * norm_fac;
+	normal.y = coor.y * norm_fac;
+	normal.z = coor.z * norm_fac;
+	return (normal);
 }

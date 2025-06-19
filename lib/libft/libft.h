@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/16 12:16:10 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:20:51 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int			ft_lstsize(t_list *lst);
 double		ft_abs(double n);
 t_coor		ft_coorscale(t_coor base, t_coor tip, float scale);
 t_coor		ft_cooradd(t_coor v1, t_coor v2);
+t_coor		ft_coornormalize(t_coor coor);
 t_coor		ft_coorsubstr(t_coor v1, t_coor v2);
 double		*ft_detmat(t_mat mat);
 double		ft_dotprod(t_coor v1, t_coor v2);

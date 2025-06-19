@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 11:02:55 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/19 11:04:52 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_identifier
 	CAMERA,			/** Camera */
 	LIGHT,			/** Light source */
 	SPHERE,			/** Sphere object */
+	CUBE,			/** Sphere object */
 	PLANE,			/** Plane object */
 	CYLINDER,		/** Cylinder object */
 	CONE,			/** Cone object */
