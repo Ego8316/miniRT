@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 03:55:35 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 01:33:34 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:35:12 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_object(t_object *o, int i)
 	printf("\t\tVector:\t\t(%.3lf, %.3lf, %.3lf)\n",
 		o->vector.x, o->vector.y, o->vector.z);
 	printf("\t\tArgs:\t\t(%.3lf, %.3lf, %.3lf)\n",
-		o->args.x, o->args.y, o->args.z);
+		o->args[0], o->args[1], o->args[2]);
 	printf("\t\tReflectivity:\t%.3lf (%p)\n",
 		o->reflectivity, &o->reflectivity);
 	printf("\t\tColor:\t\t");

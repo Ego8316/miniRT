@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 11:26:45 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:43:03 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ static const t_args	g_args[] = {
 {CONE, {
 {CO_ANGLE_MIN, CO_ANGLE_MAX, PARSE_ERR_BOUND_ANGLE},
 {0.0, 0.0, NULL},
-{0.0, 0.0, NULL}
-}},
-{PARABOLOID, {
-{PA_SPREAD_MIN, PA_SPREAD_MAX, PARSE_ERR_BOUND_SPREAD},
-{0.0, 0.0, NULL},
-{0.0, 0.0, NULL}
-}},
-{HYPERBOLOID, {
-{HY_RADIAL_MIN, HY_RADIAL_MAX, PARSE_ERR_BOUND_RADIAL},
-{HY_VERTICAL_MIN, HY_VERTICAL_MAX, PARSE_ERR_BOUND_VERTICAL},
 {0.0, 0.0, NULL}
 }},
 {NONE, {
@@ -86,26 +76,22 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
  * @param `true` if all expected arguments are successfully parsed, `false`
  * otherwise.
  */
-static bool	get_object_args(t_parse_data *data, t_coor *args)
+static bool	get_object_args(t_parse_data *data, double *args)
 {
 	int		i;
 	int		j;
-	double	*components[3];
 
-	components[0] = &args->x;
-	components[1] = &args->y;
-	components[2] = &args->z;
 	i = -1;
 	while (g_args[++i].id != NONE)
 	{
 		if (g_args[i].id == data->id)
 		{
 			j = -1;
-			while (++j < 3)
+			while (++j < MAX_ARGS)
 			{
 				data->boundaries = g_args[i].arg_bounds[j];
 				if (data->boundaries.err
-					&& !get_next_double(data, components[j], false, true))
+					&& !get_next_double(data, &args[j], false, true))
 					return (false);
 			}
 		}
@@ -179,7 +165,7 @@ static bool	get_object(t_parse_data *data, t_object *object)
 		return (false);
 	if (data->id != SPHERE && !get_object_vector(data, &o.vector))
 		return (false);
-	if (data->id != PLANE && !get_object_args(data, &o.args))
+	if (data->id != PLANE && !get_object_args(data, o.args))
 		return (false);
 	if (!get_next_object_color(data, &o.color))
 		return (false);
