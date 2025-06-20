@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 14:34:36 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:37:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_inter	*cylinder_intersec(t_object obj, t_ray ray)
 	inter = local_intersec(normal_ray);
 	if (!inter)
 		return (NULL);
+	filter_w_bounds(inter, obj, normal_ray);
 	return (inter);
 }
 
@@ -72,12 +73,11 @@ void	filter_w_bounds(t_inter *inter, t_object obj, t_ray ray)
 		if (y < - obj.args[HEIGHT] / 2 || y > obj.args[HEIGHT] / 2)
 		{
 			i = n;
-			while (i < inter->count)
+			while (i < inter->count - 1)
 			{
-				inter->inters[i - 1] = inter->inters[i];
+				inter->inters[i] = inter->inters[i + 1];
 				i++;
 			}
-			inter->inters = NULL;
 			inter->count = inter->count - 1;
 		}
 		else

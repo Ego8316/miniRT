@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 13:00:45 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:52:37 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_local_intersec(double *minmax, double orig, double dir);
 
 t_inter	*cube_intersec(t_object obj, t_ray ray)
 {
-	t_inter	*x;
+	t_inter	*inter;
 	double	minmax[2];
 	double	minmax_x[2];
 	double	minmax_y[2];
@@ -29,19 +29,19 @@ t_inter	*cube_intersec(t_object obj, t_ray ray)
 	set_local_intersec(minmax_z, ray.orig.z, ray.dir.z);
 	minmax[0] = ft_max(ft_max(minmax_x[0], minmax_y[0]), minmax_z[0]);
 	minmax[1] = ft_min(ft_max(minmax_x[1], minmax_y[1]), minmax_z[1]);
-	x = ft_calloc(1, sizeof(t_inter));
-	if (!x)
+	inter = ft_calloc(1, sizeof(t_inter));
+	if (!inter)
 		return (NULL);
 	if (minmax[0] <= minmax[1])
 	{
-		x->inters = ft_calloc(2, sizeof(double));
-		if (!x->inters)
-			return (free(x), NULL);
-		x->count = 2;
-		x->inters[0] = minmax[0];
-		x->inters[1] = minmax[1];
+		inter->inters = ft_calloc(2, sizeof(double));
+		if (!inter->inters)
+			return (free(inter), NULL);
+		inter->count = 2;
+		inter->inters[0] = minmax[0];
+		inter->inters[1] = minmax[1];
 	}
-	return (x);
+	return (inter);
 }
 
 void	set_local_intersec(double *minmax, double orig, double dir)

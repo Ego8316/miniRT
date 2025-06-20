@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:26:45 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 13:01:03 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:40:21 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_mat	*ft_invmat(t_mat mat)
 	double	*det;
 	double	*cofac;
 	size_t	i;
-	size_t	n;
 
 	det = ft_detmat(mat);
 	if (!det || !*det)
