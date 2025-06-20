@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 02:08:38 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:40:22 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static const t_dict	g_ids[] = {
 {PLANE_ID, PLANE, OBJECT_ID_SIZE},
 {CYLINDER_ID, CYLINDER, OBJECT_ID_SIZE},
 {CONE_ID, CONE, OBJECT_ID_SIZE},
-{HYPERBOLOID_ID, HYPERBOLOID, OBJECT_ID_SIZE},
-{PARABOLOID_ID, PARABOLOID, OBJECT_ID_SIZE},
 {NULL, NONE, 0}
 };
 

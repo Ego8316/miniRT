@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 11:29:14 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:42:51 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define BRIGHTNESS_MAX 1.0
 # define FOV_MIN 0.0
 # define FOV_MAX 180.0
-# define SP_DIAMETER_MIN 0.1
+# define SP_DIAMETER_MIN DBL_EPSILON
 # define SP_DIAMETER_MAX 1000.0
 # define CY_DIAMETER_MIN 0.1
 # define CY_DIAMETER_MAX 500.0
@@ -63,14 +63,9 @@
 # define CY_HEIGHT_MAX 1000.0
 # define CO_ANGLE_MIN 0.1
 # define CO_ANGLE_MAX 179.9
-# define PA_SPREAD_MIN 0.1
-# define PA_SPREAD_MAX 100.0
-# define HY_RADIAL_MIN 0.1
-# define HY_RADIAL_MAX 500.0
-# define HY_VERTICAL_MIN 0.1
-# define HY_VERTICAL_MAX 500.0
 # define ATTR_MIN 0.0
 # define ATTR_MAX 1.0
+# define MAX_ARGS 3
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -119,9 +114,6 @@
 # define PARSE_ERR_BOUND_DIAMETER "diameter"
 # define PARSE_ERR_BOUND_HEIGHT "height"
 # define PARSE_ERR_BOUND_ANGLE "angle"
-# define PARSE_ERR_BOUND_SPREAD "spread value"
-# define PARSE_ERR_BOUND_RADIAL "radial value"
-# define PARSE_ERR_BOUND_VERTICAL "vertical value"
 # define PARSE_ERR_BOUND_REFLECTIVITY "reflectivity"
 # define PARSE_ERR_BOUND_BUMP_STRENGTH "bump strength"
 # define PARSE_ERR_BOUND_VECT "component"

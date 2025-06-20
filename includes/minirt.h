@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 13:02:28 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:42:36 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_object
 	t_id			id;
 	t_coor			pos;
 	t_coor			vector;
-	double			args[3];
+	double			args[MAX_ARGS];
 	t_color			color;
 	double			reflectivity;
 	double			bump_strength;

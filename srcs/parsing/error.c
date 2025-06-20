@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/17 00:53:37 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:40:13 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ static void	print_id_prefix(t_id id)
 		ft_putstr_fd("cylinder: ", STDERR_FILENO);
 	else if (id == CONE)
 		ft_putstr_fd("cone: ", STDERR_FILENO);
-	else if (id == PARABOLOID)
-		ft_putstr_fd("paraboloid: ", STDERR_FILENO);
-	else if (id == HYPERBOLOID)
-		ft_putstr_fd("hyperboloid: ", STDERR_FILENO);
 	else if (id == AMBIENT)
 		ft_putstr_fd("ambient: ", STDERR_FILENO);
 	else if (id == CAMERA)
