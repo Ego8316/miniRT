@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/20 12:10:54 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/20 15:02:35 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC			+=	parsing/argument.c		\
 SRC			+=	raycasting/intersections.c \
 				raycasting/sphere_intersec.c \
 				raycasting/cylinder_intersec.c \
-				raycasting/cube_intersec.c
+				raycasting/plane_intersec.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
