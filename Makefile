@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/19 11:02:55 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/20 12:00:38 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,6 @@ SRC			+=	parsing/argument.c		\
 				parsing/scene.c			\
 				parsing/utils.c
 SRC			+=	raycasting/ft_getintersec.c
-SRC			+=	utils/error.c	\
-				utils/free.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
