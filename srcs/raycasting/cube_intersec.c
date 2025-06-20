@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cube_intersec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 12:14:29 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 13:00:45 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter	*cube_intersec(t_object obj, t_ray ray);
+t_inter		*cube_intersec(t_object obj, t_ray ray);
 static void	set_local_intersec(double *minmax, double orig, double dir);
 
 t_inter	*cube_intersec(t_object obj, t_ray ray)
 {
 	t_inter	*x;
-	double		minmax[2];
-	double		minmax_x[2];
-	double		minmax_y[2];
-	double		minmax_z[2];
+	double	minmax[2];
+	double	minmax_x[2];
+	double	minmax_y[2];
+	double	minmax_z[2];
 
 	(void)obj;
 	set_local_intersec(minmax_x, ray.orig.x, ray.dir.x);

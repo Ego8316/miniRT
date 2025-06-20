@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 12:14:48 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 13:02:28 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@ typedef enum e_identifier
 	CAMERA,
 	LIGHT,
 	SPHERE,
-	CUBE,
 	PLANE,
 	CYLINDER,
 	CONE,
-	HYPERBOLOID,
-	PARABOLOID,
 	NONE
 }	t_id;
+
+typedef enum e_cycl_args
+{
+	DIAMETER,
+	HEIGHT
+}	t_cycl_args;
+
+typedef enum e_cone_args
+{
+	ANGLE,
+}	t_cone_args;
 
 /* Structures */
 
@@ -124,7 +132,7 @@ typedef struct s_object
 	t_id			id;
 	t_coor			pos;
 	t_coor			vector;
-	t_coor			args;
+	double			args[3];
 	t_color			color;
 	double			reflectivity;
 	double			bump_strength;

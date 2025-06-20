@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:51:09 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 12:14:29 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 14:28:14 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ t_inter	*get_inter(t_object obj, t_ray ray)
 {
 	if (obj.id == SPHERE)
 		return (sphere_intersec(obj, ray));
-	else if (obj.id == CUBE)
-		return (cube_intersec(obj, ray));
 	else if (obj.id == CYLINDER)
 		return (cylinder_intersec(obj, ray));
 	return (NULL);
 }
+
+	//else if (obj.id == CUBE)
+	//	return (cube_intersec(obj, ray));

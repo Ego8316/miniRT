@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 11:54:01 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:17:09 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,23 @@
 # include <stdarg.h>
 # include <math.h>
 
-typedef enum e_Inplace_Type {
+typedef enum e_Inplace_Type
+{
 	NOFREE,
 	FREE_S1,
 	FREE_S2,
 	FREE_S1S2
 }	t_Inplace_Type;
 
-typedef enum e_Tree_Travel_Type {
+typedef enum e_Tree_Travel_Type
+{
 	PRE_ORDER,
 	IN_ORDER,
 	POST_ORDER
 }	t_Tree_Travel_Type;
 
-typedef enum e_Datatype {
+typedef enum e_Datatype
+{
 	SHORT,
 	INT,
 	FLOAT,
@@ -52,23 +55,27 @@ typedef enum e_Datatype {
 	CHAR
 }	t_Datatype;
 
-typedef struct s_coor {
+typedef struct s_coor
+{
 	double	x;
 	double	y;
 	double	z;
 }	t_coor;
 
-typedef struct s_vec {
+typedef struct s_vec
+{
 	double	*val;
 	size_t	size;
 }	t_vec;
 
-typedef struct s_ray {
+typedef struct s_ray
+{
 	t_coor	orig;
 	t_coor	dir;
 }	t_ray;
 
-typedef struct s_mat {
+typedef struct s_mat
+{
 	size_t			dim[2];
 	double			**val;
 }	t_mat;
