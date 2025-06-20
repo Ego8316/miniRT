@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 15:19:50 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 15:34:33 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av)
 	if (!init_scene(av[1], &scene))
 		return (free_scene(&scene));
 	print_scene(&scene);
+	test_intersections();
 	free_scene(&scene);
 	return (0);
 }

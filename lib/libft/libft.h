@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:04:31 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 16:38:54 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ t_coor		ft_coornormalize(t_coor coor);
 t_coor		ft_coorsub(t_coor v1, t_coor v2);
 double		*ft_detmat(t_mat mat);
 double		ft_dotprod(t_coor v1, t_coor v2);
+t_coor		ft_crossprod(t_coor v1, t_coor v2);
 void		ft_free_mat(t_mat *mat);
 double		*ft_getcofac(t_mat mat, int m, int n);
 t_mat		*ft_getsubmat(t_mat	mat, size_t m, size_t n);

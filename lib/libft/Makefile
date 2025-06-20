@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2025/06/20 15:04:31 by ego              ###   ########.fr        #
+#    Updated: 2025/06/20 16:39:36 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LISTS				=	ft_lst_getn.c ft_lst_isin_int.c ft_lst_isin_void.c \
 SRCS_LISTS			=	$(addprefix lists/, $(LISTS))
 OBJS_LISTS		 	=	$(patsubst lists/%.c, objs/%.o, $(SRCS_LISTS))
 
-MATH				=	ft_abs.c ft_dotprod.c ft_initcoor.c \
+MATH				=	ft_abs.c ft_dotprod.c ft_crossprod.c ft_initcoor.c \
 						ft_max.c ft_min.c ft_norm.c ft_prev_power.c ft_norm.c \
 						ft_cooradd.c ft_coorscale.c ft_coorsub.c ft_range.c \
 						ft_detmat.c ft_getsubmat.c ft_initmat.c ft_invmat.c \

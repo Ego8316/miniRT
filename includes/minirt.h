@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 15:02:20 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 15:34:26 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,5 +209,8 @@ void	print_objects(t_object **objects);
 void	print_parse_data(t_parse_data *data);
 void	print_camera(t_camera *c);
 void	print_scene(t_scene *s);
+
+/* Test */
+void	test_intersections(void);
 
 #endif

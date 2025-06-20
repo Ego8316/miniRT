@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/20 15:02:35 by ego              ###   ########.fr        #
+#    Updated: 2025/06/20 15:29:57 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC			+=	raycasting/intersections.c \
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
+SRC			+=	tests/intersections.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))
 
@@ -77,6 +78,7 @@ $(ODIR)		:
 				mkdir -p $(ODIR)parsing
 				mkdir -p $(ODIR)utils
 				mkdir -p $(ODIR)raycasting
+				mkdir -p $(ODIR)tests
 				printf "Object directory created.\n"
 
 $(ODIR)%.o	:	$(SDIR)%.c
