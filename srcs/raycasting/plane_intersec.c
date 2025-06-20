@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube_intersec.c                                    :+:      :+:    :+:   */
+/*   plane_intersec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:00:43 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 15:05:17 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_inter	*plane_intersec(t_object obj, t_ray ray)
 	x->inters = ft_calloc(1, sizeof(double));
 	if (!x->inters)
 		return (free(x), NULL);
-	*x->inters = ft_dotprod(ft_cooradd(ray.orig, obj.pos), obj.vector) / prod;
+	*x->inters = ft_dotprod(ft_coorsub(obj.pos, ray.orig), obj.vector) / prod;
 	x->count++;
 	return (x);
 }
