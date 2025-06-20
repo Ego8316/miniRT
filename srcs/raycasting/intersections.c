@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:51:09 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/19 11:19:01 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:14:29 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_intersec	*get_intersec(t_object obj, t_ray ray);
+t_inter	*get_inter(t_object obj, t_ray ray);
 
-t_intersec	*get_intersec(t_object obj, t_ray ray)
+t_inter	*get_inter(t_object obj, t_ray ray)
 {
 	if (obj.id == SPHERE)
 		return (sphere_intersec(obj, ray));

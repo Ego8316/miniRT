@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cube_intersec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 11:59:15 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:14:29 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_intersec	*cube_intersec(t_object obj, t_ray ray);
+t_inter	*cube_intersec(t_object obj, t_ray ray);
 static void	set_local_intersec(double *minmax, double orig, double dir);
 
-t_intersec	*cube_intersec(t_object obj, t_ray ray)
+t_inter	*cube_intersec(t_object obj, t_ray ray)
 {
-	t_intersec	*x;
+	t_inter	*x;
 	double		minmax[2];
 	double		minmax_x[2];
 	double		minmax_y[2];
@@ -29,7 +29,7 @@ t_intersec	*cube_intersec(t_object obj, t_ray ray)
 	set_local_intersec(minmax_z, ray.orig.z, ray.dir.z);
 	minmax[0] = ft_max(ft_max(minmax_x[0], minmax_y[0]), minmax_z[0]);
 	minmax[1] = ft_min(ft_max(minmax_x[1], minmax_y[1]), minmax_z[1]);
-	x = ft_calloc(1, sizeof(t_intersec));
+	x = ft_calloc(1, sizeof(t_inter));
 	if (!x)
 		return (NULL);
 	if (minmax[0] <= minmax[1])

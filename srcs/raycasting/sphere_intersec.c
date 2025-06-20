@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/18 10:52:46 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:14:29 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_intersec	*sphere_intersec(t_object obj, t_ray ray);
+t_inter	*sphere_intersec(t_object obj, t_ray ray);
 
-t_intersec	*sphere_intersec(t_object obj, t_ray ray)
+t_inter	*sphere_intersec(t_object obj, t_ray ray)
 {
-	t_intersec	*x;
+	t_inter	*x;
 	t_coor		sphere_to_ray;
 	double		abc[3];
 	double		discr;
 
-	x = ft_calloc(1, sizeof(t_intersec));
+	x = ft_calloc(1, sizeof(t_inter));
 	if (!x)
 		return (NULL);
 	sphere_to_ray = ft_coorsubstr(obj.pos, ray.orig);
