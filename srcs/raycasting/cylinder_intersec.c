@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/18 11:21:22 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:58:12 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ static t_intersec	*local_intersec(t_ray ray);
 
 t_intersec	*cylinder_intersec(t_object obj, t_ray ray)
 {
-	t_ray	normal_ray;
+	t_ray		normal_ray;
+	t_intersec	*x;
 
+	(void)obj;
 	normal_ray.orig = ray.orig;
 	normal_ray.dir = ft_coornormalize(ray.dir);
-	
+	x = local_intersec(normal_ray);
+	if (!x)
+		return (NULL);
+	return (x);
 }
 
 static t_intersec	*local_intersec(t_ray ray)
@@ -46,6 +51,8 @@ static t_intersec	*local_intersec(t_ray ray)
 		return (free(x), NULL);
 	x->inters[0] = (-abc[1] - sqrt(discr)) / (2 * abc[0]);
 	x->inters[1] = (-abc[1] + sqrt(discr)) / (2 * abc[0]);
+	if (x->inters[0] > x->inters[1])
+		ft_swap_dble(&(x->inters[0]), &(x->inters[1]));
 	x->count = 2;
 	return (x);
 }
