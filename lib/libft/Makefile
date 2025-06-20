@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2025/06/20 16:39:36 by ego              ###   ########.fr        #
+#    Updated: 2025/06/20 17:13:48 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ MATH				=	ft_abs.c ft_dotprod.c ft_crossprod.c ft_initcoor.c \
 						ft_max.c ft_min.c ft_norm.c ft_prev_power.c ft_norm.c \
 						ft_cooradd.c ft_coorscale.c ft_coorsub.c ft_range.c \
 						ft_detmat.c ft_getsubmat.c ft_initmat.c ft_invmat.c \
-						ft_detmat.c ft_getcofac.c ft_coornormalize.c
+						ft_detmat.c ft_getcofac.c ft_coornormalize.c \
+						ft_coormult.c ft_tensorprod.c ft_squarenorm.c
 SRCS_MATH			=	$(addprefix math/, $(MATH))
 OBJS_MATH		 	=	$(patsubst math/%.c, objs/%.o, $(SRCS_MATH))
 
