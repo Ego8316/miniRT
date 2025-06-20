@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/19 11:02:04 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:59:15 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_intersec	*cube_intersec(t_object obj, t_ray ray)
 	double		minmax_y[2];
 	double		minmax_z[2];
 
+	(void)obj;
 	set_local_intersec(minmax_x, ray.orig.x, ray.dir.x);
 	set_local_intersec(minmax_y, ray.orig.y, ray.dir.y);
 	set_local_intersec(minmax_z, ray.orig.z, ray.dir.z);

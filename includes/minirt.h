@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 11:57:05 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 12:01:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,13 @@ int		free_scene(t_scene *s);
 
 bool	ft_isspace(int c);
 bool	stristype(const char *s, bool (*f)(int));
+
+/* Ray Casting */
+
+t_intersec	*get_intersec(t_object obj, t_ray ray);
+t_intersec	*cube_intersec(t_object obj, t_ray ray);
+t_intersec	*cylinder_intersec(t_object obj, t_ray ray);
+t_intersec	*sphere_intersec(t_object obj, t_ray ray);
 
 /* Debug */
 

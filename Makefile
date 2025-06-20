@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/20 12:00:38 by ego              ###   ########.fr        #
+#    Updated: 2025/06/20 12:03:30 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,12 @@ SRC			+=	parsing/argument.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
-SRC			+=	raycasting/ft_getintersec.c
+SRC			+=	raycasting/intersections.c \
+				raycasting/sphere_intersec.c \
+				raycasting/cylinder_intersec.c \
+				raycasting/cube_intersec.c
+SRC			+=	utils/error.c	\
+				utils/free.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c

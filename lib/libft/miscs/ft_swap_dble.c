@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_coornormalize.c                                 :+:      :+:    :+:   */
+/*   ft_swap_dble.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 11:16:57 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/19 11:18:37 by vviterbo         ###   ########.fr       */
+/*   Created: 2025/06/20 11:52:13 by vviterbo          #+#    #+#             */
+/*   Updated: 2025/06/20 11:53:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_coor	ft_coornormalize(t_coor coor);
+void	ft_swap_dble(double *x, double *y);
 
-t_coor	ft_coornormalize(t_coor coor)
+void	ft_swap_dble(double *x, double *y)
 {
-	double	norm_fac;
-	t_coor	normal;
+	double tmp;
 
-	norm_fac = 1 / sqrt(ft_dotprod(coor, coor));
-	normal.x = coor.x * norm_fac;
-	normal.y = coor.y * norm_fac;
-	normal.z = coor.z * norm_fac;
-	return (normal);
+	tmp = *x;
+	*x = *y;
+	*y = tmp;
+	return ;
 }
