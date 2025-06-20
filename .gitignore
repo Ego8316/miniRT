@@ -5,4 +5,5 @@ miniRT
 a
 dummy_output
 .vscode
-lib/mlx
+lib/mlx/
+mlx-test
