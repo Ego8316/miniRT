@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/20 11:59:02 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/20 12:04:09 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,6 @@ SRC			+=	raycasting/intersections.c \
 				raycasting/sphere_intersec.c \
 				raycasting/cylinder_intersec.c \
 				raycasting/cube_intersec.c
-SRC			+=	utils/error.c	\
-				utils/free.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
