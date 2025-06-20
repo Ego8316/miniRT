@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:04:31 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/20 15:16:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,16 @@ void		ft_lstpop(t_list **lst, t_list *node, void (*del)(void *));
 int			ft_lstsize(t_list *lst);
 // MATH
 double		ft_abs(double n);
-t_coor		ft_coorscale(t_coor base, t_coor tip, float scale);
 t_coor		ft_cooradd(t_coor v1, t_coor v2);
 t_coor		ft_coornormalize(t_coor coor);
+t_coor		ft_coorscale(t_coor base, t_coor tip, float scale);
 t_coor		ft_coorsub(t_coor v1, t_coor v2);
 double		*ft_detmat(t_mat mat);
 double		ft_dotprod(t_coor v1, t_coor v2);
 void		ft_free_mat(t_mat *mat);
+t_mat		*ft_invmat(t_mat mat);
+t_coor		matcoor_mult(t_mat mat, t_coor vec);
+t_mat		*ft_matmult(t_mat mat1, t_mat mat2);
 double		*ft_getcofac(t_mat mat, int m, int n);
 t_mat		*ft_getsubmat(t_mat	mat, size_t m, size_t n);
 t_coor		ft_initcoor(double x, double y, double z);
