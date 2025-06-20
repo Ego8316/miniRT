@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 12:17:09 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:04:31 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ double		ft_abs(double n);
 t_coor		ft_coorscale(t_coor base, t_coor tip, float scale);
 t_coor		ft_cooradd(t_coor v1, t_coor v2);
 t_coor		ft_coornormalize(t_coor coor);
-t_coor		ft_coorsubstr(t_coor v1, t_coor v2);
+t_coor		ft_coorsub(t_coor v1, t_coor v2);
 double		*ft_detmat(t_mat mat);
 double		ft_dotprod(t_coor v1, t_coor v2);
 void		ft_free_mat(t_mat *mat);

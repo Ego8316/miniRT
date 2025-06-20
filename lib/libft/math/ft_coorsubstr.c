@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_coorsubstr.c                                    :+:      :+:    :+:   */
+/*   ft_coorsub.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-t_coor	ft_coorsubstr(t_coor v1, t_coor v2);
+t_coor	ft_coorsub(t_coor v1, t_coor v2);
 
-t_coor	ft_coorsubstr(t_coor v1, t_coor v2)
+t_coor	ft_coorsub(t_coor v1, t_coor v2)
 {
 	t_coor	new_coor;
 
