@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 16:15:26 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/21 14:16:48 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_inter	*sphere_intersec(t_object obj, t_ray ray)
 	if (!inter)
 		return (NULL);
 	radius = obj.args[0] / 2;
-	ray_to_sphere = ft_coorsub( ray.orig, obj.pos);
+	ray_to_sphere = ft_coorsub(ray.orig, obj.pos);
 	abc[0] = ft_dotprod(ray.dir, ray.dir);
 	abc[1] = 2 * ft_dotprod(ray.dir, ray_to_sphere);
 	abc[2] = ft_dotprod(ray_to_sphere, ray_to_sphere) - radius * radius;

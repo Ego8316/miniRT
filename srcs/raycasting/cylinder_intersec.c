@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 19:09:12 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/21 14:16:29 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,21 @@ t_inter			*cylinder_intersec(t_object obj, t_ray ray);
  */
 static void	get_infinite_side_hits(t_object obj, t_ray ray, double *t)
 {
-	double	dots[2];
+	double	dot[2];
 	double	abc[3];
 	double	discr;
 	double	radius;
+	t_coor	a;
 
 	radius = obj.args[0] / 2;
-	dots[0] = ft_dotprod(ray.dir, obj.vector);
-	dots[1] = ft_dotprod(ft_coorsub(ray.orig, obj.pos), obj.vector);
-	abc[0] = ft_squarenorm(ft_coorsub(ray.dir, ft_coormult(obj.vector, dots[0])));
-	abc[1] = 2 * ft_dotprod(ft_coorsub(ray.dir, ft_coormult(obj.vector, dots[0])),
-		ft_coorsub(ft_coorsub(ray.orig, obj.pos), ft_coormult(obj.vector, dots[1])));
+	dot[0] = ft_dotprod(ray.dir, obj.vector);
+	dot[1] = ft_dotprod(ft_coorsub(ray.orig, obj.pos), obj.vector);
+	a = obj.vector;
+	abc[0] = ft_squarenorm(ft_coorsub(ray.dir, ft_coormult(a, dot[0])));
+	abc[1] = 2 * ft_dotprod(ft_coorsub(ray.dir, ft_coormult(a, dot[0])),
+			ft_coorsub(ft_coorsub(ray.orig, obj.pos), ft_coormult(a, dot[1])));
 	abc[2] = ft_squarenorm(ft_coorsub(ft_coorsub(ray.orig, obj.pos),
-		ft_coormult(obj.vector, dots[1]))) - radius * radius;
+				ft_coormult(a, dot[1]))) - radius * radius;
 	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discr < 0 || fabs(abc[0]) < DBL_EPSILON)
 	{
@@ -136,7 +138,7 @@ t_inter	*cylinder_intersec(t_object obj, t_ray ray)
 		return (free(inter), NULL);
 	add_side_hits(obj, ray, inter);
 	height = obj.args[1];
-	bottom = ft_coormult(obj.vector, - height / 2);
+	bottom = ft_coormult(obj.vector, -1 * height / 2);
 	top = ft_coormult(obj.vector, height / 2);
 	add_cap_hit(obj, ray, inter, bottom);
 	add_cap_hit(obj, ray, inter, top);
