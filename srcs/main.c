@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 16:55:31 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:25:08 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int	main(int ac, char **av)
 	const size_t	size_y = 900;
 
 	ft_memset(&scene, 0, sizeof(t_scene));
-	if (ac == 2 && !ft_strcmp(av[1], "test"))
-	{
-		test_intersections();
-		return (0);
-	}
 	if (!handle_argument(ac, av))
 		return (print_usage());
 	if (!init_scene(av[1], &scene))

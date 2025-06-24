@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:43:03 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 16:47:07 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static const t_args	g_args[] = {
 {SPHERE, {
-{SP_DIAMETER_MIN, SP_DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
+{DIAMETER_MIN, DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
 {0.0, 0.0, NULL},
 {0.0, 0.0, NULL}
 }},
@@ -24,13 +24,13 @@ static const t_args	g_args[] = {
 {0.0, 0.0, NULL}
 }},
 {CYLINDER, {
-{CY_DIAMETER_MIN, CY_DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
-{CY_HEIGHT_MIN, CY_HEIGHT_MAX, PARSE_ERR_BOUND_HEIGHT},
+{DIAMETER_MIN, DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
+{HEIGHT_MIN, HEIGHT_MAX, PARSE_ERR_BOUND_HEIGHT},
 {0.0, 0.0, NULL}
 }},
 {CONE, {
-{CO_ANGLE_MIN, CO_ANGLE_MAX, PARSE_ERR_BOUND_ANGLE},
-{0.0, 0.0, NULL},
+{DIAMETER_MIN, DIAMETER_MAX, PARSE_ERR_BOUND_DIAMETER},
+{HEIGHT_MIN, HEIGHT_MAX, PARSE_ERR_BOUND_HEIGHT},
 {0.0, 0.0, NULL}
 }},
 {NONE, {
