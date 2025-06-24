@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 15:34:26 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 12:06:58 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,15 @@ void	print_camera(t_camera *c);
 void	print_scene(t_scene *s);
 
 /* Test */
+void	test_plane_hit(void);
+void	test_plane_parallel(void);
+void	test_sphere_hit_two_points(void);
+void	test_sphere_miss(void);
+void	test_sphere_inside_hit(void);
+void	test_cylinder_parallel_miss(void);
+void	test_cylinder_side_hits(void);
+void	test_cylinder_top_cap_hit(void);
+void	test_cylinder_inside_out(void);
 void	test_intersections(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/21 14:16:29 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 12:09:34 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,6 @@ t_inter	*cylinder_intersec(t_object obj, t_ray ray)
 // 	size_t	i;
 // 	size_t	n;
 
-	
 // 	n = 0;
 // 	while (n < inter->count)
 // 	{

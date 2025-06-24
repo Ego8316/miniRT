@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/20 15:29:57 by ego              ###   ########.fr        #
+#    Updated: 2025/06/24 12:06:08 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,10 @@ SRC			+=	raycasting/intersections.c \
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
-SRC			+=	tests/intersections.c
+SRC			+=	tests/cylinder_intersec.c	\
+				tests/intersections.c		\
+				tests/plane_intersec.c		\
+				tests/sphere_intersec.c
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))
 
