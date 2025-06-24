@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 17:20:33 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 17:32:09 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ int	get_inter_color(t_scene *scene, t_inter *inter, t_ray view)
 	double	t;
 
 	t = inter->inters[0];
-
 }

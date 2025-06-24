@@ -6,13 +6,13 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:40:50 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 15:33:39 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 17:31:07 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter	*cone_intersec(t_object obj, t_ray ray);
+t_inter	cone_intersec(t_object obj, t_ray ray);
 
 /**
  * @brief Computes the intersection distances for a ray with an infinite cone
@@ -77,7 +77,7 @@ static void	add_side_hits(t_object obj, t_ray ray, t_inter *inter)
 		x = ft_cooradd(ray.orig, ft_coormult(ray.dir, t[i]));
 		proj = ft_dotprod(ft_coorsub(x, obj.pos), obj.vector);
 		if (proj > DBL_EPSILON && proj < height)
-			inter->inters[inter->count++] = t[i];
+			inter->t[inter->count++] = t[i];
 	}
 	return ;
 }
@@ -105,7 +105,7 @@ static void	add_cap_hit(t_object obj, t_ray ray, t_inter *inter, t_coor c)
 	t = ft_dotprod(ft_coorsub(c, ray.orig), obj.vector) / denom;
 	x = ft_cooradd(ray.orig, ft_coormult(ray.dir, t));
 	if (ft_squarenorm(ft_coorsub(x, c)) <= radius * radius)
-		inter->inters[inter->count++] = t;
+		inter->t[inter->count++] = t;
 	return ;
 }
 
@@ -119,19 +119,13 @@ static void	add_cap_hit(t_object obj, t_ray ray, t_inter *inter, t_coor c)
  * @return Allocated intersection structure containing the valid hits, `NULL`
  * if memory allocation fails.
  */
-t_inter	*cone_intersec(t_object obj, t_ray ray)
+t_inter	cone_intersec(t_object obj, t_ray ray)
 {
-	t_inter	*inter;
+	t_inter	inter;
 	t_coor	base;
 
-	inter = (t_inter *)ft_calloc(1, sizeof(t_inter));
-	if (!inter)
-		return (NULL);
-	inter->inters = (double *)ft_calloc(2, sizeof(double));
-	if (!inter->inters)
-		return (free(inter), NULL);
-	add_side_hits(obj, ray, inter);
+	add_side_hits(obj, ray, &inter);
 	base = ft_cooradd(obj.pos, ft_coormult(obj.vector, obj.args[1]));
-	add_cap_hit(obj, ray, inter, base);
+	add_cap_hit(obj, ray, &inter, base);
 	return (inter);
 }

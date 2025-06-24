@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 17:26:15 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 17:30:10 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	add_side_hits(t_object obj, t_ray ray, t_inter *inter)
 		x = ft_cooradd(ray.orig, ft_coormult(ray.dir, t[i]));
 		proj = ft_dotprod(ft_coorsub(x, obj.pos), obj.vector);
 		if (fabs(proj) < height / 2)
-			inter->inters[inter->count++] = t[i];
+			inter->t[inter->count++] = t[i];
 	}
 	return ;
 }
@@ -109,7 +109,7 @@ static void	add_cap_hit(t_object obj, t_ray ray, t_inter *inter, t_coor c)
 	t = ft_dotprod(ft_coorsub(c, ray.orig), obj.vector) / denom;
 	x = ft_cooradd(ray.orig, ft_coormult(ray.dir, t));
 	if (ft_squarenorm(ft_coorsub(x, c)) <= radius * radius)
-		inter->inters[inter->count++] = t;
+		inter->t[inter->count++] = t;
 	return ;
 }
 

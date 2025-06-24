@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 16:20:40 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:30:10 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_inter	sphere_intersec(t_object obj, t_ray ray)
 	ft_bzero(&inter, sizeof(t_inter));
 	if (discr < 0)
 		return (inter);
-	inter.inters[0] = (-abc[1] - sqrt(discr)) / (2 * abc[0]);
-	inter.inters[1] = (-abc[1] + sqrt(discr)) / (2 * abc[0]);
+	inter.t[0] = (-abc[1] - sqrt(discr)) / (2 * abc[0]);
+	inter.t[1] = (-abc[1] + sqrt(discr)) / (2 * abc[0]);
 	inter.count = 2;
 	inter.obj = &obj;
 	return (inter);

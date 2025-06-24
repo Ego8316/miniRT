@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/24 17:25:40 by ego              ###   ########.fr        #
+#    Updated: 2025/06/24 17:32:38 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,6 @@ SRC			+=	raycasting/cone_intersec.c		\
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
-SRC			+=	tests/cone_intersec.c		\
-				tests/cylinder_intersec.c	\
-				tests/intersections.c		\
-				tests/plane_intersec.c		\
-				tests/sphere_intersec.c
 SRC			+=	graphix/display.c \
 				graphix/view_utils.c \
 				graphix/render.c
