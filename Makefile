@@ -6,7 +6,7 @@
 #    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/24 15:11:43 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/06/24 16:52:23 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC			+=	tests/cylinder_intersec.c	\
 				tests/plane_intersec.c		\
 				tests/sphere_intersec.c
 SRC			+=	graphix/display.c \
-				graphix/view_utils.c
+				graphix/view_utils.c \
+				graphix/render.c
 
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
 SRCS		=	$(addprefix $(SDIR), $(SRC))

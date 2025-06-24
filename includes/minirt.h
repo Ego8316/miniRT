@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 16:15:05 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:58:50 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,6 @@ typedef struct s_dict
 	t_id		id;
 	int			len;
 }	t_dict;
-
-typedef struct s_inter
-{
-	size_t		count;
-	t_object	*obj;
-	double		inters[2];
-}	t_inter;
 
 typedef struct s_bound
 {
@@ -176,6 +169,13 @@ typedef struct s_view
 	double	h_height;
 }	t_view;
 
+typedef struct s_inter
+{
+	size_t		count;
+	t_object	*obj;
+	double		inters[2];
+}	t_inter;
+
 /* Parsing */
 
 bool	handle_argument(int ac, char **av);
@@ -228,6 +228,12 @@ t_inter	sphere_intersec(t_object obj, t_ray ray);
 
 /* Graphix */
 
+void	init_window(t_imx *window, size_t size_x, size_t size_y);
+void	display_scene(t_scene scene, t_imx *window);
+void	project_scene(t_scene, t_imx *window);
+t_inter	get_first_inter(t_scene scene, t_ray view);
+t_inter	*compare_inter(t_inter new, t_inter *old);
+void	reorder_inter(t_inter *inter);
 t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size);
 t_view	ft_init_view(t_scene scene, t_coor screensize);
 

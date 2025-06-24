@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 15:05:39 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:55:31 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 		return (free_scene(&scene));
 	print_scene(&scene);
 	init_window(&mlxwindow, size_x, size_y);
-	display_scene(mlxwindow, scene);
+	display_scene(scene, &mlxwindow);
 	free_scene(&scene);
 	return (0);
 }

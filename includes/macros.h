@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:42:51 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 17:13:38 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
+// Keys
+# ifdef __linux__
+#  define ESC 65307
+# elif defined __APPLE__
+#  define ESC 53
+# endif
 // Colors
 
 # define COLOR_R "\033[31m"
