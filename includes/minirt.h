@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 12:06:58 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 14:50:45 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ bool	stristype(const char *s, bool (*f)(int));
 
 t_inter	*get_inter(t_object obj, t_ray ray);
 t_inter	*plane_intersec(t_object obj, t_ray ray);
+t_inter	*cone_intersec(t_object obj, t_ray ray);
 t_inter	*cylinder_intersec(t_object obj, t_ray ray);
 t_inter	*sphere_intersec(t_object obj, t_ray ray);
 
@@ -220,6 +221,11 @@ void	test_cylinder_parallel_miss(void);
 void	test_cylinder_side_hits(void);
 void	test_cylinder_top_cap_hit(void);
 void	test_cylinder_inside_out(void);
+void	test_ray_misses_cone(void);
+void	test_ray_hits_cone_side(void);
+void	test_ray_hits_cone_base_cap(void);
+void	test_ray_starts_inside_cone(void);
+void	test_ray_parallel_inside_radius(void);
 void	test_intersections(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 12:08:44 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 16:45:21 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ int	main(int ac, char **av)
 	t_scene	scene;
 
 	ft_memset(&scene, 0, sizeof(t_scene));
-	if (ac == 2 && !ft_strcmp(av[1], "test"))
-	{
-		test_intersections();
-		return (0);
-	}
 	if (!handle_argument(ac, av))
 		return (print_usage());
 	if (!init_scene(av[1], &scene))

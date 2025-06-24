@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 05:49:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/16 05:51:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 14:24:18 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  */
 void	scale_color(t_coor *color)
 {
-	*color = ft_coorscale((t_coor){0, 0, 0}, *color, 1.0 / 255.0);
+	*color = ft_coormult(*color, 1 / 255);
 	return ;
 }
 
@@ -42,6 +42,6 @@ bool	normalize_vector(t_coor *vec)
 	norm = ft_norm(*vec);
 	if (norm < DBL_EPSILON)
 		return (false);
-	*vec = ft_coorscale((t_coor){0, 0, 0}, *vec, 1 / norm);
+	*vec = ft_coormult(*vec, 1 / norm);
 	return (true);
 }

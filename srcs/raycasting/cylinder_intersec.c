@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 12:09:34 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 14:35:40 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	get_infinite_side_hits(t_object obj, t_ray ray, double *t)
 /**
  * @brief Adds valid side hits to the intersection structure. First gets all
  * hits with the infinite cylinder, and keeps the ones withint the finite
- * height of the cylinder.
+ * height of the actual cylinder.
  * 
  * @param obj Cylinder object.
  * @param ray Ray being cast.
@@ -78,7 +78,7 @@ static void	add_side_hits(t_object obj, t_ray ray, t_inter *inter)
 	{
 		if (t[i] < 0)
 			continue ;
-		x = ft_cooradd(ray.orig, ft_coormult(ray.dir, inter->inters[i]));
+		x = ft_cooradd(ray.orig, ft_coormult(ray.dir, t[i]));
 		proj = ft_dotprod(ft_coorsub(x, obj.pos), obj.vector);
 		if (fabs(proj) < height / 2)
 			inter->inters[inter->count++] = t[i];
