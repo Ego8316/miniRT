@@ -6,13 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 15:48:00 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:14:36 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter			*cylinder_intersec(t_object obj, t_ray ray);
+t_inter			cylinder_intersec(t_object obj, t_ray ray);
 // static t_inter	*local_intersec(t_ray ray);
 // void			filter_w_bounds(t_inter *inter, t_object obj, t_ray);
 
@@ -123,26 +123,20 @@ static void	add_cap_hit(t_object obj, t_ray ray, t_inter *inter, t_coor c)
  * @return Allocated intersection structure containing the valid hits, `NULL`
  * if memory allocation fails.
  */
-t_inter	*cylinder_intersec(t_object obj, t_ray ray)
+t_inter	cylinder_intersec(t_object obj, t_ray ray)
 {
-	t_inter	*inter;
+	t_inter	inter;
 	double	height;
 	t_coor	bottom;
 	t_coor	top;
 
-	inter = ft_calloc(1, sizeof(t_inter));
-	if (!inter)
-		return (NULL);
-	inter->inters = ft_calloc(2, sizeof(double));
-	if (!inter->inters)
-		return (free(inter), NULL);
-	add_side_hits(obj, ray, inter);
+	add_side_hits(obj, ray, &inter);
 	height = obj.args[1];
 	bottom = ft_coormult(obj.vector, -1 * height / 2);
 	top = ft_coormult(obj.vector, height / 2);
-	add_cap_hit(obj, ray, inter, bottom);
-	add_cap_hit(obj, ray, inter, top);
-	inter->obj = &obj;
+	add_cap_hit(obj, ray, &inter, bottom);
+	add_cap_hit(obj, ray, &inter, top);
+	inter.obj = &obj;
 	return (inter);
 }
 

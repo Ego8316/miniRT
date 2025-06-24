@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 15:55:18 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:15:05 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_inter
 {
 	size_t		count;
 	t_object	*obj;
-	double		*inters;
+	double		inters[2];
 }	t_inter;
 
 typedef struct s_bound
@@ -221,10 +221,10 @@ bool	stristype(const char *s, bool (*f)(int));
 
 /* Ray Casting */
 
-t_inter	*get_inter(t_object obj, t_ray ray);
-t_inter	*plane_intersec(t_object obj, t_ray ray);
-t_inter	*cylinder_intersec(t_object obj, t_ray ray);
-t_inter	*sphere_intersec(t_object obj, t_ray ray);
+t_inter	get_inter(t_object obj, t_ray ray);
+t_inter	plane_intersec(t_object obj, t_ray ray);
+t_inter	cylinder_intersec(t_object obj, t_ray ray);
+t_inter	sphere_intersec(t_object obj, t_ray ray);
 
 /* Graphix */
 
