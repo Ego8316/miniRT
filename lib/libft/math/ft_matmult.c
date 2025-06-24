@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:06:17 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:16:18 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:22:59 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_mat	*ft_matmult(t_mat mat1, t_mat mat2)
 		j = 0;
 		while (j < mat2.dim[1])
 		{
-			k = 0;
+			k = -1;
+			mult->val[i][j] = 0;
 			while (++k < mat1.dim[1])
 				mult->val[i][j] += mat1.val[i][k] * mat2.val[k][j];
 			j++;

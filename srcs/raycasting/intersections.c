@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:51:09 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 14:28:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:47:29 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_inter	*get_inter(t_object obj, t_ray ray)
 		return (sphere_intersec(obj, ray));
 	else if (obj.id == CYLINDER)
 		return (cylinder_intersec(obj, ray));
+	else if (obj.id == PLANE)
+		return (plane_intersec(obj, ray));
 	return (NULL);
 }
 

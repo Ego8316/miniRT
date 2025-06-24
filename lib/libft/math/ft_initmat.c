@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:34:23 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/18 10:50:20 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:41:25 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_mat	*ft_initmat(size_t m, size_t n)
 	mat->val = ft_calloc(m, sizeof(double *));
 	if (!mat->val)
 		return (NULL);
+	mat->dim[0] = m;
+	mat->dim[1] = n;
 	i = 0;
 	while (i < n)
 	{

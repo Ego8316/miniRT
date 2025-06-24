@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:33:18 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:16:29 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:07:15 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ char		*ft_strdup_pf(const char *s1, int null);
 size_t		print_format(const char **str, va_list argl);
 char		*get_radix(char type, va_list argl);
 char		*ft_strjoin_gnl(char const *s1, char const *s2, int in_place);
+void		ft_printmat(t_mat mat);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);

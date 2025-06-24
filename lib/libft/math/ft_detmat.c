@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:13:06 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/16 11:27:30 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:03:11 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ double	*ft_detmat(t_mat mat)
 		if (!subdet)
 			return (NULL);
 		*det += mat.val[0][i] * *subdet;
+		free(subdet);
 		i++;
 	}
 	return (det);

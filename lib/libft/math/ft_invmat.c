@@ -6,11 +6,13 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:26:45 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:14:57 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:48:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+#include <stdio.h>
 
 t_mat	*ft_invmat(t_mat mat);
 
@@ -33,8 +35,7 @@ t_mat	*ft_invmat(t_mat mat)
 		cofac = ft_getcofac(mat, i / mat.dim[0], i % mat.dim[0]);
 		if (!cofac)
 			return (ft_free_mat(inv), NULL);
-		inv->val[i % mat.dim[0]][i / mat.dim[0]] = mat.val[i / mat.dim[0]]
-		[i % mat.dim[0]] * *cofac / *det;
+		inv->val[i % mat.dim[0]][i / mat.dim[0]] = *cofac / *det;
 		i++;
 	}
 	return (inv);

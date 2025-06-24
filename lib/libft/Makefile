@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
+#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 12:45:22 by vviterbo          #+#    #+#              #
-#    Updated: 2025/06/20 15:04:31 by ego              ###   ########.fr        #
+#    Updated: 2025/06/24 12:06:33 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ MATH				=	ft_abs.c ft_dotprod.c ft_initcoor.c \
 						ft_max.c ft_min.c ft_norm.c ft_prev_power.c ft_norm.c \
 						ft_cooradd.c ft_coorscale.c ft_coorsub.c ft_range.c \
 						ft_detmat.c ft_getsubmat.c ft_initmat.c ft_invmat.c \
-						ft_detmat.c ft_getcofac.c ft_coornormalize.c
+						ft_detmat.c ft_getcofac.c ft_coornormalize.c \
+						ft_free_mat.c ft_matmult.c
 SRCS_MATH			=	$(addprefix math/, $(MATH))
 OBJS_MATH		 	=	$(patsubst math/%.c, objs/%.o, $(SRCS_MATH))
 
@@ -71,7 +72,7 @@ OBJS_TREE		 	=	$(patsubst tree/%.c, objs/%.o, $(SRCS_TREE))
 
 WRITE_READ			=	ft_get_next_line.c ft_putchar_fd.c \
 						ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
-						ft_readfile.c ft_printf.c
+						ft_readfile.c ft_printf.c ft_printmat.c
 SRCS_WRITE_READ		=	$(addprefix write_read/, $(WRITE_READ))
 OBJS_WRITE_READ 	=	$(patsubst write_read/%.c, objs/%.o, $(SRCS_WRITE_READ))
 
