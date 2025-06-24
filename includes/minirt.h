@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 12:06:58 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 15:55:18 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ typedef struct s_dict
 
 typedef struct s_inter
 {
-	size_t	count;
-	double	*inters;
+	size_t		count;
+	t_object	*obj;
+	double		*inters;
 }	t_inter;
 
 typedef struct s_bound
@@ -149,6 +150,32 @@ typedef struct s_scene
 	t_object	*objects;
 }	t_scene;
 
+typedef struct s_imgdata {
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}	t_imgdata;
+
+typedef struct s_imx {
+	void		*mlx;
+	void		*win;
+	t_imgdata	*img;
+	t_coor		size;
+}	t_imx;
+
+typedef struct s_view
+{
+	t_coor	F;
+	t_coor	R;
+	t_coor	U;
+	t_coor	orig;
+	t_coor	size;
+	double	h_width;
+	double	h_height;
+}	t_view;
+
 /* Parsing */
 
 bool	handle_argument(int ac, char **av);
@@ -198,6 +225,11 @@ t_inter	*get_inter(t_object obj, t_ray ray);
 t_inter	*plane_intersec(t_object obj, t_ray ray);
 t_inter	*cylinder_intersec(t_object obj, t_ray ray);
 t_inter	*sphere_intersec(t_object obj, t_ray ray);
+
+/* Graphix */
+
+t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size);
+t_view	ft_init_view(t_scene scene, t_coor screensize);
 
 /* Debug */
 

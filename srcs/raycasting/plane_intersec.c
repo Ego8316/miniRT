@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 12:13:35 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:48:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_inter	*plane_intersec(t_object obj, t_ray ray)
 		return (free(inter), NULL);
 	*inter->inters = ft_dotprod(ft_coorsub(obj.pos, ray.orig), obj.vector) / denom;
 	inter->count++;
+	inter->obj = &obj;
 	return (inter);
 }

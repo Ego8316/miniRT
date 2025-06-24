@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 12:09:34 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 15:48:00 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ t_inter	*cylinder_intersec(t_object obj, t_ray ray)
 	top = ft_coormult(obj.vector, height / 2);
 	add_cap_hit(obj, ray, inter, bottom);
 	add_cap_hit(obj, ray, inter, top);
+	inter->obj = &obj;
 	return (inter);
 }
 

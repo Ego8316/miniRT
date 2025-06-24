@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 12:08:44 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/24 15:05:39 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static int	print_usage(void)
 
 int	main(int ac, char **av)
 {
-	t_scene	scene;
+	t_scene			scene;
+	t_imx			mlxwindow;
+	const size_t	size_x = 900;
+	const size_t	size_y = 900;
 
 	ft_memset(&scene, 0, sizeof(t_scene));
 	if (ac == 2 && !ft_strcmp(av[1], "test"))
@@ -38,6 +41,8 @@ int	main(int ac, char **av)
 	if (!init_scene(av[1], &scene))
 		return (free_scene(&scene));
 	print_scene(&scene);
+	init_window(&mlxwindow, size_x, size_y);
+	display_scene(mlxwindow, scene);
 	free_scene(&scene);
 	return (0);
 }
