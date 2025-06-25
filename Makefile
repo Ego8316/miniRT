@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/24 17:32:38 by ego              ###   ########.fr        #
+#    Updated: 2025/06/25 15:06:28 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,17 @@ SRC			+=	parsing/argument.c		\
 				parsing/scene.c			\
 				parsing/utils.c
 SRC			+=	raycasting/cone_intersec.c		\
-				raycasting/intersections.c 		\
-				raycasting/sphere_intersec.c	\
 				raycasting/cylinder_intersec.c	\
+				raycasting/intersections.c 		\
+				raycasting/lights.c				\
+				raycasting/sphere_intersec.c	\
 				raycasting/plane_intersec.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
-SRC			+=	graphix/display.c \
-				graphix/view_utils.c \
+SRC			+=	graphix/display.c		\
+				graphix/mlx_utils.c		\
+				graphix/view_utils.c 	\
 				graphix/render.c
 
 OBJS		=	$(addprefix $(ODIR), $(SRC:.c=.o))
@@ -82,7 +84,7 @@ $(ODIR)		:
 				mkdir -p $(ODIR)parsing
 				mkdir -p $(ODIR)utils
 				mkdir -p $(ODIR)raycasting
-				mkdir -p $(ODIR)tests
+				mkdir -p $(ODIR)graphix
 				printf "Object directory created.\n"
 
 $(ODIR)%.o	:	$(SDIR)%.c

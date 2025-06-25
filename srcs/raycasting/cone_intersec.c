@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:40:50 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 17:31:07 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 14:48:02 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	get_infinite_side_hits(t_object obj, t_ray ray, double *t)
 	abc[0] = dot[0] * dot[0] - squared_cos;
 	abc[1] = -2 * (squared_cos * ft_dotprod(ft_coorsub(ray.orig, obj.pos),
 				ray.dir) - dot[0] * dot[1]);
-	abc[2] = - squared_cos * ft_squarenorm(ft_coorsub(ray.orig, obj.pos))
-				+ dot[1] * dot[1];
+	abc[2] = dot[1] * dot[1] - squared_cos * ft_squarenorm(ft_coorsub(ray.orig,
+				obj.pos));
 	discr = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discr < 0 || fabs(abc[0]) < DBL_EPSILON)
 	{

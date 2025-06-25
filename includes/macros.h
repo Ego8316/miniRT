@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 17:25:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 15:03:30 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 # define MACROS_H
 
 // Keys
+
 # ifdef __linux__
 #  define ESC 65307
 # elif defined __APPLE__
 #  define ESC 53
 # endif
+
+// Program name
+
+# define NAME "minirt"
+
 // Colors
 
 # define COLOR_R "\033[31m"
@@ -75,13 +81,16 @@
 
 // Error messages
 
-# define USAGE_MSG "Usage: ./minirt <scene.rt>"
-# define PREFIX "minirt: "
+# define USAGE_MSG "Usage: ./" NAME " <scene.rt>"
+# define PREFIX NAME ": "
 # define VERBOSE_PREFIX "line : "
 # define ERRMSG_NO_ARG "need argument"
 # define ERRMSG_TOO_ARG "too many arguments"
 # define ERRMSG_EMPTY_FILE "file is empty"
 # define ERRMSG_MALLOC "malloc: allocation failed"
+# define ERRMSG_MLX_INIT "mlx: connection to mlx failed"
+# define ERRMSG_MLX_WIN "mlx: window creation failed"
+# define ERRMSG_MLX_IMG "mlx: image creation failed"
 
 // Parsing error messages
 

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 17:30:50 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 15:06:05 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,8 @@ typedef struct s_scene
 	t_object	*objects;
 }	t_scene;
 
-typedef struct s_imgdata {
+typedef struct s_imgdata
+{
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
@@ -151,7 +152,8 @@ typedef struct s_imgdata {
 	int			endian;
 }	t_imgdata;
 
-typedef struct s_imx {
+typedef struct s_imx
+{
 	void		*mlx;
 	void		*win;
 	t_imgdata	*img;
@@ -160,9 +162,9 @@ typedef struct s_imx {
 
 typedef struct s_view
 {
-	t_coor	F;
-	t_coor	R;
-	t_coor	U;
+	t_coor	f;
+	t_coor	r;
+	t_coor	u;
 	t_coor	orig;
 	t_coor	size;
 	double	h_width;
@@ -226,17 +228,19 @@ t_inter	get_inter(t_object obj, t_ray ray);
 t_inter	plane_intersec(t_object obj, t_ray ray);
 t_inter	cylinder_intersec(t_object obj, t_ray ray);
 t_inter	sphere_intersec(t_object obj, t_ray ray);
+int		get_inter_color(t_scene scene, t_inter inter, t_ray view);
 
 /* Graphix */
 
-void	init_window(t_imx *window, size_t size_x, size_t size_y);
+bool	init_window(t_imx *window, size_t size_x, size_t size_y);
 void	display_scene(t_scene scene, t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 t_inter	get_first_inter(t_scene scene, t_ray view);
-t_inter	*compare_inter(t_inter new, t_inter *old);
+t_inter	*compare_inter(t_inter *new, t_inter *old);
 void	reorder_inter(t_inter *inter);
 t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size);
 t_view	ft_init_view(t_scene scene, t_coor screensize);
+int		free_win(t_imx *imx);
 
 /* Debug */
 
@@ -248,22 +252,5 @@ void	print_objects(t_object **objects);
 void	print_parse_data(t_parse_data *data);
 void	print_camera(t_camera *c);
 void	print_scene(t_scene *s);
-
-/* Test */
-void	test_plane_hit(void);
-void	test_plane_parallel(void);
-void	test_sphere_hit_two_points(void);
-void	test_sphere_miss(void);
-void	test_sphere_inside_hit(void);
-void	test_cylinder_parallel_miss(void);
-void	test_cylinder_side_hits(void);
-void	test_cylinder_top_cap_hit(void);
-void	test_cylinder_inside_out(void);
-void	test_ray_misses_cone(void);
-void	test_ray_hits_cone_side(void);
-void	test_ray_hits_cone_base_cap(void);
-void	test_ray_starts_inside_cone(void);
-void	test_ray_parallel_inside_radius(void);
-void	test_intersections(void);
 
 #endif

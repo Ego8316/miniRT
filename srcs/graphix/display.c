@@ -3,32 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:15:43 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/24 17:19:05 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:02:59 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	init_window(t_imx *window, size_t size_x, size_t size_y);
+bool	init_window(t_imx *window, size_t size_x, size_t size_y);
 void	display_scene(t_scene scene, t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 int		key_hook(int keycode, t_imx *data);
 
-void	init_window(t_imx *window, size_t size_x, size_t size_y)
+bool	init_window(t_imx *window, size_t size_x, size_t size_y)
 {
-	window->img = ft_calloca(1, sizeof(t_imgdata));
+	window->img = ft_calloc(1, sizeof(t_imgdata));
+	if (!window->img)
+		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	window->size = ft_initcoor((double)size_x, (double)size_y, 0);
 	window->mlx = mlx_init();
+	if (!window->mlx)
+		return (free_win(window), errmsg(ERRMSG_MLX_INIT, 0, 0, false));
 	window->img = mlx_new_image(window->mlx, size_x, size_y);
-	window->win = mlx_new_window(window->mlx, size_x, size_y, "miniRT");
-	window->img->addr = mlx_get_data_addr(window->img->img, &window->img->bits_per_pixel,
-			&window->img->line_length, &window->img->endian);
-	return ;
+	if (!window->img)
+		return (free_win(window), errmsg(ERRMSG_MLX_IMG, 0, 0, false));
+	window->win = mlx_new_window(window->mlx, size_x, size_y, NAME);
+	if (!window->win)
+		return (free_win(window), errmsg(ERRMSG_MLX_WIN, 0, 0, false));
+	window->img->addr = mlx_get_data_addr(window->img->img,
+			&window->img->bits_per_pixel, &window->img->line_length,
+			&window->img->endian);
+	return (true);
 }
-
 
 void	display_scene(t_scene scene, t_imx *window)
 {
@@ -42,9 +50,22 @@ void	display_scene(t_scene scene, t_imx *window)
 int	key_hook(int keycode, t_imx *data)
 {
 	if (keycode == ESC)
-		mlx_destroy_window(data->mlx, data->win);
-	free_win()
+		free_win(data);
 	return (0);
+}
+
+/**
+ * @brief Puts color to given pixel coordinates.
+ * 
+ * @param f Pointer to the imx structure.
+ * @param pixel	Current pixel.
+ * @param color Color code.
+ */
+void	set_pixel(t_imx *imx, t_coor pixel, int color)
+{
+	*(unsigned int *)(imx->img->addr + ((int)pixel.y * imx->img->line_length
+				+ (int)pixel.x * (imx->img->bits_per_pixel / 8))) = color;
+	return ;
 }
 
 void	project_scene(t_scene scene, t_imx *window)

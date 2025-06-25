@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 17:32:09 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 14:59:15 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 /**
  * ça calcule la lumière
  */
-int	get_inter_color(t_scene *scene, t_inter *inter, t_ray view)
+int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 {
-	double	t;
-
-	t = inter->inters[0];
+	(void)inter;
+	(void)scene;
+	(void)view;
+	return (0);
 }
