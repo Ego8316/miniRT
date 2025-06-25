@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
+#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/25 17:10:37 by ego              ###   ########.fr        #
+#    Updated: 2025/06/25 18:47:24 by vviterbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC			+=	raycasting/color.c				\
 				raycasting/intersections.c 		\
 				raycasting/lights.c				\
 				raycasting/sphere_intersec.c	\
-				raycasting/plane_intersec.c
+				raycasting/plane_intersec.c		\
+				raycasting/is_shadowed.c
 SRC			+=	utils/display.c			\
 				utils/free.c			\
 				utils/string.c
@@ -52,9 +53,15 @@ SRCS		=	$(addprefix $(SDIR), $(SRC))
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
-LFLAGS		=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -lXext -lX11 -lm
 IFLAGS		=	-I $(IDIR)
 RM			=	rm -rf
+
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+	LFLAGS	=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -framework OpenGL -framework AppKit
+else ifeq ($(OS), Linux)
+	LFLAGS	=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -lXext -lX11 -lm
+endif
 
 LIBFT		=	$(LDIR)libft/libft.a
 LIBX		=	$(LDIR)mlx/libmlx.a
@@ -87,6 +94,7 @@ $(ODIR)		:
 				mkdir -p $(ODIR)utils
 				mkdir -p $(ODIR)raycasting
 				mkdir -p $(ODIR)graphix
+				mkdir -p $(ODIR)tests
 				printf "Object directory created.\n"
 
 $(ODIR)%.o	:	$(SDIR)%.c

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 18:31:12 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:48:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_shadowed(t_scene scene, t_coor light_pos, t_inter inter, t_ray view)
+/*bool	is_shadowed(t_scene scene, t_coor light_pos, t_inter inter, t_ray view)
 {
 	(void)scene;
 	(void)light_pos;
 	(void)inter;
 	(void)view;
 	return (false);
-}
+}*/
 
 // t_coor	get_specular(t_coor hit, t_inter inter, t_light light, t_ray view)
 // {
