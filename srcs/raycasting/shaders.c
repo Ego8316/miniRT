@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 23:49:08 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:04:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 	hit_to_light = ft_coornormalize(ft_coorsub(light.pos, hit.point));
 	dot = ft_dotprod(hit.normal, hit_to_light);
 	if (dot <= 0)
-		dot = 0;
+		return ((t_coor){0, 0, 0});
 	result = ft_coormult(ft_tensorprod(hit.color, light.color),
 			light.brightness * dot);
-	reflect = ft_coorsub(ft_coormult(hit.normal, 2.0 * dot), hit_to_light);
+	reflect = ft_coorsub(hit_to_light, ft_coormult(hit.normal, 2.0 * dot));
 	dot = ft_dotprod(reflect, hit.ray);
-	if (hit.inter.obj->specular > 0 && dot > 0)
+	if (hit.inter.obj->specular - 10.0 > DBL_EPSILON && dot > 0)
+	{
+		// printf("on rentre ici?\n");
 		result = ft_cooradd(result, ft_coormult(light.color,
-			0 * light.brightness * pow(dot, hit.inter.obj->specular)));
+			light.brightness * pow(dot, hit.inter.obj->specular)));
+	}
 	return (result);
 }
 

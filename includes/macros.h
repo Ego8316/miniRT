@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 21:45:08 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:07:13 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@
 # define HEIGHT_MIN DBL_EPSILON
 # define HEIGHT_MAX 1000.0
 # define ATTR_MIN 0.0
-# define ATTR_MAX 1.0
+# define ATTR_MAX 300
 # define MAX_ARGS 3
 # define CHECKER_SIZE 2.0
 
