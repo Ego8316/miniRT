@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 21:45:08 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:24:57 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
 
 	attributes[0] = (t_attribute){&obj->specular, SPECULAR_ID, false,
 		PARSE_ERR_SPECULAR_DUPLICATE,
-		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_SPECULAR}};
+		(t_bound){SPECULAR_MIN, SPECULAR_MAX, PARSE_ERR_BOUND_SPECULAR}};
 	attributes[1] = (t_attribute){&obj->bump_strength, BUMP_STRENGTH_ID, false,
 		PARSE_ERR_BUMP_STRENGTH_DUPLICATE,
-		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_BUMP_STRENGTH}};
+		(t_bound){BUMP_MIN, BUMP_MAX, PARSE_ERR_BOUND_BUMP_STRENGTH}};
 	j = -1;
 	while (++j < MAX_ATTRIBUTES && get_next_word(d, attribute, &i))
 	{
