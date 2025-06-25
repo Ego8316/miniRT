@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:50:29 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:05:48 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 20:43:14 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_inter	get_first_inter(t_scene scene, t_ray view)
 	while (curr_obj)
 	{
 		curr_inter = get_inter(*curr_obj, view);
+		curr_inter.obj = curr_obj;
+		//printf("t0 = %f, t1 = %f\n", curr_inter.t[0], curr_inter.t[1]);
 		first_inter = compare_inter(&curr_inter, first_inter);
+		//printf("t0 = %f, t1 = %f\n", curr_inter.t[0], curr_inter.t[1]);
 		curr_obj = curr_obj->next;
 	}
 	if (!first_inter)
@@ -53,11 +56,16 @@ t_inter	*compare_inter(t_inter *new, t_inter *old)
 
 void	reorder_inter(t_inter *inter)
 {
+	double	tmp;
+
 	if (inter->count < 2)
 		return ;
-	if (inter->t[0] * inter->t[1] < 0 && inter->t[0] < 0)
-		ft_swap_dble(&(inter->t[0]), &(inter->t[1]));
-	else if (inter->t[0] > 0 && inter->t[0] > inter->t[1])
-		ft_swap_dble(&(inter->t[0]), &(inter->t[1]));
+	if ((inter->t[0] * inter->t[1] < 0 && inter->t[0] < 0)
+		|| (inter->t[0] > 0 && inter->t[0] > inter->t[1]))
+	{
+		tmp = inter->t[0];
+		inter->t[0] = inter->t[1];
+		inter->t[1] = tmp;
+	}
 	return ;
 }

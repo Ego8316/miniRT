@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 19:04:13 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 20:31:23 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int ac, char **av)
 {
 	t_scene			scene;
 	t_imx			mlxwindow;
-	const size_t	size_x = 250;
-	const size_t	size_y = 250;
+	const size_t	size_x = 500;
+	const size_t	size_y = 500;
 
 	ft_memset(&scene, 0, sizeof(t_scene));
 	if (!handle_argument(ac, av))
@@ -39,7 +39,6 @@ int	main(int ac, char **av)
 	if (!init_window(&mlxwindow, size_x, size_y))
 		return (free_scene(&scene));
 	display_scene(scene, &mlxwindow);
-	printf("ALLLOOOO\n");
 	free_scene(&scene);
 	return (0);
 }

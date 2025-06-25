@@ -6,20 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 19:02:08 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 20:19:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/*bool	is_shadowed(t_scene scene, t_coor light_pos, t_inter inter, t_ray view)
-{
-	(void)scene;
-	(void)light_pos;
-	(void)inter;
-	(void)view;
-	return (false);
-}*/
 
 // t_coor	get_specular(t_coor hit, t_inter inter, t_light light, t_ray view)
 // {

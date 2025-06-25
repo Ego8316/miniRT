@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:53 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 18:34:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 20:34:41 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,32 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	t_inter		light_inter;
 	t_ray		obj2light;
 	t_object	*obj_i;
-	size_t		i;
+	int			i;
 
 	obj2light.orig = ft_cooradd(ft_coormult(view.dir, objinter.t[0]), view.orig);
 	obj2light.dir = ft_coorsub(light_source, obj2light.orig);
 	obj_i = scene.objects;
 	while (obj_i)
 	{
-		if (obj_i != objinter.obj)
+		if (obj_i == objinter.obj)
 		{
-			light_inter = get_inter(*obj_i, obj2light);
-			i = -1;
-			while (++i < light_inter.count)
-			{
-				if (light_inter.t[i] > 0)
-					return (true);
-			}
+			printf("SELF SHADOW !!!\n");
+			obj_i = obj_i->next;
+			continue ;
+		}
+		light_inter = get_inter(*obj_i, obj2light);
+		i = -1;
+		while (++i < (int)light_inter.count)
+		{
+			printf("i = %i\n", i);
+			if (light_inter.t[i] > DBL_EPSILON)
+				return (true);
 		}
 		obj_i = obj_i->next;
 	}
 	return (false);
 }
+/*
+	return (false);
+}
+*/
