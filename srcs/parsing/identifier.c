@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 21:31:48 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:40:22 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:40:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ bool	get_identifier(t_parse_data *data)
 	int		i;
 	int		j;
 
+	skip_spaces(data);
+	i = data->i;
+	if (data->line[i] == COMMENT_ID[0])
+		return (true);
 	if (!get_next_word(data, id, &i))
 		return (parse_errmsg(PARSE_ERR_NO_IDENTIFIER_FOUND, data, true, false));
 	j = -1;
