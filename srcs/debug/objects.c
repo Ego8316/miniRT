@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 03:55:35 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:35:12 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 21:44:20 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_object(t_object *o, int i)
 	printf("\t\tArgs:\t\t(%.3lf, %.3lf, %.3lf)\n",
 		o->args[0], o->args[1], o->args[2]);
 	printf("\t\tReflectivity:\t%.3lf (%p)\n",
-		o->reflectivity, &o->reflectivity);
+		o->specular, &o->specular);
 	printf("\t\tColor:\t\t");
 	if (o->color.checkerboard)
 		printf("checkerboard\n");

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diffuse.c                                          :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 19:12:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 20:42:50 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 	double	k;
 
 	apex_to_hit = ft_coorsub(hit, cone->pos);
-	height_proj = ft_dotprod(cone->pos, apex_to_hit);
+	height_proj = ft_dotprod(cone->vector, apex_to_hit);
 	if (height_proj <= DBL_EPSILON)
 		return (ft_coormult(cone->vector, -1));
 	if (height_proj - cone->args[1] <= DBL_EPSILON)
@@ -53,7 +53,7 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
  * 
  * @return Normal vector.
  */
-static t_coor	get_normal(t_inter inter, t_coor hit)
+t_coor	get_normal(t_inter inter, t_coor hit)
 {
 	if (inter.obj->id == PLANE)
 		return (inter.obj->vector);
@@ -63,31 +63,4 @@ static t_coor	get_normal(t_inter inter, t_coor hit)
 		return (get_cylinder_normal(inter.obj, hit));
 	else
 		return (get_cone_normal(inter.obj, hit));
-}
-
-/**
- * @brief Computes the diffuse contribution of the given light, using Lambert
- * model:
- * 	diffuse = (light color) x (object color) x light ratio x max(0, cos theta)
- * where theta is the angle between the local surface normal and the light
- * vector.
- * 
- * @param hit Hit point coordinates.
- * @param inter Intersection structure.
- * @param light Current light whose diffuse component is being computed.
- * @param obj_color Object color.
- */
-t_coor	get_diffuse(t_coor hit, t_inter inter, t_light light, t_coor obj_color)
-{
-	t_coor	light_dir;
-	t_coor	normal;
-	double	dot;
-
-	light_dir = ft_coornormalize(ft_coorsub(light.pos, hit));
-	normal = get_normal(inter, hit);
-	dot = ft_dotprod(normal, light_dir);
-	if (dot <= 0)
-		dot *= -1;
-	return (ft_coormult(ft_tensorprod(obj_color, light.color),
-			light.brightness * dot));
 }

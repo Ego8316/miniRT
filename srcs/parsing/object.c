@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 16:47:07 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 21:45:08 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static bool	get_object_args(t_parse_data *data, double *args)
 }
 
 /**
- * @brief Parses optional object attributes such as reflectivity and bump
+ * @brief Parses optional object attributes such as specular and bump
  * strength. Attributes are parsed as key-value pairs. Ensures that each
  * attribute appears only once and that its value lies within specified
  * boundaries.
@@ -120,9 +120,9 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
 	int				j;
 	t_attribute		attributes[MAX_ATTRIBUTES];
 
-	attributes[0] = (t_attribute){&obj->reflectivity, REFLECTIVITY_ID, false,
-		PARSE_ERR_REFLECTIVITY_DUPLICATE,
-		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_REFLECTIVITY}};
+	attributes[0] = (t_attribute){&obj->specular, SPECULAR_ID, false,
+		PARSE_ERR_SPECULAR_DUPLICATE,
+		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_SPECULAR}};
 	attributes[1] = (t_attribute){&obj->bump_strength, BUMP_STRENGTH_ID, false,
 		PARSE_ERR_BUMP_STRENGTH_DUPLICATE,
 		(t_bound){ATTR_MIN, ATTR_MAX, PARSE_ERR_BOUND_BUMP_STRENGTH}};
@@ -145,7 +145,7 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
  * @brief - Each color component (R, G, B) must be between `COLOR_MIN` and
  * `COLOR_MAX`.
  * 
- * Also gets optional attributes such as reflectivity and bump strength.
+ * Also gets optional attributes such as specular and bump strength.
  *
  * Any violation of boundaries or extra data at the end of the line will
  * produce an appropriate error message and stop parsing. Color is scaled down
