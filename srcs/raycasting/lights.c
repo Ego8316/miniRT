@@ -6,16 +6,11 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 20:19:13 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:31:54 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// t_coor	get_specular(t_coor hit, t_inter inter, t_light light, t_ray view)
-// {
-	
-// }
 
 int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 {
@@ -41,9 +36,7 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 		t_coor diffuse = get_diffuse(hit, inter, *light, obj_color);
 		printf("diffuse: %lf %lf %lf\n", diffuse.x, diffuse.y, diffuse.z);
 		inter_color = ft_cooradd(inter_color, diffuse);
-		// inter_color = ft_cooradd(inter_color, get_specular());
 		light = light->next;
 	}
-	// inter_color = ft_coormult(inter_color, 1.0 / 10.0);
 	return (color_to_rgb(inter_color));
 }

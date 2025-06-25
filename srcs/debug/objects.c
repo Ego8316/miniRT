@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 03:55:35 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:35:12 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 23:20:16 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,14 @@ void	print_object(t_object *o, int i)
 		o->vector.x, o->vector.y, o->vector.z);
 	printf("\t\tArgs:\t\t(%.3lf, %.3lf, %.3lf)\n",
 		o->args[0], o->args[1], o->args[2]);
-	printf("\t\tReflectivity:\t%.3lf (%p)\n",
-		o->reflectivity, &o->reflectivity);
+	printf("\t\tSpecular:\t%.3lf\n", o->specular);
 	printf("\t\tColor:\t\t");
 	if (o->color.checkerboard)
 		printf("checkerboard\n");
 	else
 		printf("(%.3lf, %.3lf, %.3lf)\n",
 			o->color.coor.x, o->color.coor.y, o->color.coor.z);
-	printf("\t\tBump strength:\t%.3lf (%p)\n",
-		o->bump_strength, &o->bump_strength);
+	printf("\t\tBump strength:\t%.3lf\n", o->bump_strength);
 	return ;
 }
 

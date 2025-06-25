@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:53 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 20:34:41 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:35:40 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	{
 		if (obj_i == objinter.obj)
 		{
-			printf("SELF SHADOW !!!\n");
 			obj_i = obj_i->next;
 			continue ;
 		}
-		light_inter = get_inter(*obj_i, obj2light);
+		light_inter = get_inter(obj_i, obj2light);
 		i = -1;
 		while (++i < (int)light_inter.count)
 		{
@@ -46,7 +45,3 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	}
 	return (false);
 }
-/*
-	return (false);
-}
-*/

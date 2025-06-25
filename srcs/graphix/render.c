@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:50:29 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 20:43:14 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:35:49 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ t_inter	get_first_inter(t_scene scene, t_ray view)
 	first_inter = NULL;
 	while (curr_obj)
 	{
-		curr_inter = get_inter(*curr_obj, view);
-		curr_inter.obj = curr_obj;
-		//printf("t0 = %f, t1 = %f\n", curr_inter.t[0], curr_inter.t[1]);
+		curr_inter = get_inter(curr_obj, view);
 		first_inter = compare_inter(&curr_inter, first_inter);
-		//printf("t0 = %f, t1 = %f\n", curr_inter.t[0], curr_inter.t[1]);
 		curr_obj = curr_obj->next;
 	}
 	if (!first_inter)

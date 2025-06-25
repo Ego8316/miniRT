@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:15:43 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 17:16:46 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 21:43:01 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	project_scene(t_scene scene, t_imx *window)
 			view.orig = scene.camera.vector.orig;
 			view.dir = get_viewdir(viewbase, curr_pxl, window->size);
 			first_inter = get_first_inter(scene, view);
+			// printf("id: %s\n", get_id_string(first_inter.obj->id));
 			color = get_inter_color(scene, first_inter, view);
 			set_pixel(window, curr_pxl, color);
-			// printf("pixel: x %lf y %lf\n", curr_pxl.x, curr_pxl.y);
 			curr_pxl.y++;
 		}
 		curr_pxl.x++;

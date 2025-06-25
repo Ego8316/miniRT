@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 18:37:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:07:13 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 
 // Attributes
 
-# define REFLECTIVITY_ID "r"
+# define SPECULAR_ID "s"
 # define BUMP_STRENGTH_ID "b"
 # define MAX_ATTRIBUTES 2
 
@@ -71,8 +71,9 @@
 # define HEIGHT_MIN DBL_EPSILON
 # define HEIGHT_MAX 1000.0
 # define ATTR_MIN 0.0
-# define ATTR_MAX 1.0
+# define ATTR_MAX 300
 # define MAX_ARGS 3
+# define CHECKER_SIZE 2.0
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
@@ -98,7 +99,7 @@
 # define PARSE_ERR_UNKNOWN_ATTRIBUTE "unknown attribute"
 # define PARSE_ERR_AMBIENT_DUPLICATE "duplicate ambient light definition"
 # define PARSE_ERR_CAMERA_DUPLICATE "duplicate camera definition"
-# define PARSE_ERR_REFLECTIVITY_DUPLICATE "reflectivity already defined"
+# define PARSE_ERR_SPECULAR_DUPLICATE "specular already defined"
 # define PARSE_ERR_BUMP_STRENGTH_DUPLICATE "bump strength already defined"
 # define PARSE_ERR_BOTH_MISSING "no camera nor ambient light definition"
 # define PARSE_ERR_AMBIENT_MISSING "no ambient light definition"
@@ -123,7 +124,7 @@
 # define PARSE_ERR_BOUND_FOV "field of view"
 # define PARSE_ERR_BOUND_DIAMETER "diameter"
 # define PARSE_ERR_BOUND_HEIGHT "height"
-# define PARSE_ERR_BOUND_REFLECTIVITY "reflectivity"
+# define PARSE_ERR_BOUND_SPECULAR "specular"
 # define PARSE_ERR_BOUND_BUMP_STRENGTH "bump strength"
 # define PARSE_ERR_BOUND_VECT "component"
 

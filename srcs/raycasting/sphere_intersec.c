@@ -6,15 +6,15 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:08:10 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 20:40:38 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:33:52 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter	sphere_intersec(t_object obj, t_ray ray);
+t_inter	sphere_intersec(t_object *obj, t_ray ray);
 
-t_inter	sphere_intersec(t_object obj, t_ray ray)
+t_inter	sphere_intersec(t_object *obj, t_ray ray)
 {
 	t_inter	inter;
 	t_coor	ray_to_sphere;
@@ -22,8 +22,8 @@ t_inter	sphere_intersec(t_object obj, t_ray ray)
 	double	discr;
 	double	radius;
 
-	radius = obj.args[0] / 2;
-	ray_to_sphere = ft_coorsub(ray.orig, obj.pos);
+	radius = obj->args[0] / 2;
+	ray_to_sphere = ft_coorsub(ray.orig, obj->pos);
 	abc[0] = ft_dotprod(ray.dir, ray.dir);
 	abc[1] = 2 * ft_dotprod(ray.dir, ray_to_sphere);
 	abc[2] = ft_dotprod(ray_to_sphere, ray_to_sphere) - radius * radius;
@@ -34,6 +34,6 @@ t_inter	sphere_intersec(t_object obj, t_ray ray)
 	inter.t[0] = (-abc[1] - sqrt(discr)) / (2 * abc[0]);
 	inter.t[1] = (-abc[1] + sqrt(discr)) / (2 * abc[0]);
 	inter.count = 2;
-	inter.obj = &obj;
+	inter.obj = obj;
 	return (inter);
 }
