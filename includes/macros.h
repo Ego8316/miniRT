@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 15:03:30 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:37:18 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@
 # define PLANE_ID "pl"
 # define CYLINDER_ID "cy"
 # define CONE_ID "co"
-# define HYPERBOLOID_ID "hy"
-# define PARABOLOID_ID "pa"
+# define COMMENT_ID "#"
 # define SETTING_ID_SIZE 1
 # define OBJECT_ID_SIZE 2
 # define WORD_SIZE 15
