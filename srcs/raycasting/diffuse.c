@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   diffuse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 18:25:58 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 19:11:11 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_coor	get_diffuse(t_coor hit, t_inter inter, t_light light, t_coor obj_color)
 	normal = get_normal(inter, hit);
 	dot = ft_dotprod(normal, light_dir);
 	if (dot <= 0)
-		dot *= -100;
+		dot *= -1;
 	return (ft_coormult(ft_tensorprod(obj_color, light.color),
 			light.brightness * dot));
 }
