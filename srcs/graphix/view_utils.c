@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:11:07 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 20:35:41 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:39:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ t_view	ft_init_view(t_scene scene, t_coor screensize)
 	angle = M_PI * scene.camera.fov / 180;
 	viewbase.h_width = tan(angle / 2);
 	viewbase.h_height = (viewbase.size.y / viewbase.size.x) * viewbase.h_width;
-	//printf("h_width = %f, h_height = %f\n", viewbase.h_width, viewbase.h_height);
 	return (viewbase);
 }
