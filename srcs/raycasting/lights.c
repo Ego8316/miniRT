@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 18:48:58 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:02:08 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 	while (light)
 	{
 		if (is_shadowed(scene, light->pos, inter, view))
+		{
+			light = light->next;
 			continue ;
+		}
 		t_coor diffuse = get_diffuse(hit, inter, *light, obj_color);
 		printf("diffuse: %lf %lf %lf\n", diffuse.x, diffuse.y, diffuse.z);
 		inter_color = ft_cooradd(inter_color, diffuse);
