@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:11:07 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:03:52 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:22:23 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size)
 	view_ray = ft_cooradd(ft_coormult(viewbase.r, rel_coor.x),
 			ft_coormult(viewbase.u, rel_coor.y));
 	view_ray = ft_cooradd(viewbase.f, view_ray);
-	return (view_ray);
+	return (ft_coornormalize(view_ray));
 }
 
 t_view	ft_init_view(t_scene scene, t_coor screensize)

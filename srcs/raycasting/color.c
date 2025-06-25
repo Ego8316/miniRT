@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 17:19:44 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:19:10 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_coor	get_object_color(t_color color, t_coor hit)
 {
 	if (!color.checkerboard)
 	{
-		printf("not checkeboard, color: (%lf, %lf, %lf)\n", color.coor.x, color.coor.y, color.coor.z);
+		printf("not checkerboard, color: (%lf, %lf, %lf)\n", color.coor.x, color.coor.y, color.coor.z);
 		return (color.coor);
 	}
 	if (((int)floor(hit.x) + (int)floor(hit.y) + (int)floor(hit.z)) % 2 == 0)

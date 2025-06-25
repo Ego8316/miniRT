@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 17:58:42 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 18:31:12 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 		// inter_color = ft_cooradd(inter_color, get_specular());
 		light = light->next;
 	}
-	inter_color = ft_coormult(inter_color, 1.0 / 10.0);
+	// inter_color = ft_coormult(inter_color, 1.0 / 10.0);
 	return (color_to_rgb(inter_color));
 }
