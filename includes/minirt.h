@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 21:44:20 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 23:46:42 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,15 @@ typedef struct s_inter
 	double		t[2];
 }	t_inter;
 
+typedef struct s_hit
+{
+	t_coor		point;
+	t_inter		inter;
+	t_coor		color;
+	t_coor		normal;
+	t_coor		ray;
+}	t_hit;
+
 /* Parsing */
 
 bool	handle_argument(int ac, char **av);
@@ -223,11 +232,11 @@ bool	stristype(const char *s, bool (*f)(int));
 
 /* Ray Casting */
 
-t_inter	cone_intersec(t_object obj, t_ray ray);
-t_inter	get_inter(t_object obj, t_ray ray);
-t_inter	plane_intersec(t_object obj, t_ray ray);
-t_inter	cylinder_intersec(t_object obj, t_ray ray);
-t_inter	sphere_intersec(t_object obj, t_ray ray);
+t_inter	cone_intersec(t_object *obj, t_ray ray);
+t_inter	get_inter(t_object *obj, t_ray ray);
+t_inter	plane_intersec(t_object *obj, t_ray ray);
+t_inter	cylinder_intersec(t_object *obj, t_ray ray);
+t_inter	sphere_intersec(t_object *obj, t_ray ray);
 
 int		color_to_rgb(t_coor color);
 t_coor	get_object_color(t_color color, t_coor hit);

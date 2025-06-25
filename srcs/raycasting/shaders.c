@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 21:42:05 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 23:49:08 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,55 +19,53 @@
  * where theta is the angle between the local surface normal and the light
  * vector.
  * 
- * @param hit Hit point coordinates.
+ * @param h Hit point coordinates.
  * @param inter Intersection structure.
- * @param light Current light whose diffuse component is being computed.
- * @param obj_color Object color.
+ * @param l Current light whose diffuse component is being computed.
+ * @param r View ray vector.
  */
-t_coor	get_diffuse(t_coor hit, t_coor normal, t_light light, t_coor obj_color)
+t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 {
 	t_coor	hit_to_light;
+	t_coor	reflect;
+	t_coor	result;
 	double	dot;
 
-	hit_to_light = ft_coornormalize(ft_coorsub(light.pos, hit));
-	dot = ft_dotprod(normal, hit_to_light);
+	hit_to_light = ft_coornormalize(ft_coorsub(light.pos, hit.point));
+	dot = ft_dotprod(hit.normal, hit_to_light);
 	if (dot <= 0)
 		dot = 0;
-	return (ft_coormult(ft_tensorprod(obj_color, light.color),
-			light.brightness * dot));
+	result = ft_coormult(ft_tensorprod(hit.color, light.color),
+			light.brightness * dot);
+	reflect = ft_coorsub(ft_coormult(hit.normal, 2.0 * dot), hit_to_light);
+	dot = ft_dotprod(reflect, hit.ray);
+	if (hit.inter.obj->specular > 0 && dot > 0)
+		result = ft_cooradd(result, ft_coormult(light.color,
+			0 * light.brightness * pow(dot, hit.inter.obj->specular)));
+	return (result);
 }
-
-
-// t_coor	get_specular(t_coor hit, t_inter inter, t_light light, t_ray view)
-// {
-	
-// }
 
 int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 {
-	const t_coor	hit = ft_cooradd(view.orig, ft_coormult(view.dir, inter.t[0]));
-	t_coor	obj_color;
-	t_coor	inter_color;
-	t_coor	normal;
-	t_light	*light;
+	t_hit		h;
+	t_coor		inter_color;
+	t_light		*l;
 
 	if (inter.count == 0)
 		return (color_to_rgb((t_coor){0.0, 0.0, 0.0}));
-	obj_color  = get_object_color(inter.obj->color, hit);
-	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color, obj_color),
-			scene.ambient.ratio);
-	normal = get_normal(inter, hit);
-	light = scene.lights;
-	while (light)
+	h.point = ft_cooradd(view.orig, ft_coormult(view.dir, inter.t[0]));
+	h.color = (t_coor){1, 0, 0};
+	h.normal = get_normal(inter, h.point);
+	h.inter = inter;
+	h.ray = view.dir;
+	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color,
+			inter.obj->color.coor), scene.ambient.ratio);
+	l = scene.lights;
+	while (l)
 	{
 		// if (!is_shadowed(scene, light->pos, inter, view))
-		// {
-		t_coor diffuse = get_diffuse(hit, normal, *light, obj_color);
-		// printf("diffuse: %lf %lf %lf\n", diffuse.x, diffuse.y, diffuse.z);
-		inter_color = ft_cooradd(inter_color, diffuse);
-		// inter_color = ft_cooradd(inter_color, get_specular());
-		// }
-		light = light->next;
+		inter_color = ft_cooradd(inter_color, get_diffuse_and_specular(h, *l));
+		l = l->next;
 	}
 	return (color_to_rgb(inter_color));
 }

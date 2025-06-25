@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_shadowed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:53 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 18:34:52 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/25 23:47:14 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	{
 		if (obj_i != objinter.obj)
 		{
-			light_inter = get_inter(*obj_i, obj2light);
+			light_inter = get_inter(obj_i, obj2light);
 			i = -1;
 			while (++i < light_inter.count)
 			{
