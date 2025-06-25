@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 00:04:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:33:19 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 			light.brightness * dot);
 	reflect = ft_coorsub(hit_to_light, ft_coormult(hit.normal, 2.0 * dot));
 	dot = ft_dotprod(reflect, hit.ray);
-	if (hit.inter.obj->specular - 10.0 > DBL_EPSILON && dot > 0)
+	if (hit.inter.obj->specular > 0 && dot > 0)
 	{
-		// printf("on rentre ici?\n");
 		result = ft_cooradd(result, ft_coormult(light.color,
 			light.brightness * pow(dot, hit.inter.obj->specular)));
 	}
@@ -57,7 +56,7 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 	if (inter.count == 0)
 		return (color_to_rgb((t_coor){0.0, 0.0, 0.0}));
 	h.point = ft_cooradd(view.orig, ft_coormult(view.dir, inter.t[0]));
-	h.color = (t_coor){1, 0, 0};
+	h.color = get_object_color(inter.obj->color, h.point);
 	h.normal = get_normal(inter, h.point);
 	h.inter = inter;
 	h.ray = view.dir;
@@ -66,8 +65,8 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 	l = scene.lights;
 	while (l)
 	{
-		// if (!is_shadowed(scene, light->pos, inter, view))
-		inter_color = ft_cooradd(inter_color, get_diffuse_and_specular(h, *l));
+		if (!is_shadowed(scene, l->pos, inter, view))
+			inter_color = ft_cooradd(inter_color, get_diffuse_and_specular(h, *l));
 		l = l->next;
 	}
 	return (color_to_rgb(inter_color));
