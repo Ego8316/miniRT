@@ -6,7 +6,7 @@
 #    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/25 15:06:28 by ego              ###   ########.fr        #
+#    Updated: 2025/06/25 17:10:37 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,10 @@ SRC			+=	parsing/argument.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
 				parsing/utils.c
-SRC			+=	raycasting/cone_intersec.c		\
+SRC			+=	raycasting/color.c				\
+				raycasting/cone_intersec.c		\
 				raycasting/cylinder_intersec.c	\
+				raycasting/diffuse.c			\
 				raycasting/intersections.c 		\
 				raycasting/lights.c				\
 				raycasting/sphere_intersec.c	\

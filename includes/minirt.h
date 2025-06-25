@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 15:06:05 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 17:09:35 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct s_scene
 typedef struct s_imgdata
 {
 	void		*img;
-	char		*addr;
+	void		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -228,7 +228,11 @@ t_inter	get_inter(t_object obj, t_ray ray);
 t_inter	plane_intersec(t_object obj, t_ray ray);
 t_inter	cylinder_intersec(t_object obj, t_ray ray);
 t_inter	sphere_intersec(t_object obj, t_ray ray);
+
+int		color_to_rgb(t_coor color);
+t_coor	get_object_color(t_color color, t_coor hit);
 int		get_inter_color(t_scene scene, t_inter inter, t_ray view);
+t_coor	get_diffuse(t_coor hit, t_inter inter, t_light light, t_coor obj_color);
 
 /* Graphix */
 

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 01:38:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 02:09:37 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 17:22:38 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ bool	get_next_color(t_parse_data *data, t_coor *coor)
 	if (!get_next_integer(data, &coor->z, false))
 		return (false);
 	scale_color(coor);
+	printf("get_next_color:\t (%lf %lf %lf)\n", coor->x, coor->y, coor->z);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 05:49:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/24 14:24:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 17:22:58 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  */
 void	scale_color(t_coor *color)
 {
-	*color = ft_coormult(*color, 1 / 255);
+	*color = ft_coormult(*color, 1.0 / 255.0);
 	return ;
 }
 

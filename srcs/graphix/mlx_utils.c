@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:03:08 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 14:56:34 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/25 15:29:24 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int	free_win(t_imx *imx);
 
 int	free_win(t_imx *imx)
 {
-	if (imx)
-	{
-		if (imx->img)
-			mlx_destroy_image(imx->mlx, imx->img);
-		if (imx->win)
-			mlx_destroy_window(imx->mlx, imx->win);
-		mlx_loop_end(imx->mlx);
-		mlx_destroy_display(imx->mlx);
-		free(imx);
-	}
+	if (!imx)
+		return (0);
+	if (imx->img->img)
+		mlx_destroy_image(imx->mlx, imx->img->img);
+	if (imx->win)
+		mlx_destroy_window(imx->mlx, imx->win);
+	mlx_loop_end(imx->mlx);
+	mlx_destroy_display(imx->mlx);
 	return (0);
 }
