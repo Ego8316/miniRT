@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:01:56 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 01:47:52 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:42:48 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ bool	init_scene(char *filename, t_scene *s)
 {
 	t_parse_data	data;
 
-	ft_memset(&data, 0, sizeof(t_parse_data));
+	ft_bzero(&data, sizeof(t_parse_data));
 	s->fd = open(filename, O_RDONLY);
 	if (s->fd < 0)
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));

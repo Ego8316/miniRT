@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:50:29 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/27 18:54:07 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:42:38 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_inter	get_first_inter(t_scene scene, t_ray view)
 	t_inter		first_inter;
 
 	curr_obj = scene.objects;
-	ft_memset(&first_inter, 0, sizeof(t_inter));
+	ft_bzero(&first_inter, sizeof(t_inter));
 	while (curr_obj)
 	{
 		curr_inter = get_inter(curr_obj, view);
