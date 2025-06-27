@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:15:43 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/26 01:03:40 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/27 22:05:31 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 bool	init_window(t_imx *window, size_t size_x, size_t size_y);
-void	display_scene(t_scene scene, t_imx *window);
+void	display_scene(t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 int		key_hook(int keycode, t_imx *data);
 
@@ -38,11 +38,11 @@ bool	init_window(t_imx *window, size_t size_x, size_t size_y)
 	return (true);
 }
 
-void	display_scene(t_scene scene, t_imx *window)
+void	display_scene(t_imx *window)
 {
-	project_scene(scene, window);
+	project_scene(*window->scene, window);
 	mlx_put_image_to_window(window->mlx, window->win, window->img->img, 0, 0);
-	mlx_hook(window->win, 17, 0, free_win, window);
+	mlx_hook(window->win, 17, 0, clean_exit, window);
 	mlx_key_hook(window->win, key_hook, window);
 	mlx_loop(window->mlx);
 }
@@ -50,7 +50,7 @@ void	display_scene(t_scene scene, t_imx *window)
 int	key_hook(int keycode, t_imx *data)
 {
 	if (keycode == ESC)
-		free_win(data);
+		clean_exit(data);
 	return (0);
 }
 

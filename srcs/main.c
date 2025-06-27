@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 19:27:56 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:17:21 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	main(int ac, char **av)
 		return (print_usage());
 	if (!init_scene(av[1], &scene))
 		return (free_scene(&scene));
-	print_scene(&scene);
+	scene.fd = close(scene.fd);
+	mlxwindow.scene = &scene;
 	if (!init_window(&mlxwindow, size_x, size_y))
-		return (free_scene(&scene));
-	display_scene(scene, &mlxwindow);
-	free_scene(&scene);
+		return (1);
+	display_scene(&mlxwindow);
 	return (0);
 }

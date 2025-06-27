@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 23:46:42 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:06:52 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct s_imx
 	void		*win;
 	t_imgdata	*img;
 	t_coor		size;
+	t_scene		*scene;
 }	t_imx;
 
 typedef struct s_view
@@ -248,14 +249,13 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 /* Graphix */
 
 bool	init_window(t_imx *window, size_t size_x, size_t size_y);
-void	display_scene(t_scene scene, t_imx *window);
+void	display_scene(t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 t_inter	get_first_inter(t_scene scene, t_ray view);
-t_inter	*compare_inter(t_inter *new, t_inter *old);
-void	reorder_inter(t_inter *inter);
 t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size);
 t_view	ft_init_view(t_scene scene, t_coor screensize);
 int		free_win(t_imx *imx);
+int		clean_exit(t_imx *imx);
 
 /* Debug */
 
