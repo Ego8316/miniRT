@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 20:17:33 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/28 01:23:33 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 	h.normal = get_normal(inter, h.point);
 	h.inter = inter;
 	h.ray = view.dir;
+	// return (color_to_rgb(ft_coormult(ft_cooradd(h.normal, (t_coor){1,1,1}), 0.5)));
 	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color,
 			h.color), scene.ambient.ratio);
 	l = scene.lights;

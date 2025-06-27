@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 20:12:22 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/28 01:20:39 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static t_coor	get_cylinder_normal(t_object *cyl, t_coor hit)
 
 	center_to_hit = ft_coorsub(hit, cyl->pos);
 	height_proj = ft_dotprod(cyl->vector, center_to_hit);
-	if (height_proj + cyl->args[1] / 2 <= DBL_EPSILON)
+	if (height_proj < DBL_EPSILON - cyl->args[1] / 2.0)
 		return (ft_coormult(cyl->vector, -1));
-	if (height_proj - cyl->args[1] / 2 <= DBL_EPSILON)
+	if (height_proj > cyl->args[1] / 2.0 - DBL_EPSILON)
 		return (cyl->vector);
 	return (ft_coornormalize(ft_coorsub(center_to_hit,
 				ft_coormult(cyl->vector, height_proj))));
@@ -34,11 +34,11 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 	double	k;
 
 	apex_to_hit = ft_coorsub(hit, cone->pos);
-	height_proj = ft_dotprod(cone->vector, apex_to_hit);
-	if (height_proj <= DBL_EPSILON)
-		return (ft_coormult(cone->vector, -1));
-	if (height_proj - cone->args[1] <= DBL_EPSILON)
+	height_proj = fabs(ft_dotprod(cone->vector, apex_to_hit));
+	// printf("height_proj: %f | height: %f\n", height_proj, cone->args[1]);
+	if (height_proj < DBL_EPSILON - cone->args[1])
 		return (cone->vector);
+	// printf("ici\n");
 	k = cone->args[0] / (2 * cone->args[1]);
 	return (ft_coornormalize(ft_coorsub(apex_to_hit,
 				ft_coormult(cone->vector, height_proj * (1 + k * k)))));

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:52:26 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/27 22:38:17 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 23:00:32 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ t_inter	cylinder_intersec(t_object *obj, t_ray ray)
 	ft_bzero(&inter, sizeof(t_inter));
 	add_side_hits(obj, ray, &inter);
 	height = obj->args[1];
-	bottom = ft_coormult(obj->vector, -1 * height / 2);
-	top = ft_coormult(obj->vector, height / 2);
+	bottom = ft_cooradd(obj->pos, ft_coormult(obj->vector, -1 * height / 2));
+	top = ft_cooradd(obj->pos, ft_coormult(obj->vector, height / 2));
 	add_cap_hit(obj, ray, &inter, bottom);
 	add_cap_hit(obj, ray, &inter, top);
 	inter.obj = obj;
