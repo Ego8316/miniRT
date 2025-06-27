@@ -6,7 +6,7 @@
 /*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:53 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/26 00:35:40 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:49:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 		i = -1;
 		while (++i < (int)light_inter.count)
 		{
-			printf("i = %i\n", i);
 			if (light_inter.t[i] > DBL_EPSILON)
 				return (true);
 		}
