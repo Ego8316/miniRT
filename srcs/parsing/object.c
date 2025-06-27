@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 00:24:57 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:29:05 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
 	int				j;
 	t_attribute		attributes[MAX_ATTRIBUTES];
 
+	obj->specular = SPECULAR_MIN;
+	obj->bump_strength = BUMP_MIN;
 	attributes[0] = (t_attribute){&obj->specular, SPECULAR_ID, false,
 		PARSE_ERR_SPECULAR_DUPLICATE,
 		(t_bound){SPECULAR_MIN, SPECULAR_MAX, PARSE_ERR_BOUND_SPECULAR}};

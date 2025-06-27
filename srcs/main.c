@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 22:17:21 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:22:54 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 	const size_t	size_y = 1000;
 
 	ft_memset(&scene, 0, sizeof(t_scene));
+	ft_memset(&mlxwindow, 0, sizeof(t_imx));
 	if (!handle_argument(ac, av))
 		return (print_usage());
 	if (!init_scene(av[1], &scene))
