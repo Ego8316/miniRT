@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:46:12 by ego               #+#    #+#             */
-/*   Updated: 2025/06/20 14:40:13 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/30 21:43:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static void	print_bound_error(t_parse_data *data)
 	ft_putdouble_fd(data->boundaries.min, 1, STDERR_FILENO);
 	ft_putstr_fd(" to ", STDERR_FILENO);
 	ft_putdouble_fd(data->boundaries.max, 1, STDERR_FILENO);
-	ft_putstr_fd(") ", STDERR_FILENO);
+	ft_putstr_fd(")", STDERR_FILENO);
 }
 
 /**
