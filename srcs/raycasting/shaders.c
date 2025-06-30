@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 00:33:19 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/28 01:23:33 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 			light.brightness * dot);
 	reflect = ft_coorsub(hit_to_light, ft_coormult(hit.normal, 2.0 * dot));
 	dot = ft_dotprod(reflect, hit.ray);
-	if (hit.inter.obj->specular > 0 && dot > 0)
+	if (hit.inter.obj->specular > 10 && dot > 0)
 	{
 		result = ft_cooradd(result, ft_coormult(light.color,
 			light.brightness * pow(dot, hit.inter.obj->specular)));
@@ -60,8 +60,9 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 	h.normal = get_normal(inter, h.point);
 	h.inter = inter;
 	h.ray = view.dir;
+	// return (color_to_rgb(ft_coormult(ft_cooradd(h.normal, (t_coor){1,1,1}), 0.5)));
 	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color,
-			inter.obj->color.coor), scene.ambient.ratio);
+			h.color), scene.ambient.ratio);
 	l = scene.lights;
 	while (l)
 	{

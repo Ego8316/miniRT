@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:11:07 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/25 18:22:23 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/26 00:39:58 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size)
 t_view	ft_init_view(t_scene scene, t_coor screensize)
 {
 	t_view	viewbase;
+	double	angle;
 
 	viewbase.f = scene.camera.vector.dir;
 	viewbase.r = ft_crossprod(viewbase.f, ft_initcoor(0, 1, 0));
@@ -45,7 +46,8 @@ t_view	ft_init_view(t_scene scene, t_coor screensize)
 	viewbase.u = ft_coornormalize(ft_crossprod(viewbase.f, viewbase.r));
 	viewbase.orig = scene.camera.vector.orig;
 	viewbase.size = screensize;
-	viewbase.h_width = tan(scene.camera.fov / 2);
+	angle = M_PI * scene.camera.fov / 180;
+	viewbase.h_width = tan(angle / 2);
 	viewbase.h_height = (viewbase.size.y / viewbase.size.x) * viewbase.h_width;
 	return (viewbase);
 }

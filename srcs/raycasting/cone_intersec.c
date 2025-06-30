@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:40:50 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 23:46:23 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:38:25 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ t_inter	cone_intersec(t_object *obj, t_ray ray)
 	t_inter	inter;
 	t_coor	base;
 
+	ft_bzero(&inter, sizeof(t_inter));
 	add_side_hits(obj, ray, &inter);
 	base = ft_cooradd(obj->pos, ft_coormult(obj->vector, obj->args[1]));
 	add_cap_hit(obj, ray, &inter, base);

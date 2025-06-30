@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:42:54 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 15:20:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 22:17:02 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	free_objects(t_object *objects)
  */
 int	free_scene(t_scene *s)
 {
+	if (s->fd > 0)
+		close(s->fd);
 	free_lights(s->lights);
 	free_objects(s->objects);
 	return (1);

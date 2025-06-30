@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 00:25:32 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/27 20:46:42 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@
 # define BUMP_MIN 0.0
 # define BUMP_MAX 1.0
 # define MAX_ARGS 3
-# define CHECKER_SIZE 2.0
+# define CHECKER_SIZE 1.2
 
 // Syntax keywords
 # define CHECKERBOARD "checkerboard"
