@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/30 13:56:03 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/30 13:58:46 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_coor	get_object_color(t_color color, t_coor hit)
 	y = y || (int)floor((hit.y - DBL_EPSILON) / CHECKER_SIZE) % 2;
 	z = (int)floor((hit.z + DBL_EPSILON) / CHECKER_SIZE) % 2;
 	z = z || (int)floor((hit.z - DBL_EPSILON) / CHECKER_SIZE) % 2;
-	if (x ^ y ^ z == 0)
+	if ((x ^ y ^ z) == 0)
 		return ((t_coor){1.0, 1.0, 1.0});
 	else
 		return ((t_coor){0.0, 0.0, 0.0});
