@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/28 01:20:39 by ego              ###   ########.fr       */
+/*   Updated: 2025/06/30 13:27:25 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,19 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
  */
 t_coor	get_normal(t_inter inter, t_coor hit)
 {
+	t_coor	bump;
+	t_coor	normal;
+
 	if (inter.obj->id == PLANE)
-		return (inter.obj->vector);
+		normal = inter.obj->vector;
 	else if (inter.obj->id == SPHERE)
-		return (ft_coornormalize(ft_coorsub(hit, inter.obj->pos)));
+		normal = ft_coornormalize(ft_coorsub(hit, inter.obj->pos));
 	else if (inter.obj->id == CYLINDER)
-		return (get_cylinder_normal(inter.obj, hit));
+		normal = get_cylinder_normal(inter.obj, hit);
 	else
-		return (get_cone_normal(inter.obj, hit));
+		normal = get_cone_normal(inter.obj, hit);
+	bump.x = sin(10 * hit.x) * inter.obj->bump_strength;
+	bump.y = cos(10 * hit.y) * inter.obj->bump_strength;
+	bump.z = sin(10 * hit.z) * inter.obj->bump_strength;
+	return (ft_coornormalize(ft_cooradd(normal, bump)));
 }

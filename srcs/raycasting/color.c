@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/26 00:26:50 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:56:03 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,19 @@ int	color_to_rgb(t_coor color)
  */
 t_coor	get_object_color(t_color color, t_coor hit)
 {
-	int	x;
-	int	y;
-	int	z;
+	bool	x;
+	bool	y;
+	bool	z;
 
 	if (!color.checkerboard)
 		return (color.coor);
-	x = (int)floor(hit.x / CHECKER_SIZE);
-	y = (int)floor(hit.y / CHECKER_SIZE);
-	z = (int)floor(hit.z / CHECKER_SIZE);
-	if ((x + y + z) % 2 == 0)
+	x = (int)floor((hit.x + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	x = x || (int)floor((hit.x - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	y = (int)floor((hit.y + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	y = y || (int)floor((hit.y - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	z = (int)floor((hit.z + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	z = z || (int)floor((hit.z - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	if (x ^ y ^ z == 0)
 		return ((t_coor){1.0, 1.0, 1.0});
 	else
 		return ((t_coor){0.0, 0.0, 0.0});

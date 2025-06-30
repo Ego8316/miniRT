@@ -1,7 +1,7 @@
 A 0.2 255,255,255
 C 5,0,0	-1,0,0	100
 L 3,7.9,7.9	1.0	255,255,255
-sp 0,0,0 5 160,0,160  b 1 s 150
+sp 0,0,0 5 checkerboard  b 0.2 s 150
 
 # Sides of a cube-shaped box made of planes (checkerboard pattern)
 pl -8,0,0    1,0,0      checkerboard
