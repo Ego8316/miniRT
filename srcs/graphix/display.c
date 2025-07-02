@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:15:43 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/27 22:05:31 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/01 09:51:13 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ void	project_scene(t_scene scene, t_imx *window)
 		while (curr_pxl.y < window->size.y)
 		{
 			view.orig = scene.camera.vector.orig;
-			view.dir = get_viewdir(viewbase, curr_pxl, window->size);
+			view.dir = get_viewdir(viewbase, curr_pxl);
+			if (curr_pxl.x == 0 && curr_pxl.y == 199)
+				printf("%f, %f, %f -> %f %f %f\n", view.orig.x, view.orig.y, view.orig.z, view.dir.x, view.dir.y, view.dir.z);
 			first_inter = get_first_inter(scene, view);
 			color = get_inter_color(scene, first_inter, view);
 			set_pixel(window, curr_pxl, color);

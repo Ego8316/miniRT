@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:39:41 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 22:42:27 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/01 16:04:15 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int ac, char **av)
 {
 	t_scene			scene;
 	t_imx			mlxwindow;
-	const size_t	size_x = 1000;
-	const size_t	size_y = 1000;
+	const size_t	size_x = 400;
+	const size_t	size_y = 400;
 
 	ft_bzero(&scene, sizeof(t_scene));
 	ft_bzero(&mlxwindow, sizeof(t_imx));
