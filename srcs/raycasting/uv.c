@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:48:12 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:01:55 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 22:56:08 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ static t_uv	get_cylinder_uv(t_object *cyl, t_coor hit)
 	return (get_cylinder_side_uv(cyl, hit));
 }
 
+static t_uv	get_cone_uv(t_object *co, t_coor hit)
+{
+	double	height_proj;
+
+	height_proj = ft_dotprod(co->vector, ft_coorsub(hit, co->pos));
+	if (fabs(height_proj - co->args[1]) < FLT_EPSILON)
+		return (get_cone_cap_uv(co, hit));
+	return (get_cone_side_uv(co, hit));
+}
+
 t_uv	get_uv(t_object *obj, t_coor hit)
 {
 	t_uv	uv;
@@ -71,5 +81,7 @@ t_uv	get_uv(t_object *obj, t_coor hit)
 		uv = get_sphere_uv(obj, hit);
 	if (obj->id == CYLINDER)
 		uv = get_cylinder_uv(obj, hit);
+	else
+		uv = get_cone_uv(obj, hit);
 	return (uv);
 }

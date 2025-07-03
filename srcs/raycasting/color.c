@@ -6,13 +6,13 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 18:57:02 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 22:36:07 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	ft_clamp(double val, double min, double max)
+double	ft_clamp(double val, double min, double max)
 {
 	if (val < min)
 		return (min);

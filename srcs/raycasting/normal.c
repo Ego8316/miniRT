@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:05:16 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 22:22:53 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static t_coor	get_cylinder_normal(t_object *cyl, t_coor hit)
 		return (cyl->vector);
 	if (fabs(height_proj + cyl->args[1] / 2.0) < FLT_EPSILON)
 		return (ft_coormult(cyl->vector, -1));
-	// return ((t_coor){1,1,1});
 	return (ft_coornormalize(ft_coorsub(center_to_hit,
 				ft_coormult(cyl->vector, height_proj))));
 }
@@ -36,7 +35,7 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 
 	apex_to_hit = ft_coorsub(hit, cone->pos);
 	height_proj = fabs(ft_dotprod(cone->vector, apex_to_hit));
-	if (height_proj < DBL_EPSILON - cone->args[1])
+	if (fabs(height_proj + cone->args[1]) < FLT_EPSILON)
 		return (cone->vector);
 	k = cone->args[0] / (2 * cone->args[1]);
 	return (ft_coornormalize(ft_coorsub(apex_to_hit,
