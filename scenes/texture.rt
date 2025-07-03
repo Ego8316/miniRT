@@ -1,5 +1,19 @@
-A 0.2 255,255,255
-C 5,0,0	-1,0,0	100
-L 5,0,0	1.0	255,255,255
-sp 0,0,0 6 bricks  s 150
-# pl -5,0,0 -1,0,0 checkerboard
+A 0.3 255,255,255
+C 15,5,0 -1,0,0 60
+L 10,10,10 1.0 255,255,255
+L -10,-10,10 1.0 255,255,255
+
+# Ground plane with texture
+pl 0,-4,0 0,1,0 bricks
+
+# Bottom cylinder
+cy 0,-2,0 0,1,0 3 2 sand
+
+# Middle cylinder
+cy 0,1,0 0,1,0 3 2 onyx
+
+# Top cylinder
+cy 0,4,0 0,1,0 3 2 wood
+
+# Backdrop sphere
+sp -15,0,0 10 tiles s 200

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 12:57:24 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 22:05:16 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static t_coor	get_cylinder_normal(t_object *cyl, t_coor hit)
 
 	center_to_hit = ft_coorsub(hit, cyl->pos);
 	height_proj = ft_dotprod(cyl->vector, center_to_hit);
-	if (height_proj < DBL_EPSILON - cyl->args[1] / 2.0)
-		return (ft_coormult(cyl->vector, -1));
-	if (height_proj > cyl->args[1] / 2.0 - DBL_EPSILON)
+	if (fabs(height_proj - cyl->args[1] / 2.0) < FLT_EPSILON)
 		return (cyl->vector);
+	if (fabs(height_proj + cyl->args[1] / 2.0) < FLT_EPSILON)
+		return (ft_coormult(cyl->vector, -1));
+	// return ((t_coor){1,1,1});
 	return (ft_coornormalize(ft_coorsub(center_to_hit,
 				ft_coormult(cyl->vector, height_proj))));
 }
@@ -53,7 +54,6 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
  */
 t_coor	get_normal(t_inter inter, t_coor hit)
 {
-	t_coor	bump;
 	t_coor	normal;
 
 	if (inter.obj->id == PLANE)
@@ -64,8 +64,5 @@ t_coor	get_normal(t_inter inter, t_coor hit)
 		normal = get_cylinder_normal(inter.obj, hit);
 	else
 		normal = get_cone_normal(inter.obj, hit);
-	bump.x = sin(10 * hit.x) * inter.obj->bump_strength;
-	bump.y = cos(10 * hit.y) * inter.obj->bump_strength;
-	bump.z = sin(10 * hit.z) * inter.obj->bump_strength;
-	return (ft_coornormalize(ft_cooradd(normal, bump)));
+	return (ft_coornormalize(normal));
 }

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 16:17:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 19:30:37 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,8 @@ t_coor	get_object_color(t_object *obj, t_coor hit);
 t_coor	get_normal(t_inter inter, t_coor hit);
 int		get_inter_color(t_scene scene, t_inter inter, t_ray view);
 bool	is_shadowed(t_scene s, t_coor light, t_inter objinter, t_ray view);
+t_uv	get_cylinder_cap_uv(t_object *cyl, t_coor hit, bool top);
+t_uv	get_cylinder_side_uv(t_object *cyl, t_coor hit);
 t_uv	get_uv(t_object *obj, t_coor hit);
 
 /* Graphix */
