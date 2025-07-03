@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 01:38:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/25 20:56:22 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/02 16:05:39 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,65 +103,4 @@ bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma)
 	if (*end)
 		data->i++;
 	return (true);
-}
-
-/**
- * @brief Parses the next three integers from the current position in the line
- * as color (R,G,B), expecting nothing but one comma between the values.
- * Ensures each value is in the valid range 0-255.
- * 
- * @param data Parsing data.
- * @param coor Pointer to the coordinate where parsed values will be stored.
- * 
- * @return `true` if all three integers were successfully parsed with correct
- * commas and valid ranges, `false` if a parsing error occurred.
- */
-bool	get_next_color(t_parse_data *data, t_coor *coor)
-{
-	data->boundaries = (t_bound){COLOR_MIN, COLOR_MAX, PARSE_ERR_BOUND_COLOR};
-	skip_spaces(data);
-	if (!get_next_integer(data, &coor->x, true))
-		return (false);
-	if (!get_next_integer(data, &coor->y, true))
-		return (false);
-	if (!get_next_integer(data, &coor->z, false))
-		return (false);
-	scale_color(coor);
-	return (true);
-}
-
-/**
- * @brief Parses the next object color from the current position in the line.
- * Supports two types of color specifications: either a literal string
- * "checkerboard" (case-sensitive), indicating the object uses a checkerboard
- * pattern, or a standard RGB color triplet parsed via `get_next_color`.
- * 
- * @param data Parsing data.
- * @param color Pointer to a the color where the parsed color or pattern info
- * will be stored.
- * 
- * @return `true` if a valid color or checkerboard pattern was successfully
- * parsed, `false` otherwise.
- */
-bool	get_next_object_color(t_parse_data *data, t_color *color)
-{
-	skip_spaces(data);
-	if (ft_isalpha(data->line[data->i]))
-	{
-		if (!ft_strncmp(data->line + data->i, CHECKERBOARD, CHECKERBOARD_SIZE)
-			&& (ft_isspace(data->line[data->i + CHECKERBOARD_SIZE])
-				|| !data->line[data->i + CHECKERBOARD_SIZE]))
-		{
-			data->i += CHECKERBOARD_SIZE;
-			color->checkerboard = true;
-			return (true);
-		}
-		else
-			return (parse_errmsg(PARSE_ERR_INVALID_COLOR, data, true, false));
-	}
-	else
-	{
-		color->checkerboard = false;
-		return (get_next_color(data, &color->coor));
-	}
 }

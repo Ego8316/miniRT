@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:21:27 by ego               #+#    #+#             */
-/*   Updated: 2025/06/19 02:09:44 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/01 19:27:58 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ bool	get_next_word(t_parse_data *data, char *word, int *word_start)
 		return (false);
 	i = 0;
 	while (ft_isalpha(data->line[data->i]) && i < WORD_SIZE)
-	{
 		word[i++] = data->line[data->i++];
-	}
 	word[i] = 0;
 	return (true);
 }

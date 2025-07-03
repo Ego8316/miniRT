@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/30 13:49:46 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 14:25:38 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,16 @@
 # define MAX_ARGS 3
 # define CHECKER_SIZE 1.2
 
-// Syntax keywords
+// Textures
 # define CHECKERBOARD "checkerboard"
 # define CHECKERBOARD_SIZE 12
+# define TEXTURE_PREFIX "textures/"
+# define TEXTURE_SUFFIX ".ppm"
+# define BUMP_SUFFIX ".pgm"
+# define TEXTURE_PREFIX_SIZE 13
+# define TEXTURE_SUFFIX_SIZE 4
+# define TEXTURE_WIDTH 512
+# define TEXTURE_HEIGHT 512
 
 // Error messages
 
@@ -96,6 +103,7 @@
 
 // Parsing error messages
 
+# define PARSE_ERR_NO_TEXTURE "could not load texture"
 # define PARSE_ERR_NO_IDENTIFIER_FOUND "no identifier found"
 # define PARSE_ERR_UNKNOWN_IDENTIFIER "identifier does not match known types"
 # define PARSE_ERR_UNKNOWN_ATTRIBUTE "unknown attribute"

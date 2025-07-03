@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/06/30 13:27:25 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 12:57:24 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 
 	apex_to_hit = ft_coorsub(hit, cone->pos);
 	height_proj = fabs(ft_dotprod(cone->vector, apex_to_hit));
-	// printf("height_proj: %f | height: %f\n", height_proj, cone->args[1]);
 	if (height_proj < DBL_EPSILON - cone->args[1])
 		return (cone->vector);
-	// printf("ici\n");
 	k = cone->args[0] / (2 * cone->args[1]);
 	return (ft_coornormalize(ft_coorsub(apex_to_hit,
 				ft_coormult(cone->vector, height_proj * (1 + k * k)))));

@@ -8,3 +8,4 @@ dummy_output
 lib/mlx/
 mlx-test
 tester
+*.jpg

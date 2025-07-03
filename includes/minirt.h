@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 22:06:52 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 14:53:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,11 @@ typedef struct s_parse_data
 
 typedef struct s_color
 {
-	bool	checkerboard;
 	t_coor	coor;
+	bool	checkerboard;
+	bool	textured;
+	t_coor	**texture;
+	double	**bump;
 }	t_color;
 
 typedef struct s_ambient
@@ -198,6 +201,10 @@ bool	get_next_coordinate(t_parse_data *data, t_coor *coor);
 bool	get_next_integer(t_parse_data *data, double *value, bool expect_comma);
 bool	get_next_color(t_parse_data *data, t_coor *coor);
 bool	get_next_object_color(t_parse_data *data, t_color *color);
+bool	load_texture(char *word, t_color *color);
+bool	load_bump(char *word, t_color *color);
+bool	free_texture(t_coor ***texture);
+bool	free_bump(double ***bump);
 
 char	*get_id_string(t_id id);
 bool	get_identifier(t_parse_data *data);

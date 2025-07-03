@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/06/26 00:41:43 by vviterbo         ###   ########.fr        #
+#    Updated: 2025/07/03 13:59:34 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRC			+=	debug/lights.c			\
 				debug/parsing.c			\
 				debug/scene.c
 SRC			+=	parsing/argument.c		\
+				parsing/bump.c			\
+				parsing/color.c			\
 				parsing/convert.c		\
 				parsing/coordinates.c	\
 				parsing/error.c			\
@@ -30,6 +32,7 @@ SRC			+=	parsing/argument.c		\
 				parsing/object.c		\
 				parsing/scale.c			\
 				parsing/scene.c			\
+				parsing/texture.c		\
 				parsing/utils.c
 SRC			+=	raycasting/color.c				\
 				raycasting/cone_intersec.c		\
@@ -68,6 +71,8 @@ LIBX		=	$(LDIR)mlx/libmlx.a
 NAME		=	miniRT
 
 all			:	$(NAME)
+
+bonus		:	$(NAME)
 
 $(NAME)		:	$(LIBFT) $(LIBX) $(ODIR) $(OBJS)
 				$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LFLAGS) -o $(NAME)
@@ -123,7 +128,7 @@ norm		:
 				norminette -R CheckForbiddenSourceHeader $(SDIR) $(IDIR) $(LDIR)libft
 
 .PHONY		:	all clean fclean re
-.SILENT		:	all $(NAME) $(LIBFT) $(LIBX) $(ODIR) $(OBJS) clean fclean re norm header
+.SILENT		:	all bonus $(NAME) $(LIBFT) $(LIBX) $(ODIR) $(OBJS) clean fclean re norm header
 
 COLOR_R		= \033[31m
 COLOR_O		= \033[38;5;214m

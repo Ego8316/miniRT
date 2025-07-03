@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:50:13 by ego               #+#    #+#             */
-/*   Updated: 2025/06/27 22:29:05 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 14:55:02 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,22 +160,19 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
  */
 static bool	get_object(t_parse_data *data, t_object *object)
 {
-	t_object	o;
-
 	data->boundaries = (t_bound){COORD_MIN, COORD_MAX, PARSE_ERR_BOUND_COORD};
-	if (!get_next_coordinate(data, &o.pos))
+	if (!get_next_coordinate(data, &object->pos))
 		return (false);
-	if (data->id != SPHERE && !get_object_vector(data, &o.vector))
+	if (data->id != SPHERE && !get_object_vector(data, &object->vector))
 		return (false);
-	if (data->id != PLANE && !get_object_args(data, o.args))
+	if (data->id != PLANE && !get_object_args(data, object->args))
 		return (false);
-	if (!get_next_object_color(data, &o.color))
+	if (!get_next_object_color(data, &object->color))
 		return (false);
-	if (!get_object_attributes(data, &o))
+	if (!get_object_attributes(data, object))
 		return (false);
 	if (trailing_data(data))
 		return (false);
-	*object = o;
 	return (true);
 }
 
@@ -198,6 +195,8 @@ bool	add_object(t_parse_data *data, t_scene *scene)
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	if (!get_object(data, object))
 	{
+		free_texture(&object->color.texture);
+		free_bump(&object->color.bump);
 		free(object);
 		return (false);
 	}
