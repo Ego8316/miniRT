@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 17:28:35 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:42:49 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ static t_coor	get_texture_color(t_object *obj, t_coor hit)
 	int		texture_y;
 
 	uv = get_uv(obj, hit);
-	double	tile_factor = 3.0;
-	uv.u = fmod(uv.u * tile_factor, 1.0);
-	uv.v = fmod(uv.v * tile_factor, 1.0);
+	uv.u = fmod(uv.u * TILE_FACTOR, 1.0);
+	uv.v = fmod(uv.v * TILE_FACTOR, 1.0);
 	texture_x = (int)(uv.u * (TEXTURE_WIDTH - 1));
 	if (texture_x < 0)
 		texture_x = 0;

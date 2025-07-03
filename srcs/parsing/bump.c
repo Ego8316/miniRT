@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:54:08 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:56:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:44:08 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static bool	fill_bump(int fd, t_color *color)
 		{
 			if (!get_next_double(&data, &color->bump[i][j], false, true))
 				return (free_str(&data.line), false);
+			color->bump[i][j] /= 255;
 		}
 		free_str(&data.line);
 	}
@@ -68,7 +69,6 @@ bool	load_bump(char *word, t_color *color)
 	ft_strlcpy(filename, TEXTURE_PREFIX, sizeof(filename));
 	ft_strlcat(filename, word, sizeof(filename));
 	ft_strlcat(filename, BUMP_SUFFIX, sizeof(filename));
-	printf("bump filename: %s\n", filename);
 	if (!allocate_bump(&color->bump))
 		return (errmsg(ERRMSG_MALLOC, 0, 0, false));
 	fd = open(filename, O_RDONLY);

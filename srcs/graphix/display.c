@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:15:43 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/07/03 16:17:43 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:47:06 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,5 @@ void	project_scene(t_scene scene, t_imx *window)
 		}
 		curr_pxl.x++;
 	}
-	get_uv(0, (t_coor){0,0,0});
 	return ;
 }

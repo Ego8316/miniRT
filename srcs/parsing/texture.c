@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:01:12 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:53:18 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:43:38 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ bool	load_texture(char *word, t_color *color)
 	ft_strlcpy(filename, TEXTURE_PREFIX, sizeof(filename));
 	ft_strlcat(filename, word, sizeof(filename));
 	ft_strlcat(filename, TEXTURE_SUFFIX, sizeof(filename));
-	printf("texture filename: %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (errmsg(word, ": ", PARSE_ERR_NO_TEXTURE, false));

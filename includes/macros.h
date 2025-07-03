@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 17:27:03 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:45:49 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@
 # define TEXTURE_SUFFIX_SIZE 4
 # define TEXTURE_WIDTH 1024
 # define TEXTURE_HEIGHT 1024
+# define TILE_FACTOR 3.0
 
 // Error messages
 

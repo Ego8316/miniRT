@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:48:12 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 16:26:27 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:47:00 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,11 @@ static t_uv	get_sphere_uv(t_object *obj, t_coor hit)
 t_uv	get_uv(t_object *obj, t_coor hit)
 {
 	t_uv	uv;
-	static	double u_min = 1;
-	static	double u_max = 0;
-	static	double v_min = 1;
-	static	double v_max = 0;
 
 	ft_bzero(&uv, sizeof(t_uv));
-	if (!obj)
-	{
-		printf("u range [%lf ; %lf] v range [%lf ; %lf]\n", u_min, u_max, v_min, v_max);
-		return (uv);
-	}
 	if (obj->id == PLANE)
 		uv = get_plane_uv(obj, hit);
 	if (obj->id == SPHERE)
 		uv = get_sphere_uv(obj, hit);
-	if (uv.u > u_max)
-		u_max = uv.u;
-	if (uv.v > v_max)
-		v_max = uv.v;
-	if (uv.u < u_min)
-		u_min = uv.u;
-	if (uv.v < v_min)
-		v_min = uv.v;
 	return (uv);
 }
