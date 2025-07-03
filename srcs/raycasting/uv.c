@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:48:12 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:56:08 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 23:10:23 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,12 @@ static t_uv	get_cone_uv(t_object *co, t_coor hit)
 
 t_uv	get_uv(t_object *obj, t_coor hit)
 {
-	t_uv	uv;
-
-	ft_bzero(&uv, sizeof(t_uv));
 	if (obj->id == PLANE)
-		uv = get_plane_uv(obj, hit);
+		return (get_plane_uv(obj, hit));
 	if (obj->id == SPHERE)
-		uv = get_sphere_uv(obj, hit);
+		return (get_sphere_uv(obj, hit));
 	if (obj->id == CYLINDER)
-		uv = get_cylinder_uv(obj, hit);
+		return (get_cylinder_uv(obj, hit));
 	else
-		uv = get_cone_uv(obj, hit);
-	return (uv);
+		return (get_cone_uv(obj, hit));
 }

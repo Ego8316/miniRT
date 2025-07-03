@@ -6,6 +6,8 @@ L -10,-10,10 1.0 255,255,255
 # Ground plane with texture
 pl 0,-4,0 0,1,0 bricks
 
+co -5,0,5 0,-1,0 5 4 plastic
+
 # Bottom cylinder
 cy 0,-2,0 0,1,0 3 2 sand
 
@@ -16,4 +18,4 @@ cy 0,1,0 0,1,0 3 2 onyx
 cy 0,4,0 0,1,0 3 2 wood
 
 # Backdrop sphere
-sp -15,0,0 10 tiles s 200
+sp -15,0,0 10 tiles
