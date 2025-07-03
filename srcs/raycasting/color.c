@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/06/30 13:58:46 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:28:35 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,49 @@ int	color_to_rgb(t_coor color)
 	return (r << 16 | g << 8 | b);
 }
 
+static t_coor	get_texture_color(t_object *obj, t_coor hit)
+{
+	t_uv	uv;
+	int		texture_x;
+	int		texture_y;
+
+	uv = get_uv(obj, hit);
+	double	tile_factor = 3.0;
+	uv.u = fmod(uv.u * tile_factor, 1.0);
+	uv.v = fmod(uv.v * tile_factor, 1.0);
+	texture_x = (int)(uv.u * (TEXTURE_WIDTH - 1));
+	if (texture_x < 0)
+		texture_x = 0;
+	if (texture_x > TEXTURE_WIDTH - 1)
+		texture_x = TEXTURE_WIDTH - 1;
+	texture_y = (int)((1.0 - uv.v) * (TEXTURE_HEIGHT - 1));
+	if (texture_y < 0)
+		texture_y = 0;
+	if (texture_y > TEXTURE_HEIGHT - 1)
+		texture_y = TEXTURE_HEIGHT - 1;
+	return (obj->color.texture[texture_y][texture_x]);
+}
+
 /**
  * @brief Gets the actual object color. If it is not checkerboard, returns the
  * defined color. Otherwise computes whether it should black or white depending
  * on the hit point.
  * 
- * @param color Object color.
+ * @param obj Object.
  * @param hit Hit point coordinates.
  * 
  * @return Actual object color tuple.
  */
-t_coor	get_object_color(t_color color, t_coor hit)
+t_coor	get_object_color(t_object *obj, t_coor hit)
 {
 	bool	x;
 	bool	y;
 	bool	z;
 
-	if (!color.checkerboard)
-		return (color.coor);
+	if (obj->color.textured)
+		return (get_texture_color(obj, hit));
+	if (!obj->color.checkerboard)
+		return (obj->color.coor);
 	x = (int)floor((hit.x + DBL_EPSILON) / CHECKER_SIZE) % 2;
 	x = x || (int)floor((hit.x - DBL_EPSILON) / CHECKER_SIZE) % 2;
 	y = (int)floor((hit.y + DBL_EPSILON) / CHECKER_SIZE) % 2;

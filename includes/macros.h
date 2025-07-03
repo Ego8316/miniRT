@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:25:38 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 17:27:03 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 // Program name
 
 # define NAME "minirt"
+
+// Pi
+# ifndef M_PI
+#  define M_PI 3.14159
+# endif
 
 // Colors
 
@@ -85,8 +90,8 @@
 # define BUMP_SUFFIX ".pgm"
 # define TEXTURE_PREFIX_SIZE 13
 # define TEXTURE_SUFFIX_SIZE 4
-# define TEXTURE_WIDTH 512
-# define TEXTURE_HEIGHT 512
+# define TEXTURE_WIDTH 1024
+# define TEXTURE_HEIGHT 1024
 
 // Error messages
 

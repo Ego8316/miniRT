@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:42:54 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:54:28 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 14:58:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	free_objects(t_object *objects)
 	if (!objects)
 		return ;
 	free_objects(objects->next);
-	printf("pointer: %p\n", objects->color.texture);
 	free_texture(&objects->color.texture);
 	free_bump(&objects->color.bump);
 	free(objects);

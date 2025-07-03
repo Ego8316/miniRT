@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:58:06 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 16:17:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,12 @@ typedef struct s_inter
 	double		t[2];
 }	t_inter;
 
+typedef struct s_uv
+{
+	double	u;
+	double	v;
+}	t_uv;
+
 typedef struct s_hit
 {
 	t_coor		point;
@@ -247,11 +253,11 @@ t_inter	cylinder_intersec(t_object *obj, t_ray ray);
 t_inter	sphere_intersec(t_object *obj, t_ray ray);
 
 int		color_to_rgb(t_coor color);
-t_coor	get_object_color(t_color color, t_coor hit);
+t_coor	get_object_color(t_object *obj, t_coor hit);
 t_coor	get_normal(t_inter inter, t_coor hit);
 int		get_inter_color(t_scene scene, t_inter inter, t_ray view);
-bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
-	t_ray view);
+bool	is_shadowed(t_scene s, t_coor light, t_inter objinter, t_ray view);
+t_uv	get_uv(t_object *obj, t_coor hit);
 
 /* Graphix */
 

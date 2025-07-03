@@ -2,7 +2,7 @@ from PIL import Image
 import sys
 
 # Output resolution
-OUTPUT_SIZE = (512, 512)  # or change as needed
+OUTPUT_SIZE = (1024, 1024)  # or change as needed
 
 def save_color_map(image_path, output_path):
 	img = Image.open(image_path).convert("RGB").resize(OUTPUT_SIZE, Image.LANCZOS)
