@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 14:53:47 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/03 14:58:06 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ bool	init_window(t_imx *window, size_t size_x, size_t size_y);
 void	display_scene(t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 t_inter	get_first_inter(t_scene scene, t_ray view);
-t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl, t_coor size);
+t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl);
 t_view	ft_init_view(t_scene scene, t_coor screensize);
 int		free_win(t_imx *imx);
 int		clean_exit(t_imx *imx);

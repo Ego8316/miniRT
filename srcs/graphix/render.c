@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:50:29 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/06/27 22:42:38 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/01 18:00:35 by vviterbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_inter	get_first_inter(t_scene scene, t_ray view);
 bool	is_first(t_inter curr_inter, t_inter first_inter);
-// t_inter	*compare_inter(t_inter *new, t_inter *old);
 void	reorder_inter(t_inter *inter);
 
 t_inter	get_first_inter(t_scene scene, t_ray view)
@@ -43,19 +42,6 @@ bool	is_first(t_inter curr_inter, t_inter first_inter)
 	return (curr_inter.count > 0 && curr_inter.t[0] >= 0
 			&& curr_inter.t[0] < first_inter.t[0]);
 }
-
-// t_inter	*compare_inter(t_inter *new, t_inter *old)
-// {
-// 	if (!old || !old->count || old->t[0] < 0)
-// 		return (new);
-// 	reorder_inter(new);
-// 	if (!new->count || new->t[0] < 0)
-// 		return (old);
-// 	if (new->t[0] < old->t[0])
-// 		return (new);
-// 	else
-// 		return (old);
-// }
 
 void	reorder_inter(t_inter *inter)
 {
