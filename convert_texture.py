@@ -1,8 +1,7 @@
 from PIL import Image
 import sys
 
-# Output resolution
-OUTPUT_SIZE = (1024, 1024)  # or change as needed
+OUTPUT_SIZE = (1024, 1024)
 
 def save_color_map(image_path, output_path):
 	img = Image.open(image_path).convert("RGB").resize(OUTPUT_SIZE, Image.LANCZOS)
@@ -29,15 +28,14 @@ def save_bump_map(image_path, output_path):
 				line.append(str(val))
 			f.write(" ".join(line) + "\n")
 
-
 if __name__ == "__main__":
-	if len(sys.argv) < 3:
-		print("Usage: python convert_texture.py <color_image> <output_basename> [<bump_image>]")
+	if len(sys.argv) < 4:
+		print("Usage: python3 convert_texture.py <output_basename> <color_image> <bump_image>")
 		sys.exit(1)
 
-	color_img_path = sys.argv[1]
-	output_base = sys.argv[2]
-	bump_img_path = sys.argv[3] if len(sys.argv) > 3 else None
+	output_base = sys.argv[1]
+	color_img_path = sys.argv[2]
+	bump_img_path = sys.argv[3]
 
 	save_color_map(color_img_path, f"{output_base}.ppm")
 	if bump_img_path:
