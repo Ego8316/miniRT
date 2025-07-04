@@ -1,0 +1,30 @@
+A 0.2 255,255,255
+C -5,5,0 1,0,0 70
+
+# Lights
+L 0,5,10 0.8 255,255,255
+
+# Floor, ceiling and back wall
+pl 0,0,0 0,1,0 tiles b 1
+pl 0,8,0 0,-1,0 tiles b 1
+pl 10,0,0 -1,0,0 darkstone
+
+# Back left pillar
+cy 8,4,-4 0,1,0 1.5 8 marble s 15 b 0.1
+sp 8,8.2,-4 3 marble s 15 b 0.1
+sp 8,-0.2,-4 3 marble s 15 b 0.1
+
+# Back right pillar
+cy 8,4,4 0,1,0 1.5 8 marble s 15 b 0.1
+sp 8,8.2,4 3 marble s 15 b 0.1
+sp 8,-0.2,4 3 marble s 15 b 0.1
+
+# Front left pillar
+cy 2,4,-4 0,1,0 1.5 8 marble s 15 b 0.1
+sp 2,8.2,-4 3 marble s 15 b 0.1
+sp 2,-0.2,-4 3 marble s 15 b 0.1
+
+# Front right pillar
+cy 2,4,4 0,1,0 1.5 8 marble s 15 b 0.1
+sp 2,8.2,4 3 marble s 15 b 0.1
+sp 2,-0.2,4 3 marble s 15 b 0.1
