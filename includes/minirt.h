@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:36:48 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/04 02:10:33 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,9 @@ typedef struct s_hit
 	t_coor		color;
 	t_coor		normal;
 	t_coor		ray;
+	t_coor		tangent_u;
+	t_coor		tangent_v;
+	t_uv		uv;
 }	t_hit;
 
 /* Parsing */
@@ -254,15 +257,16 @@ t_inter	cylinder_intersec(t_object *obj, t_ray ray);
 t_inter	sphere_intersec(t_object *obj, t_ray ray);
 
 int		color_to_rgb(t_coor color);
-t_coor	get_object_color(t_object *obj, t_coor hit);
-t_coor	get_normal(t_inter inter, t_coor hit);
+t_coor	get_object_color(t_object *obj, t_hit *hit);
+t_coor	get_normal(t_hit hit);
 int		get_inter_color(t_scene scene, t_inter inter, t_ray view);
 bool	is_shadowed(t_scene s, t_coor light, t_inter objinter, t_ray view);
-t_uv	get_cylinder_cap_uv(t_object *cyl, t_coor hit, bool top);
-t_uv	get_cylinder_side_uv(t_object *cyl, t_coor hit);
-t_uv	get_cone_cap_uv(t_object *cone, t_coor hit);
-t_uv 	get_cone_side_uv(t_object *cone, t_coor hit);
-t_uv	get_uv(t_object *obj, t_coor hit);
+t_uv	get_cylinder_cap_uv(t_object *cyl, t_hit *hit, bool top);
+t_uv	get_cylinder_side_uv(t_object *cyl, t_hit *hit);
+t_uv	get_cone_cap_uv(t_object *cone, t_hit *hit);
+t_uv	get_cone_side_uv(t_object *cone, t_hit *hit);
+t_uv	get_uv(t_object *obj, t_hit *hit);
+t_coor	get_bump_normal(t_coor original_normal, t_hit hit);
 
 /* Graphix */
 

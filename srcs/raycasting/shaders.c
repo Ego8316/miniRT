@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:17:10 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:15:48 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/04 02:03:45 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 	if (hit.inter.obj->specular > 10 && dot > 0)
 	{
 		result = ft_cooradd(result, ft_coormult(light.color,
-			light.brightness * pow(dot, hit.inter.obj->specular)));
+					light.brightness * pow(dot, hit.inter.obj->specular)));
 	}
 	return (result);
 }
@@ -55,19 +55,19 @@ int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 
 	if (inter.count == 0)
 		return (color_to_rgb((t_coor){0.0, 0.0, 0.0}));
-	h.point = ft_cooradd(view.orig, ft_coormult(view.dir, inter.t[0]));
-	h.color = get_object_color(inter.obj, h.point);
-	h.normal = get_normal(inter, h.point);
 	h.inter = inter;
+	h.point = ft_cooradd(view.orig, ft_coormult(view.dir, inter.t[0]));
 	h.ray = view.dir;
-	// return (color_to_rgb(ft_coormult(ft_cooradd(h.normal, (t_coor){1,1,1}), 0.5)));
-	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color,
-			h.color), scene.ambient.ratio);
+	h.color = get_object_color(inter.obj, &h);
+	h.normal = get_normal(h);
+	inter_color = ft_coormult(ft_tensorprod(scene.ambient.color, h.color),
+			scene.ambient.ratio);
 	l = scene.lights;
 	while (l)
 	{
 		if (!is_shadowed(scene, l->pos, inter, view))
-			inter_color = ft_cooradd(inter_color, get_diffuse_and_specular(h, *l));
+			inter_color = ft_cooradd(inter_color,
+					get_diffuse_and_specular(h, *l));
 		l = l->next;
 	}
 	return (color_to_rgb(inter_color));

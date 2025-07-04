@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:19:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 17:45:49 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/04 02:12:59 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # ifdef __linux__
 #  define ESC 65307
-# elif defined __APPLE__
+# elif defined(__APPLE__)
 #  define ESC 53
 # endif
 
@@ -96,8 +96,8 @@
 
 // Error messages
 
-# define USAGE_MSG "Usage: ./" NAME " <scene.rt>"
-# define PREFIX NAME ": "
+# define USAGE_MSG "Usage: ./minirt <scene.rt>"
+# define PREFIX "minirt: "
 # define VERBOSE_PREFIX "line : "
 # define ERRMSG_NO_ARG "need argument"
 # define ERRMSG_TOO_ARG "too many arguments"

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:22:37 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:22:53 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/04 02:02:47 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,19 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
  * 
  * @return Normal vector.
  */
-t_coor	get_normal(t_inter inter, t_coor hit)
+t_coor	get_normal(t_hit hit)
 {
 	t_coor	normal;
 
-	if (inter.obj->id == PLANE)
-		normal = inter.obj->vector;
-	else if (inter.obj->id == SPHERE)
-		normal = ft_coornormalize(ft_coorsub(hit, inter.obj->pos));
-	else if (inter.obj->id == CYLINDER)
-		normal = get_cylinder_normal(inter.obj, hit);
+	if (hit.inter.obj->id == PLANE)
+		normal = hit.inter.obj->vector;
+	else if (hit.inter.obj->id == SPHERE)
+		normal = ft_coornormalize(ft_coorsub(hit.point, hit.inter.obj->pos));
+	else if (hit.inter.obj->id == CYLINDER)
+		normal = get_cylinder_normal(hit.inter.obj, hit.point);
 	else
-		normal = get_cone_normal(inter.obj, hit);
+		normal = get_cone_normal(hit.inter.obj, hit.point);
+	if (hit.inter.obj->color.textured && hit.inter.obj->bump_strength > 0)
+		return (get_bump_normal(normal, hit));
 	return (ft_coornormalize(normal));
 }

@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:48:38 by ego               #+#    #+#             */
-/*   Updated: 2025/07/03 22:36:07 by ego              ###   ########.fr       */
+/*   Updated: 2025/07/04 01:42:04 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,18 @@ int	color_to_rgb(t_coor color)
 	return (r << 16 | g << 8 | b);
 }
 
-static t_coor	get_texture_color(t_object *obj, t_coor hit)
+static t_coor	get_texture_color(t_object *obj, t_hit *hit)
 {
-	t_uv	uv;
 	int		texture_x;
 	int		texture_y;
 
-	uv = get_uv(obj, hit);
-	texture_x = (int)(uv.u * (TEXTURE_WIDTH - 1));
+	hit->uv = get_uv(obj, hit);
+	texture_x = (int)(hit->uv.u * (TEXTURE_WIDTH - 1));
 	if (texture_x < 0)
 		texture_x = 0;
 	if (texture_x > TEXTURE_WIDTH - 1)
 		texture_x = TEXTURE_WIDTH - 1;
-	texture_y = (int)((1.0 - uv.v) * (TEXTURE_HEIGHT - 1));
+	texture_y = (int)((1.0 - hit->uv.v) * (TEXTURE_HEIGHT - 1));
 	if (texture_y < 0)
 		texture_y = 0;
 	if (texture_y > TEXTURE_HEIGHT - 1)
@@ -59,11 +58,11 @@ static t_coor	get_texture_color(t_object *obj, t_coor hit)
  * on the hit point.
  * 
  * @param obj Object.
- * @param hit Hit point coordinates.
+ * @param hit Hit point.
  * 
  * @return Actual object color tuple.
  */
-t_coor	get_object_color(t_object *obj, t_coor hit)
+t_coor	get_object_color(t_object *obj, t_hit *hit)
 {
 	bool	x;
 	bool	y;
@@ -73,12 +72,12 @@ t_coor	get_object_color(t_object *obj, t_coor hit)
 		return (get_texture_color(obj, hit));
 	if (!obj->color.checkerboard)
 		return (obj->color.coor);
-	x = (int)floor((hit.x + DBL_EPSILON) / CHECKER_SIZE) % 2;
-	x = x || (int)floor((hit.x - DBL_EPSILON) / CHECKER_SIZE) % 2;
-	y = (int)floor((hit.y + DBL_EPSILON) / CHECKER_SIZE) % 2;
-	y = y || (int)floor((hit.y - DBL_EPSILON) / CHECKER_SIZE) % 2;
-	z = (int)floor((hit.z + DBL_EPSILON) / CHECKER_SIZE) % 2;
-	z = z || (int)floor((hit.z - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	x = (int)floor((hit->point.x + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	x = x || (int)floor((hit->point.x - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	y = (int)floor((hit->point.y + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	y = y || (int)floor((hit->point.y - DBL_EPSILON) / CHECKER_SIZE) % 2;
+	z = (int)floor((hit->point.z + DBL_EPSILON) / CHECKER_SIZE) % 2;
+	z = z || (int)floor((hit->point.z - DBL_EPSILON) / CHECKER_SIZE) % 2;
 	if ((x ^ y ^ z) == 0)
 		return ((t_coor){1.0, 1.0, 1.0});
 	else
