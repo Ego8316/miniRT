@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:03:08 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/07/04 02:14:57 by ego              ###   ########.fr       */
+/*   Updated: 2025/09/10 14:57:32 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int	free_win(t_imx *imx)
 		mlx_destroy_window(imx->mlx, imx->win);
 	if (imx->mlx)
 	{
-		mlx_loop_end(imx->mlx);
-		mlx_destroy_display(imx->mlx);
+		#ifdef __linux__
+			mlx_loop_end(imx->mlx);
+			mlx_destroy_display(imx->mlx);
+		#endif
 		free(imx->mlx);
 	}
 	return (1);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
+#    By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/15 15:01:20 by ego               #+#    #+#              #
-#    Updated: 2025/07/04 02:04:02 by ego              ###   ########.fr        #
+#    Created: 2025/09/10 14:31:08 by victorviter       #+#    #+#              #
+#    Updated: 2025/09/10 14:45:24 by victorviter      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,19 +60,24 @@ SRCS		=	$(addprefix $(SDIR), $(SRC))
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
-IFLAGS		=	-I $(IDIR)
-RM			=	rm -rf
 
 OS := $(shell uname)
+
 ifeq ($(OS), Darwin)
-	LFLAGS	=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -framework OpenGL -framework AppKit
+	MLX_DIR	=	$(LDIR)mlx/minilibx-macos/
+	LFLAGS	=	-L $(LDIR)libft -lft -L $(MLX_DIR) -lmlx  -framework OpenGL -framework AppKit
 else ifeq ($(OS), Linux)
-	LFLAGS	=	-L $(LDIR)libft -lft -L $(LDIR)mlx -lmlx -lXext -lX11 -lm
+	MLX_DIR	=	$(LDIR)mlx/minilibx-linux/
+	LFLAGS	=	-L $(LDIR)libft -lft -L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 endif
 
-LIBFT		=	$(LDIR)libft/libft.a
-LIBX		=	$(LDIR)mlx/libmlx.a
-NAME		=	miniRT
+IFLAGS	=	-I $(IDIR) -I $(LDIR)/libft -I $(MLX_DIR)
+
+RM			=	rm -rf
+
+LIBFT	=	$(LDIR)libft/libft.a
+LIBX	=	$(MLX_DIR)libmlx.a
+NAME	=	miniRT
 
 all			:	$(NAME)
 
@@ -92,7 +97,7 @@ $(LIBFT)	:
 
 $(LIBX)		:
 				printf "$(COLOR_B)Building mlx...$(C_RESET)\n"
-				make -sC $(LDIR)mlx
+				make -sC $(MLX_DIR)
 				printf "$(COLOR_G)[OK] mlx is ready!$(C_RESET)\n" || \
 				(printf "$(COLOR_R)[KO] Failed to build mlx.$(C_RESET)\n" && false)
 
@@ -114,14 +119,14 @@ $(ODIR)%.o	:	$(SDIR)%.c
 clean		:
 				echo "Removing object files..."
 				make -sC $(LDIR)libft clean
-				make -sC $(LDIR)mlx clean
+				make -sC $(MLX_DIR) clean
 				$(RM) $(ODIR)
 				printf "$(COLOR_O)[OK] All object files have been removed.$(C_RESET)\n"
 
 fclean		:
 				echo "Removing object and binary files..."
 				make -sC $(LDIR)libft fclean
-				make -sC $(LDIR)mlx clean
+				make -sC $(MLX_DIR) clean
 				$(RM) $(ODIR)
 				$(RM) $(NAME)
 				printf "$(COLOR_O)[OK] All binary files have been removed.$(C_RESET)\n"

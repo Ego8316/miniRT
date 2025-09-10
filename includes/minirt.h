@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/07/04 02:10:33 by ego              ###   ########.fr       */
+/*   Updated: 2025/09/10 14:43:32 by victorviter      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # include <stdbool.h>
 # include "macros.h"
 # include "../lib/libft/libft.h"
-# include "../lib/mlx/mlx.h"
+# include "../lib/mlx/minilibx-linux/mlx.h"
+# include "../lib/mlx/minilibx-macos/mlx.h"
 
 /* Enums */
 
