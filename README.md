@@ -58,9 +58,3 @@ A minimalistic raytracing engine written in C. It renders simple 3D scenes descr
 `co  \<position_vec_tip\> \<direction_vec\> \<base_diameter\> \<height\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]` -> cone 
 
 -> ex: `co 0,-2,0 0,1,0 2 4 160,0,160 s 150`
-
-
-
-For the latter 3, one can replace the color with one of the available texture, and add one or both of the following flags: 
-- specify a specular intensity ("shininess") with "s ###" (### a number between 10 and 1500)
-- specify the texture roughness ("bumpiness") with "b ###" (### a number between 0 and 1)
