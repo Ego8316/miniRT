@@ -21,28 +21,44 @@ A minimalistic raytracing engine written in C. It renders simple 3D scenes descr
 ./miniRT [scene_file.rt]
 ### Scene syntax
 `###_vec` values have to be passed as a,b,c 
-`color_vec` values have to be bassed as R,G,B
+`color_vec` values have to be bassed as R,G,B or a texture (checkerboard, sand etc.)
+`\<surface_shininess\>` have to be passed as a number between 1 (matte) and 150 (shiny)
+`\<surface_roughness\>` have to be passed as a number between 0 (smooth) and 1 (rough)
 
 `A \<intensity\> \<color_vec\>  -> Ambiant Light`
+
 ->ex: `A 0.2 255,255,255`
 
+
 `C \<position_vec\>	\<direction_vec\>	\<field of view\>`  -> Camera
+
 ->ex: `C 5,0,0 -1,0,0  100`
 
+
 `L \<position_vec\> \<intensity\> \<color_vec\>`  -> Singular Light
+
 ->ex: `L 5,0,0 1.0`
 
-`sp \<position_vec_center\> \<radius\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]`  -> 
+
+`sp \<position_vec_center\> \<radius\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]`  -> Sphere
+
 ->ex: `sp 0,0,0 5 snow s 150 b 1`
 
+
 `cy \<position_vec_center\> \<direction_vec\> \<base_width\> \<heigh\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]`  -> cylinder
+
 ->ex: `cy 0,0,0 0,-1,0 2 4 160,0,160 s 150`
 
+
 `pl \<position_vec\> \<normal_vec\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]`  -> plane
+
 -> ex: `pl -8,0,0 1,0,0 checkerboard`
 
+
 `co  \<position_vec_tip\> \<direction_vec\> \<base_diameter\> \<height\> \<color_vec\> [s \<surface_shininess\>] [b \<surface_roughness\>]` -> cone 
+
 -> ex: `co 0,-2,0 0,1,0 2 4 160,0,160 s 150`
+
 
 
 For the latter 3, one can replace the color with one of the available texture, and add one or both of the following flags: 
