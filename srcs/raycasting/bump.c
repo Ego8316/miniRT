@@ -6,7 +6,7 @@
 /*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:04:12 by ego               #+#    #+#             */
-/*   Updated: 2025/07/04 02:17:24 by ego              ###   ########.fr       */
+/*   Updated: 2025/12/01 01:17:26 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_coor	get_bump_normal(t_coor original_normal, t_hit hit)
 	dhdu = height_u - height_center;
 	dhdv = height_v - height_center;
 	return (ft_coornormalize(ft_coorsub(ft_coorsub(original_normal,
-				ft_coormult(hit.tangent_u,
-					dhdu * 5 * hit.inter.obj->bump_strength)),
+					ft_coormult(hit.tangent_u,
+						dhdu * 5 * hit.inter.obj->bump_strength)),
 				ft_coormult(hit.tangent_v,
 					dhdv * 5 * hit.inter.obj->bump_strength))));
 }

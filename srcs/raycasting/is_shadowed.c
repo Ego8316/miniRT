@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   is_shadowed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:53 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/07/04 13:16:04 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/12/01 01:16:00 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool		is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
-	t_ray view);
-static bool	check_shadow(t_object *obj_i, t_inter objinter, t_ray obj2light, \
-	double dist_to_light);
+bool		is_shadowed(t_scene scene, t_coor light_source, t_inter objinter,
+				t_ray view);
+static bool	check_shadow(t_object *obj_i, t_inter objinter, t_ray obj2light,
+				double dist_to_light);
 
 /**
  * @brief Checks whether a point is shadowed from a light source.
@@ -30,7 +30,7 @@ static bool	check_shadow(t_object *obj_i, t_inter objinter, t_ray obj2light, \
  *
  * @return `true` if another object occludes the light, `false` otherwise.
  */
-bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
+bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter,
 	t_ray view)
 {
 	t_ray		obj2light;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 14:57:42 by ego               #+#    #+#             */
-/*   Updated: 2025/09/10 14:43:32 by victorviter      ###   ########.fr       */
+/*   Updated: 2025/12/01 01:20:07 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 # include "../lib/libft/libft.h"
 # ifdef __APPLE__
 #  include "../lib/minilibx-macos/mlx.h"
+#  define LINUX 0
 # else
 #  include "../lib/minilibx-linux/mlx.h"
+#  define LINUX 1
 # endif
 
 /* Enums */
