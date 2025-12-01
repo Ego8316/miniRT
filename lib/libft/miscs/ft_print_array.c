@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:09:07 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/02/14 17:59:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/12/01 01:06:12 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_print_array(char **arr, bool nl);
 
 /**
- * @brief Prints each string in a NULL-terminated array, optionally newline-separated.
+ * @brief Prints each string in a NULL-terminated array, optionally
+ * newline-separated.
  */
 void	ft_print_array(char **arr, bool nl)
 {

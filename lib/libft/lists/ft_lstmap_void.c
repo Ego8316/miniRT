@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_void.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviterbo <vviterbo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ego <ego@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:34:45 by vviterbo          #+#    #+#             */
-/*   Updated: 2025/02/14 17:59:06 by vviterbo         ###   ########.fr       */
+/*   Updated: 2025/12/01 01:05:56 by ego              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 t_list	*ft_lstmap_void(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /**
- * @brief Maps a function over a list, producing a new list of transformed content.
+ * @brief Maps a function over a list, producing a new list of transformed
+ * content.
  */
 t_list	*ft_lstmap_void(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
