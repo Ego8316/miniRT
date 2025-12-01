@@ -14,6 +14,9 @@
 
 t_coor	matcoor_mult(t_mat mat, t_coor vec);
 
+/**
+ * @brief Multiplies a 3x3 matrix by a coordinate vector.
+ */
 t_coor	matcoor_mult(t_mat mat, t_coor vec)
 {
 	t_coor	mult;

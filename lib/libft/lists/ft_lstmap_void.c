@@ -14,6 +14,9 @@
 
 t_list	*ft_lstmap_void(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+/**
+ * @brief Maps a function over a list, producing a new list of transformed content.
+ */
 t_list	*ft_lstmap_void(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_lst;

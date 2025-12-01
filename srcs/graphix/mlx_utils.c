@@ -15,6 +15,13 @@
 int	free_win(t_imx *imx);
 int	clean_exit(t_imx *imx);
 
+/**
+ * @brief Frees MLX resources, image buffers, and scene data.
+ *
+ * @param imx Window/image structure.
+ *
+ * @return 1 after cleanup.
+ */
 int	free_win(t_imx *imx)
 {
 	if (!imx)
@@ -39,6 +46,13 @@ int	free_win(t_imx *imx)
 	return (1);
 }
 
+/**
+ * @brief Cleans up resources and exits the program.
+ *
+ * @param imx Window/image structure.
+ *
+ * @return Always returns 0.
+ */
 int	clean_exit(t_imx *imx)
 {
 	free_win(imx);

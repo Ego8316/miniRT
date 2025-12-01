@@ -14,6 +14,9 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
+/**
+ * @brief Searches for `needle` in `haystack` within the first `len` bytes.
+ */
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;

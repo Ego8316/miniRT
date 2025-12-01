@@ -15,6 +15,16 @@
 t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl);
 t_view	ft_init_view(t_scene scene, t_coor screensize);
 
+/**
+ * @brief Computes the normalized viewing direction for a pixel.
+ *
+ * Maps the pixel coordinates to camera space using the view basis vectors.
+ *
+ * @param viewbase Precomputed view basis and screen data.
+ * @param curr_pxl Current pixel coordinates.
+ *
+ * @return Normalized direction vector for the ray through the pixel.
+ */
 t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl)
 {
 	t_coor	rel_coor;
@@ -31,6 +41,17 @@ t_coor	get_viewdir(t_view viewbase, t_coor curr_pxl)
 	return (view_ray);
 }
 
+/**
+ * @brief Initializes the view basis vectors from the scene camera.
+ *
+ * Builds forward, right and up vectors, camera origin, and precomputes half
+ * widths/heights for perspective projection.
+ *
+ * @param scene Scene containing the camera.
+ * @param screensize Screen resolution.
+ *
+ * @return View basis data.
+ */
 t_view	ft_init_view(t_scene scene, t_coor screensize)
 {
 	t_view	viewbase;

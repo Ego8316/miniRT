@@ -14,6 +14,9 @@
 
 char	*ft_strtrim_char(char *str, char c, bool inplace);
 
+/**
+ * @brief Trims a specific character from both ends of a string.
+ */
 char	*ft_strtrim_char(char *str, char c, bool inplace)
 {
 	char	*cstr;

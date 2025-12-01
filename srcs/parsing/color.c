@@ -44,7 +44,7 @@ bool	get_next_color(t_parse_data *data, t_coor *coor)
  * pattern, or a standard RGB color triplet parsed via `get_next_color`.
  * 
  * @param data Parsing data.
- * @param color Pointer to a the color where the parsed color or pattern info
+ * @param color Pointer to the color where the parsed color or pattern info
  * will be stored.
  * 
  * @return `true` if a valid color or checkerboard pattern was successfully

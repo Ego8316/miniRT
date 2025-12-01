@@ -14,6 +14,13 @@
 
 int	ft_isascii(int c);
 
+/**
+ * @brief Checks if a value is an ASCII character code.
+ *
+ * @param c Value to test.
+ *
+ * @return Non-zero if `c` is between 0 and 127, 0 otherwise.
+ */
 int	ft_isascii(int c)
 {
 	return (0 <= c && c <= 127);

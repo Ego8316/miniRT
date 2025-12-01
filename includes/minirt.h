@@ -25,8 +25,11 @@
 # include <stdbool.h>
 # include "macros.h"
 # include "../lib/libft/libft.h"
-# include "../lib/mlx/minilibx-linux/mlx.h"
-# include "../lib/mlx/minilibx-macos/mlx.h"
+# ifdef __APPLE__
+#  include "../lib/minilibx-macos/mlx.h"
+# else
+#  include "../lib/minilibx-linux/mlx.h"
+# endif
 
 /* Enums */
 

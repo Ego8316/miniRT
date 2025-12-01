@@ -14,6 +14,9 @@
 
 double	ft_max(double a, double b);
 
+/**
+ * @brief Returns the larger of two doubles.
+ */
 double	ft_max(double a, double b)
 {
 	if (a >= b)

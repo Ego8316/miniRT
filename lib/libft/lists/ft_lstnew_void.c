@@ -14,6 +14,9 @@
 
 t_list	*ft_lstnew_void(void *content);
 
+/**
+ * @brief Creates a new list node storing a void* content pointer.
+ */
 t_list	*ft_lstnew_void(void *content)
 {
 	t_list	*newlst;

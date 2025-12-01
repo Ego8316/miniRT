@@ -14,6 +14,9 @@
 
 char	**ft_strarray_mapi(char **strarray, char *(*f)(const char *));
 
+/**
+ * @brief Maps a function over a NULL-terminated array of strings.
+ */
 char	**ft_strarray_mapi(char **strarray, char *(*f)(const char *))
 {
 	size_t	i;

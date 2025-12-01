@@ -14,6 +14,9 @@
 
 void	ft_lstcut(t_list **lst, void (*del)(void *), int start, int end);
 
+/**
+ * @brief Removes nodes in [start, end) indices from the list, freeing them.
+ */
 void	ft_lstcut(t_list **lst, void (*del)(void *), int start, int end)
 {
 	t_list	*todel_start;

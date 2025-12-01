@@ -14,6 +14,11 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
+/**
+ * @brief Compares up to `n` characters of two strings.
+ *
+ * @return Negative, zero, or positive per lexicographic order.
+ */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			i;

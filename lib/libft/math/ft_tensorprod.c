@@ -14,6 +14,9 @@
 
 t_coor	ft_tensorprod(t_coor v1, t_coor v2);
 
+/**
+ * @brief Computes element-wise (Hadamard) product of two vectors.
+ */
 t_coor	ft_tensorprod(t_coor v1, t_coor v2)
 {
 	t_coor	tensor_prod;

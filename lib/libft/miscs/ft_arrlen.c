@@ -14,6 +14,9 @@
 
 size_t	ft_arrlen(char **array);
 
+/**
+ * @brief Returns the length of a NULL-terminated string array.
+ */
 size_t	ft_arrlen(char **array)
 {
 	size_t	i;

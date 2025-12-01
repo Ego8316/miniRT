@@ -12,6 +12,15 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Clamps a value to the inclusive `[min, max]` range.
+ *
+ * @param val Value to clamp.
+ * @param min Minimum allowed value.
+ * @param max Maximum allowed value.
+ *
+ * @return Clamped value.
+ */
 double	ft_clamp(double val, double min, double max)
 {
 	if (val < min)
@@ -21,6 +30,16 @@ double	ft_clamp(double val, double min, double max)
 	return (val);
 }
 
+/**
+ * @brief Converts a color stored as normalized coordinates into an RGB int.
+ *
+ * Each component in `color` is expected in the 0.0 to 1.0 range and is scaled
+ * to the 0-255 range.
+ *
+ * @param color Color components.
+ *
+ * @return Packed RGB integer.
+ */
 int	color_to_rgb(t_coor color)
 {
 	int	r;
@@ -33,6 +52,17 @@ int	color_to_rgb(t_coor color)
 	return (r << 16 | g << 8 | b);
 }
 
+/**
+ * @brief Samples the object's texture at the hit UV coordinates.
+ *
+ * Clamps the computed texture coordinates to the texture dimensions to avoid
+ * overflow, then returns the texel color.
+ *
+ * @param obj Object with a texture.
+ * @param hit Hit data containing the world-space point.
+ *
+ * @return Sampled color.
+ */
 static t_coor	get_texture_color(t_object *obj, t_hit *hit)
 {
 	int		texture_x;
@@ -54,12 +84,12 @@ static t_coor	get_texture_color(t_object *obj, t_hit *hit)
 
 /**
  * @brief Gets the actual object color. If it is not checkerboard, returns the
- * defined color. Otherwise computes whether it should black or white depending
- * on the hit point.
- * 
+ * defined color or texture. Otherwise computes whether it should be black or
+ * white depending on the hit point.
+ *
  * @param obj Object.
  * @param hit Hit point.
- * 
+ *
  * @return Actual object color tuple.
  */
 t_coor	get_object_color(t_object *obj, t_hit *hit)

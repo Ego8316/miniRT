@@ -14,6 +14,9 @@
 
 int	ft_isfloat(char *str);
 
+/**
+ * @brief Checks if a string is a valid float with optional decimal part.
+ */
 int	ft_isfloat(char *str)
 {
 	char	**int_dec;

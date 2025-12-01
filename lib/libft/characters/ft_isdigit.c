@@ -14,6 +14,13 @@
 
 int	ft_isdigit(int c);
 
+/**
+ * @brief Checks if a character is a decimal digit.
+ *
+ * @param c Character to test.
+ *
+ * @return Non-zero if `c` is between '0' and '9', 0 otherwise.
+ */
 int	ft_isdigit(int c)
 {
 	return ('0' <= c && c <= '9');

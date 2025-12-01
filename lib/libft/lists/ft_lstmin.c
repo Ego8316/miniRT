@@ -14,6 +14,9 @@
 
 double	ft_lstmin(t_list **lst, int dtype);
 
+/**
+ * @brief Returns the minimum value in a list, parsed as `dtype`.
+ */
 double	ft_lstmin(t_list **lst, int dtype)
 {
 	double	min;

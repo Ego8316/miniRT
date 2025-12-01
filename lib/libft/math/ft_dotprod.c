@@ -14,6 +14,9 @@
 
 double	ft_dotprod(t_coor v1, t_coor v2);
 
+/**
+ * @brief Computes the dot product of two 3D vectors.
+ */
 double	ft_dotprod(t_coor v1, t_coor v2)
 {
 	double	dot_product;

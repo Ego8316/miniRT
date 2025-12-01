@@ -15,6 +15,9 @@
 
 void	ft_printmat(t_mat mat);
 
+/**
+ * @brief Prints a matrix to stdout with commas between entries.
+ */
 void	ft_printmat(t_mat mat)
 {
 	size_t	i;

@@ -14,6 +14,9 @@
 
 void	ft_lstpop(t_list **lst, t_list *node, void (*del)(void *));
 
+/**
+ * @brief Removes a specific node from the list and frees it.
+ */
 void	ft_lstpop(t_list **lst, t_list *node, void (*del)(void *))
 {
 	t_list	*current;

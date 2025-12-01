@@ -14,6 +14,9 @@
 
 int	ft_atoi(const char *str);
 
+/**
+ * @brief Converts a string to an int, handling optional sign and spaces.
+ */
 int	ft_atoi(const char *str)
 {
 	size_t	i;

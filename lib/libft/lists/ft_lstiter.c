@@ -14,6 +14,9 @@
 
 void	ft_lstiter(t_list	*lst, void (*f)(void	*));
 
+/**
+ * @brief Iterates the list, applying `f` to each node's content.
+ */
 void	ft_lstiter(t_list	*lst, void (*f)(void	*))
 {
 	if (!lst)

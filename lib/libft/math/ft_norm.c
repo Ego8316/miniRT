@@ -15,6 +15,9 @@
 
 double	ft_norm(t_coor coor);
 
+/**
+ * @brief Computes the Euclidean norm of a 3D vector.
+ */
 double	ft_norm(t_coor coor)
 {
 	double	norm;

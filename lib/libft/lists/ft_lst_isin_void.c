@@ -14,6 +14,9 @@
 
 t_list	*ft_lst_isin_void(t_list **lst, void *elem, int size);
 
+/**
+ * @brief Finds a node whose content matches `elem` (memcmp or strcmp).
+ */
 t_list	*ft_lst_isin_void(t_list **lst, void *elem, int size)
 {
 	t_list	*current;

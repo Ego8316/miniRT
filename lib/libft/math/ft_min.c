@@ -14,6 +14,9 @@
 
 double	ft_min(double a, double b);
 
+/**
+ * @brief Returns the smaller of two doubles.
+ */
 double	ft_min(double a, double b)
 {
 	if (a <= b)

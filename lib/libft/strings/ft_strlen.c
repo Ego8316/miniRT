@@ -14,6 +14,9 @@
 
 size_t	ft_strlen(const char *str);
 
+/**
+ * @brief Returns the length of a null-terminated string (0 if NULL).
+ */
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;

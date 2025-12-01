@@ -14,6 +14,13 @@
 
 int	ft_isalpha(int c);
 
+/**
+ * @brief Checks if a character is alphabetic.
+ *
+ * @param c Character to test.
+ *
+ * @return Non-zero if `c` is a letter, 0 otherwise.
+ */
 int	ft_isalpha(int c)
 {
 	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));

@@ -14,6 +14,9 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new_node);
 
+/**
+ * @brief Adds `new_node` to the end of the list.
+ */
 void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
 	if (!lst)

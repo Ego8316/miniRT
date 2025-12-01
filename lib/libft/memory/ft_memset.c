@@ -14,6 +14,9 @@
 
 void	*ft_memset(void *str, int c, size_t len);
 
+/**
+ * @brief Fills the first `len` bytes of `str` with byte `c`.
+ */
 void	*ft_memset(void *str, int c, size_t len)
 {
 	size_t			i;

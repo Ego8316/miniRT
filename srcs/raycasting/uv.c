@@ -12,6 +12,17 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Computes tiled UV coordinates for a plane.
+ *
+ * Chooses tangents orthogonal to the plane normal and projects the hit point
+ * to those axes.
+ *
+ * @param pl Plane object.
+ * @param h Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 static t_uv	get_plane_uv(t_object *pl, t_hit *h)
 {
 	t_uv	uv;
@@ -35,6 +46,14 @@ static t_uv	get_plane_uv(t_object *pl, t_hit *h)
 	return (uv);
 }
 
+/**
+ * @brief Computes UV coordinates for a sphere using spherical mapping.
+ *
+ * @param sp Sphere object.
+ * @param hit Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 static t_uv	get_sphere_uv(t_object *sp, t_hit *hit)
 {
 	t_uv	uv;
@@ -56,6 +75,14 @@ static t_uv	get_sphere_uv(t_object *sp, t_hit *hit)
 	return (uv);
 }
 
+/**
+ * @brief Selects cap or side UV mapping for a cylinder based on the hit point.
+ *
+ * @param cyl Cylinder object.
+ * @param hit Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 static t_uv	get_cylinder_uv(t_object *cyl, t_hit *hit)
 {
 	double	height_proj;
@@ -68,6 +95,14 @@ static t_uv	get_cylinder_uv(t_object *cyl, t_hit *hit)
 	return (get_cylinder_side_uv(cyl, hit));
 }
 
+/**
+ * @brief Selects cap or side UV mapping for a cone based on the hit point.
+ *
+ * @param co Cone object.
+ * @param hit Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 static t_uv	get_cone_uv(t_object *co, t_hit *hit)
 {
 	double	height_proj;
@@ -78,6 +113,14 @@ static t_uv	get_cone_uv(t_object *co, t_hit *hit)
 	return (get_cone_side_uv(co, hit));
 }
 
+/**
+ * @brief Routes UV computation to the correct primitive mapper.
+ *
+ * @param obj Object being hit.
+ * @param hit Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 t_uv	get_uv(t_object *obj, t_hit *hit)
 {
 	if (obj->id == PLANE)

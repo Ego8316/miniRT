@@ -14,6 +14,9 @@
 
 void	ft_swap_dble(double *x, double *y);
 
+/**
+ * @brief Swaps two doubles in place.
+ */
 void	ft_swap_dble(double *x, double *y)
 {
 	double	tmp;

@@ -12,6 +12,17 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Computes UV coordinates for a cylinder cap.
+ *
+ * Builds tangent axes on the cap plane and projects the hit point to them.
+ *
+ * @param cyl Cylinder object.
+ * @param h Hit information.
+ * @param top `true` when the hit is on the top cap, `false` for the bottom.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 t_uv	get_cylinder_cap_uv(t_object *cyl, t_hit *h, bool top)
 {
 	t_uv	uv;
@@ -34,6 +45,14 @@ t_uv	get_cylinder_cap_uv(t_object *cyl, t_hit *h, bool top)
 	return (uv);
 }
 
+/**
+ * @brief Computes UV coordinates for the side of a cylinder.
+ *
+ * @param cyl Cylinder object.
+ * @param h Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 t_uv	get_cylinder_side_uv(t_object *cyl, t_hit *h)
 {
 	t_uv	uv;

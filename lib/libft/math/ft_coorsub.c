@@ -14,6 +14,9 @@
 
 t_coor	ft_coorsub(t_coor v1, t_coor v2);
 
+/**
+ * @brief Subtracts `v2` from `v1` component-wise.
+ */
 t_coor	ft_coorsub(t_coor v1, t_coor v2)
 {
 	t_coor	new_coor;

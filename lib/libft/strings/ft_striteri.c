@@ -14,6 +14,9 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *s));
 
+/**
+ * @brief Applies `f` to each character of `s` in place.
+ */
 void	ft_striteri(char *s, void (*f)(unsigned int, char *s))
 {
 	size_t	i;

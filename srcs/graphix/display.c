@@ -17,6 +17,18 @@ void	display_scene(t_imx *window);
 void	project_scene(t_scene, t_imx *window);
 int		key_hook(int keycode, t_imx *data);
 
+/**
+ * @brief Initializes the MLX window and image buffer.
+ *
+ * Allocates image data, opens the MLX connection, creates the window and the
+ * associated image buffer, and stores dimension data.
+ *
+ * @param window Window structure to initialize.
+ * @param size_x Window width.
+ * @param size_y Window height.
+ *
+ * @return `true` on success, `false` on allocation or MLX failures.
+ */
 bool	init_window(t_imx *window, size_t size_x, size_t size_y)
 {
 	window->img = (t_imgdata *)ft_calloc(1, sizeof(t_imgdata));
@@ -38,6 +50,11 @@ bool	init_window(t_imx *window, size_t size_x, size_t size_y)
 	return (true);
 }
 
+/**
+ * @brief Renders and displays the scene, then enters the event loop.
+ *
+ * @param window Initialized window structure.
+ */
 void	display_scene(t_imx *window)
 {
 	project_scene(*window->scene, window);
@@ -47,6 +64,14 @@ void	display_scene(t_imx *window)
 	mlx_loop(window->mlx);
 }
 
+/**
+ * @brief Handles keyboard input events.
+ *
+ * @param keycode Pressed key code.
+ * @param data Window data.
+ *
+ * @return 0.
+ */
 int	key_hook(int keycode, t_imx *data)
 {
 	if (keycode == ESC)
@@ -68,6 +93,12 @@ void	set_pixel(t_imx *imx, t_coor pixel, int color)
 	return ;
 }
 
+/**
+ * @brief Projects the scene onto the window buffer by raycasting each pixel.
+ *
+ * @param scene Scene data.
+ * @param window Window and image buffer.
+ */
 void	project_scene(t_scene scene, t_imx *window)
 {
 	t_view	viewbase;

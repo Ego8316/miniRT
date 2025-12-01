@@ -17,6 +17,9 @@ size_t	print_format(const char **str, va_list argl);
 char	*get_radix(char type, va_list argl);
 char	*ft_strdup_pf(const char *s1, int null);
 
+/**
+ * @brief Lightweight printf that writes to STDOUT.
+ */
 int	ft_printf(const char *str, ...)
 {
 	size_t	printed;

@@ -14,6 +14,9 @@
 
 int	ft_count_charocc(char *str, char c);
 
+/**
+ * @brief Counts occurrences of character `c` in `str`.
+ */
 int	ft_count_charocc(char *str, char c)
 {
 	int	count;

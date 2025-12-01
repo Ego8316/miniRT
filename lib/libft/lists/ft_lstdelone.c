@@ -14,6 +14,9 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 
+/**
+ * @brief Deletes a single list node, using `del` on its content.
+ */
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst)

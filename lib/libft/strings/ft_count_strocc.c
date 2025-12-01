@@ -14,6 +14,11 @@
 
 int	ft_count_strocc(char *str, char *to_count, bool distinct);
 
+/**
+ * @brief Counts occurrences of substring `to_count` in `str`.
+ *
+ * @param distinct If true, occurrences do not overlap.
+ */
 int	ft_count_strocc(char *str, char *to_count, bool distinct)
 {
 	int		count;

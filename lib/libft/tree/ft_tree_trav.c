@@ -15,6 +15,9 @@
 void	ft_tree_trav(t_tree *node, void (*f)(void *),
 			t_Tree_Travel_Type trav_type);
 
+/**
+ * @brief Traverses a binary tree applying `f` in the chosen order.
+ */
 void	ft_tree_trav(t_tree *node, void (*f)(void *),
 			t_Tree_Travel_Type trav_type)
 {

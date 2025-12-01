@@ -14,6 +14,9 @@
 
 void	ft_tree_clear(t_tree *tree, void (*del)(void *));
 
+/**
+ * @brief Recursively frees a binary tree, applying `del` to content.
+ */
 void	ft_tree_clear(t_tree *node, void (*del)(void *))
 {
 	if (node->left)

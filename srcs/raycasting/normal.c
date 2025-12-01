@@ -12,6 +12,16 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Computes the normal of a cylinder at the hit point.
+ *
+ * Handles side surface as well as the two caps.
+ *
+ * @param cyl Cylinder object.
+ * @param hit Point of intersection in world space.
+ *
+ * @return Unit normal vector.
+ */
 static t_coor	get_cylinder_normal(t_object *cyl, t_coor hit)
 {
 	t_coor	center_to_hit;
@@ -27,6 +37,16 @@ static t_coor	get_cylinder_normal(t_object *cyl, t_coor hit)
 				ft_coormult(cyl->vector, height_proj))));
 }
 
+/**
+ * @brief Computes the normal of a cone at the hit point.
+ *
+ * Treats the base as a cap and otherwise returns the side normal.
+ *
+ * @param cone Cone object.
+ * @param hit Point of intersection in world space.
+ *
+ * @return Unit normal vector.
+ */
 static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 {
 	t_coor	apex_to_hit;
@@ -45,10 +65,9 @@ static t_coor	get_cone_normal(t_object *cone, t_coor hit)
 /**
  * @brief Computes the local surface normal vector for the given intersection
  * and hit point.
- * 
- * @param inter Current intersection (containing the object).
- * @param hit Hit point coordinates.
- * 
+ *
+ * @param hit Hit information including intersection data and point.
+ *
  * @return Normal vector.
  */
 t_coor	get_normal(t_hit hit)

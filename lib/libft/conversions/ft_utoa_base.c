@@ -16,6 +16,9 @@ char			*ft_utoa_base(unsigned long number, char *base);
 static size_t	ft_ulog_base(unsigned long n, int base_size);
 static size_t	ft_uprev_power(size_t n, size_t base_size);
 
+/**
+ * @brief Converts an unsigned long to a string in the given base.
+ */
 char	*ft_utoa_base(unsigned long number, char *base)
 {
 	char	*number_str;

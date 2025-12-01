@@ -14,6 +14,9 @@
 
 char	*ft_strrchr(const char *s, int c);
 
+/**
+ * @brief Finds the last occurrence of `c` in string `s`.
+ */
 char	*ft_strrchr(const char *s, int c)
 {
 	size_t			i;

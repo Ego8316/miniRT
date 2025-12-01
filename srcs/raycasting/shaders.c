@@ -13,16 +13,15 @@
 #include "minirt.h"
 
 /**
- * @brief Computes the diffuse contribution of the given light, using Lambert
- * model:
- * 	diffuse = (light color) x (object color) x light ratio x max(0, cos theta)
- * where theta is the angle between the local surface normal and the light
- * vector.
- * 
- * @param h Hit point coordinates.
- * @param inter Intersection structure.
- * @param l Current light whose diffuse component is being computed.
- * @param r View ray vector.
+ * @brief Computes diffuse and specular contributions from a single light.
+ *
+ * Uses Lambertian diffuse shading and a simple Phong specular term when the
+ * object's `specular` value is above 10.
+ *
+ * @param hit Hit information (point, normal, ray, color).
+ * @param light Light being evaluated.
+ *
+ * @return RGB contribution from the light.
  */
 t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 {
@@ -47,6 +46,18 @@ t_coor	get_diffuse_and_specular(t_hit hit, t_light light)
 	return (result);
 }
 
+/**
+ * @brief Computes the final color for the first intersection on a ray.
+ *
+ * Adds ambient lighting and per-light diffuse/specular components, skipping
+ * lights that are occluded.
+ *
+ * @param scene Scene data including lights and ambient light.
+ * @param inter Intersection data for the closest hit.
+ * @param view View ray.
+ *
+ * @return Packed RGB color for the hit.
+ */
 int	get_inter_color(t_scene scene, t_inter inter, t_ray view)
 {
 	t_hit		h;

@@ -14,6 +14,9 @@
 
 double	*ft_getcofac(t_mat mat, int m, int n);
 
+/**
+ * @brief Computes the cofactor (determinant of submatrix with sign).
+ */
 double	*ft_getcofac(t_mat mat, int m, int n)
 {
 	t_mat	*submat;

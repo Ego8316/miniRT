@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: victorviterbo <victorviterbo@student.42    +#+  +:+       +#+         #
+#    By: ego <ego@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 14:31:08 by victorviter       #+#    #+#              #
-#    Updated: 2025/09/10 14:45:24 by victorviter      ###   ########.fr        #
+#    Updated: 2025/11/30 23:40:07 by ego              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,10 @@ CFLAGS		=	-Wall -Wextra -Werror
 OS := $(shell uname)
 
 ifeq ($(OS), Darwin)
-	MLX_DIR	=	$(LDIR)mlx/minilibx-macos/
+	MLX_DIR	=	$(LDIR)/minilibx-macos/
 	LFLAGS	=	-L $(LDIR)libft -lft -L $(MLX_DIR) -lmlx  -framework OpenGL -framework AppKit
 else ifeq ($(OS), Linux)
-	MLX_DIR	=	$(LDIR)mlx/minilibx-linux/
+	MLX_DIR	=	$(LDIR)/minilibx-linux/
 	LFLAGS	=	-L $(LDIR)libft -lft -L $(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 endif
 

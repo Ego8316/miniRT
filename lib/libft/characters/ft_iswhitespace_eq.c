@@ -14,6 +14,13 @@
 
 int	ft_iswhitespace_eq(int c);
 
+/**
+ * @brief Checks if a character is a whitespace (space or control spacing).
+ *
+ * @param c Character to test.
+ *
+ * @return Non-zero if `c` is space, tab, or newline-style whitespace.
+ */
 int	ft_iswhitespace_eq(int c)
 {
 	return ((9 <= c && c <= 13) || c == 32);

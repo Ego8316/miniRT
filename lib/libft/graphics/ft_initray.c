@@ -14,6 +14,9 @@
 
 t_ray	initray(double orig[3], double dir[3]);
 
+/**
+ * @brief Builds a ray from origin and direction arrays.
+ */
 t_ray	initray(double origin[3], double direction[3])
 {
 	t_ray	ray;

@@ -14,6 +14,9 @@
 
 char	*ft_ctoa(char c);
 
+/**
+ * @brief Allocates a 2-byte string containing a single character.
+ */
 char	*ft_ctoa(char c)
 {
 	char	*str;

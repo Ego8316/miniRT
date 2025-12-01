@@ -14,6 +14,9 @@
 
 double	ft_abs(double n);
 
+/**
+ * @brief Returns the absolute value of a double.
+ */
 double	ft_abs(double n)
 {
 	if (n < 0)

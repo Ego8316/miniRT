@@ -14,6 +14,9 @@
 
 t_coor	ft_coormult(t_coor v, double lambda);
 
+/**
+ * @brief Multiplies a vector by a scalar.
+ */
 t_coor	ft_coormult(t_coor v, double lambda)
 {
 	t_coor	new_coor;

@@ -16,6 +16,9 @@ char		**ft_split(char const *s, char c);
 static int	count_segments(char const *s, char c);
 static int	go_to_next(const char *s, char c, size_t i, int is_c);
 
+/**
+ * @brief Splits a string on a delimiter into a NULL-terminated array.
+ */
 char	**ft_split(char const *s, char c)
 {
 	char	**strarray;

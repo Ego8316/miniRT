@@ -14,6 +14,9 @@
 
 void	ft_print_array(char **arr, bool nl);
 
+/**
+ * @brief Prints each string in a NULL-terminated array, optionally newline-separated.
+ */
 void	ft_print_array(char **arr, bool nl)
 {
 	int	i;

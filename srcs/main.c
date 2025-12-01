@@ -23,6 +23,17 @@ static int	print_usage(void)
 	return (1);
 }
 
+/**
+ * @brief Entry point of miniRT.
+ *
+ * Validates arguments, parses the scene file, initializes the rendering
+ * window, and renders the scene.
+ *
+ * @param ac Argument count.
+ * @param av Argument vector.
+ *
+ * @return 0 on success, non-zero on failure.
+ */
 int	main(int ac, char **av)
 {
 	t_scene			scene;

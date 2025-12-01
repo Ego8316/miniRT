@@ -14,6 +14,9 @@
 
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 
+/**
+ * @brief Applies `f` to each char of `s`, building a new string.
+ */
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
 	char	*new_str;

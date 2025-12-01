@@ -14,6 +14,9 @@
 
 t_list	*ft_lst_isin_int(t_list **lst, int elem);
 
+/**
+ * @brief Finds a node whose int value equals elem.
+ */
 t_list	*ft_lst_isin_int(t_list **lst, int elem)
 {
 	t_list	*current;

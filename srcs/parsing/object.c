@@ -69,11 +69,12 @@ static bool	get_object_vector(t_parse_data *data, t_coor *vector)
  * @brief Parses object-specific arguments such as diameter, height, angle,
  * etc. Determines which arguments are required based on the object type and
  * parses them within their defined boundaries.
- * 
+ *
  * @param data Parsing data.
  * @param args Pointer to a coordinate structure where argument values will be
  * stored.
- * @param `true` if all expected arguments are successfully parsed, `false`
+ *
+ * @return `true` if all expected arguments are successfully parsed, `false`
  * otherwise.
  */
 static bool	get_object_args(t_parse_data *data, double *args)
@@ -102,16 +103,15 @@ static bool	get_object_args(t_parse_data *data, double *args)
 }
 
 /**
- * @brief Parses optional object attributes such as specular and bump
- * strength. Attributes are parsed as key-value pairs. Ensures that each
- * attribute appears only once and that its value lies within specified
- * boundaries.
- * 
+ * @brief Parses optional object attributes such as specular and bump strength.
+ *
+ * Attributes are parsed as key-value pairs. Ensures that each attribute
+ * appears only once and that its value lies within specified boundaries.
+ *
  * @param d Parsing data.
  * @param obj Pointer to the object being parsed.
- * 
- * @return `true` if all attributes are parsed successfully, `false`
- * otherwise.
+ *
+ * @return `true` if all attributes are parsed successfully, `false` otherwise.
  */
 static bool	get_object_attributes(t_parse_data *d, t_object *obj)
 {
@@ -138,20 +138,11 @@ static bool	get_object_attributes(t_parse_data *d, t_object *obj)
 }
 
 /**
- * @brief Parses a object information from the current line and stores it in the
- * newly allocated list node.
+ * @brief Parses object data from the current line into the provided node.
  *
- * Sets appropriate boundary checks for each parameter:
- * @brief - Brightness ratio must be between `BRIGHTNESS_MIN` and
- * `BRIGHTNESS_MAX`.
- * @brief - Each color component (R, G, B) must be between `COLOR_MIN` and
- * `COLOR_MAX`.
- * 
- * Also gets optional attributes such as specular and bump strength.
- *
- * Any violation of boundaries or extra data at the end of the line will
- * produce an appropriate error message and stop parsing. Color is scaled down
- * to a 0.0-1.0 range by dividing each component by 255.0.
+ * Parses mandatory position, orientation (when applicable), size arguments and
+ * color, followed by optional attributes. Fails if any value is out of bounds
+ * or extra data remains on the line.
  *
  * @param data  Pointer to the current parsing state.
  * @param object Pointer to a newly allocated object node.
@@ -177,12 +168,12 @@ static bool	get_object(t_parse_data *data, t_object *object)
 }
 
 /**
- * @brief Allocates and initializes a object node from the current parse data,
+ * @brief Allocates and initializes an object node from the current parse data,
  * then adds it to the scene.
- * 
+ *
  * @param data Parse data.
  * @param scene Pointer to the scene.
- * 
+ *
  * @return `true` if the object was successfully parsed and added, `false`
  * otherwise.
  */

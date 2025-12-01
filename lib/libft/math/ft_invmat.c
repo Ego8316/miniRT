@@ -16,6 +16,9 @@
 
 t_mat	*ft_invmat(t_mat mat);
 
+/**
+ * @brief Computes the inverse of a square matrix; returns NULL if singular.
+ */
 t_mat	*ft_invmat(t_mat mat)
 {
 	t_mat	*inv;

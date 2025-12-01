@@ -14,6 +14,9 @@
 
 int	ft_lstmaxi(t_list **lst);
 
+/**
+ * @brief Returns the maximum integer stored in a list of ints.
+ */
 int	ft_lstmaxi(t_list **lst)
 {
 	int		max;

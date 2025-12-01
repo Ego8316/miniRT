@@ -14,6 +14,9 @@
 
 t_coor	ft_coorscale(t_coor base, t_coor tip, float scale);
 
+/**
+ * @brief Linearly interpolates from `base` to `tip` by `scale`.
+ */
 t_coor	ft_coorscale(t_coor base, t_coor tip, float scale)
 {
 	t_coor	new_coor;

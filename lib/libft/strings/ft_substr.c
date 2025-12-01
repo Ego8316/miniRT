@@ -14,6 +14,9 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+/**
+ * @brief Allocates a substring starting at `start` of length `len`.
+ */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;

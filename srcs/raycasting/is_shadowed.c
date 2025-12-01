@@ -17,6 +17,19 @@ bool		is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 static bool	check_shadow(t_object *obj_i, t_inter objinter, t_ray obj2light, \
 	double dist_to_light);
 
+/**
+ * @brief Checks whether a point is shadowed from a light source.
+ *
+ * Casts a ray from the hit point toward the light and tests it against all
+ * objects in the scene.
+ *
+ * @param scene Current scene data.
+ * @param light_source Light position.
+ * @param objinter Intersection information for the visible hit.
+ * @param view View ray.
+ *
+ * @return `true` if another object occludes the light, `false` otherwise.
+ */
 bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	t_ray view)
 {
@@ -39,6 +52,16 @@ bool	is_shadowed(t_scene scene, t_coor light_source, t_inter objinter, \
 	return (false);
 }
 
+/**
+ * @brief Tests a single object for blocking the light ray.
+ *
+ * @param obj_i Candidate occluder.
+ * @param objinter Intersection info of the visible object.
+ * @param obj2light Ray from the hit point to the light source.
+ * @param dist_to_light Distance from the hit point to the light source.
+ *
+ * @return `true` if the object casts a shadow on the hit point.
+ */
 static bool	check_shadow(t_object *obj_i, t_inter objinter, t_ray obj2light,
 	double dist_to_light)
 {

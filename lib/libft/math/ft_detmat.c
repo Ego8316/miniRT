@@ -15,6 +15,9 @@
 double	*ft_detmat(t_mat mat);
 double	*ft_detmat22(t_mat mat);
 
+/**
+ * @brief Computes determinant of a square matrix (recursive cofactor).
+ */
 double	*ft_detmat(t_mat mat)
 {
 	double	*det;

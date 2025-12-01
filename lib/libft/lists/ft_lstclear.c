@@ -14,6 +14,9 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 
+/**
+ * @brief Clears and frees an entire list using `del` for content.
+ */
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*current;

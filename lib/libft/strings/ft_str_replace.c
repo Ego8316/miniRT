@@ -15,6 +15,9 @@
 char		*ft_str_replace(char *str, char *to_repl, char *repl_w);
 static char	*init(char *str, char *to_repl, char *repl_w, size_t *newsize);
 
+/**
+ * @brief Replaces all occurrences of `to_repl` in `str` with `repl_w`.
+ */
 char	*ft_str_replace(char *str, char *to_repl, char *repl_w)
 {
 	char	*newstr;

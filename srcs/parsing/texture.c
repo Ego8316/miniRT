@@ -12,6 +12,15 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Allocates a 2D color texture buffer.
+ *
+ * The texture is sized `TEXTURE_HEIGHT` by `TEXTURE_WIDTH`.
+ *
+ * @param texture Output pointer for the allocated buffer.
+ *
+ * @return `true` on success, `false` on allocation failure.
+ */
 static bool	allocate_texture(t_coor ***texture)
 {
 	int	i;
@@ -34,6 +43,14 @@ static bool	allocate_texture(t_coor ***texture)
 	return (true);
 }
 
+/**
+ * @brief Fills a texture buffer by reading RGB values from a file.
+ *
+ * @param fd Opened file descriptor containing the texture data.
+ * @param color Color structure where the texture is stored.
+ *
+ * @return `true` on success, `false` on parsing error.
+ */
 static bool	fill_texture(int fd, t_color *color)
 {
 	t_parse_data	data;
@@ -59,6 +76,16 @@ static bool	fill_texture(int fd, t_color *color)
 	return (true);
 }
 
+/**
+ * @brief Loads a texture file into the given color structure.
+ *
+ * The filename is built from the provided `word` with a fixed prefix/suffix.
+ *
+ * @param word Texture base name.
+ * @param color Color structure to populate.
+ *
+ * @return `true` on success, `false` otherwise.
+ */
 bool	load_texture(char *word, t_color *color)
 {
 	char	filename[TEXTURE_PREFIX_SIZE + WORD_SIZE + TEXTURE_SUFFIX_SIZE];
@@ -78,6 +105,13 @@ bool	load_texture(char *word, t_color *color)
 	return (true);
 }
 
+/**
+ * @brief Frees a texture buffer.
+ *
+ * @param texture Pointer to the texture pointer to free.
+ *
+ * @return Always returns `false` for convenient chaining.
+ */
 bool	free_texture(t_coor ***texture)
 {
 	int	i;

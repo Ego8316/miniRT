@@ -15,6 +15,9 @@
 char			*ft_strtrim(char const *s1, char const *set);
 static int		ft_is_in_set(char c, char const *set);
 
+/**
+ * @brief Trims characters in `set` from both ends of `s1`.
+ */
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*trimmed;

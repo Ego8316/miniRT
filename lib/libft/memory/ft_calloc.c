@@ -14,6 +14,9 @@
 
 void	*ft_calloc(size_t count, size_t size);
 
+/**
+ * @brief Allocates zero-initialized memory for an array.
+ */
 void	*ft_calloc(size_t count, size_t size)
 {
 	void			*ptr;

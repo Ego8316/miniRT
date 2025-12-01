@@ -14,6 +14,18 @@
 
 t_inter	sphere_intersec(t_object *obj, t_ray ray);
 
+/**
+ * @brief Computes the intersection points of a ray with a sphere.
+ *
+ * Solves the quadratic equation for the ray-sphere intersection using the
+ * sphere radius stored in `args[0]`. When the discriminant is negative, the
+ * returned intersection has a zero `count`.
+ *
+ * @param obj Sphere object.
+ * @param ray Ray being cast.
+ *
+ * @return Intersection data with up to two hit distances stored in `t`.
+ */
 t_inter	sphere_intersec(t_object *obj, t_ray ray)
 {
 	t_inter	inter;

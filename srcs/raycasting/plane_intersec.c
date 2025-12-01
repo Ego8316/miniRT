@@ -14,6 +14,18 @@
 
 t_inter	plane_intersec(t_object *obj, t_ray ray);
 
+/**
+ * @brief Computes the intersection of a ray with a plane.
+ *
+ * Solves for the distance along the ray where it meets the plane with normal
+ * `obj->vector` passing through `obj->pos`. If the ray is parallel to the
+ * plane, no intersections are recorded.
+ *
+ * @param obj Plane object.
+ * @param ray Ray being cast.
+ *
+ * @return Intersection data; `count` remains zero when the ray is parallel.
+ */
 t_inter	plane_intersec(t_object *obj, t_ray ray)
 {
 	t_inter	inter;

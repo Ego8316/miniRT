@@ -14,6 +14,9 @@
 
 t_tree	*ft_tree_new(void *content);
 
+/**
+ * @brief Creates a new binary tree node with the given content.
+ */
 t_tree	*ft_tree_new(void *content)
 {
 	t_tree	*newtree;

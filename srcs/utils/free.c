@@ -14,10 +14,10 @@
 
 /**
  * @brief Frees a string if it is not NULL and sets it to NULL.
- * 
+ *
  * @param s Pointer to the string to free.
- * 
- * @return Always returns `false` for convenience.
+ *
+ * @return Always returns `NULL` for convenient use in expressions.
  */
 bool	*free_str(char **s)
 {

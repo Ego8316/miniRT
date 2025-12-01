@@ -14,6 +14,9 @@
 
 char	**ft_array_append(char **array, char *str, bool first);
 
+/**
+ * @brief Appends or prepends a string to a NULL-terminated array.
+ */
 char	**ft_array_append(char **array, char *str, bool first)
 {
 	size_t	i;

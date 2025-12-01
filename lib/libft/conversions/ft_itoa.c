@@ -15,6 +15,9 @@
 char			*ft_itoa(int n);
 static size_t	handle_neg(long *number, char *number_str);
 
+/**
+ * @brief Converts an int to a newly allocated decimal string.
+ */
 char	*ft_itoa(int n)
 {
 	char	*number_str;

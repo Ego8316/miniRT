@@ -16,6 +16,9 @@ int				ft_isint(char *str);
 static size_t	get_size(long n);
 static bool		isin_intrange(char *str, bool isneg);
 
+/**
+ * @brief Checks if a string represents a valid 32-bit signed integer.
+ */
 int	ft_isint(char *str)
 {
 	size_t	i;

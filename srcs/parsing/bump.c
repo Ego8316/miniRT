@@ -12,6 +12,15 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Allocates a 2D bump map buffer.
+ *
+ * The bump map is sized `TEXTURE_HEIGHT` by `TEXTURE_WIDTH`.
+ *
+ * @param bump Output pointer for the allocated buffer.
+ *
+ * @return `true` on success, `false` on allocation failure.
+ */
 static bool	allocate_bump(double ***bump)
 {
 	int	i;
@@ -34,6 +43,14 @@ static bool	allocate_bump(double ***bump)
 	return (true);
 }
 
+/**
+ * @brief Fills a bump map buffer from a file descriptor.
+ *
+ * @param fd Opened file containing height values.
+ * @param color Color structure where the bump map is stored.
+ *
+ * @return `true` on success, `false` on parsing or allocation error.
+ */
 static bool	fill_bump(int fd, t_color *color)
 {
 	t_parse_data	data;
@@ -61,6 +78,16 @@ static bool	fill_bump(int fd, t_color *color)
 	return (true);
 }
 
+/**
+ * @brief Loads a bump map file into the given color structure.
+ *
+ * The filename is built from the provided `word` with a fixed prefix/suffix.
+ *
+ * @param word Texture base name.
+ * @param color Color structure to populate.
+ *
+ * @return `true` on success, `false` if the file cannot be opened or parsed.
+ */
 bool	load_bump(char *word, t_color *color)
 {
 	char	filename[TEXTURE_PREFIX_SIZE + WORD_SIZE + TEXTURE_SUFFIX_SIZE];
@@ -80,6 +107,13 @@ bool	load_bump(char *word, t_color *color)
 	return (true);
 }
 
+/**
+ * @brief Frees a bump map buffer.
+ *
+ * @param bump Pointer to the bump map pointer to free.
+ *
+ * @return Always returns `false` for convenient chaining.
+ */
 bool	free_bump(double ***bump)
 {
 	int	i;

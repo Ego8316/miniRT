@@ -14,6 +14,9 @@
 
 char	*ft_strjoin_ip(char const *s1, char const *s2, t_Inplace_Type in_place);
 
+/**
+ * @brief Joins two strings and optionally frees the inputs based on flag.
+ */
 char	*ft_strjoin_ip(char const *s1, char const *s2, t_Inplace_Type in_place)
 {
 	char	*joined;

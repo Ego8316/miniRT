@@ -14,6 +14,9 @@
 
 double	ft_lstmax(t_list **lst, int dtype);
 
+/**
+ * @brief Returns the maximum value in a list, parsed as `dtype`.
+ */
 double	ft_lstmax(t_list **lst, int dtype)
 {
 	double	max;

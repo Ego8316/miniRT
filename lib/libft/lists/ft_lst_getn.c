@@ -14,6 +14,9 @@
 
 t_list	*ft_lst_getn(t_list **lst, int n);
 
+/**
+ * @brief Returns the n-th node (0-based) from the list or NULL.
+ */
 t_list	*ft_lst_getn(t_list **lst, int n)
 {
 	int		i;

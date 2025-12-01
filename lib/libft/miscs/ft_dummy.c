@@ -14,6 +14,9 @@
 
 void	ft_dummy(void *ptr);
 
+/**
+ * @brief No-op function for callbacks; ignores the pointer.
+ */
 void	ft_dummy(void *ptr)
 {
 	(void)ptr;

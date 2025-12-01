@@ -14,6 +14,9 @@
 
 char	*ft_strchr(const char *s, int c);
 
+/**
+ * @brief Finds the first occurrence of `c` in string `s`.
+ */
 char	*ft_strchr(const char *s, int c)
 {
 	size_t			i;

@@ -14,6 +14,14 @@
 
 t_inter	get_inter(t_object *obj, t_ray ray);
 
+/**
+ * @brief Dispatches the intersection routine based on the object type.
+ *
+ * @param obj Object being tested.
+ * @param ray Ray being cast.
+ *
+ * @return Intersection data for the ray against the given object.
+ */
 t_inter	get_inter(t_object *obj, t_ray ray)
 {
 	if (obj->id == SPHERE)

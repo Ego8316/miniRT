@@ -14,6 +14,9 @@
 
 t_mat	*ft_matmult(t_mat mat1, t_mat mat2);
 
+/**
+ * @brief Multiplies two matrices; returns NULL on dimension mismatch.
+ */
 t_mat	*ft_matmult(t_mat mat1, t_mat mat2)
 {
 	t_mat	*mult;

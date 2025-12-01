@@ -14,6 +14,9 @@
 
 void	ft_putnbr_fd(int n, int fd);
 
+/**
+ * @brief Writes an integer in decimal to a file descriptor.
+ */
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	*number_str;

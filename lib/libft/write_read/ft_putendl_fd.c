@@ -14,6 +14,9 @@
 
 void	ft_putendl_fd(char *s, int fd);
 
+/**
+ * @brief Writes a string followed by a newline to a file descriptor.
+ */
 void	ft_putendl_fd(char *s, int fd)
 {
 	char	*sendl;

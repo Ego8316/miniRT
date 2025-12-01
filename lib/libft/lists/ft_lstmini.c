@@ -14,6 +14,9 @@
 
 int	ft_lstmini(t_list **lst);
 
+/**
+ * @brief Returns the minimum integer stored in a list of ints.
+ */
 int	ft_lstmini(t_list **lst)
 {
 	int		min;

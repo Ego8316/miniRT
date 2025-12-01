@@ -15,6 +15,9 @@
 char		*ft_coalesce_char(char *str, char c, bool inplace);
 static char	**init(char *str, char c, char **coalesc, char **cstr);
 
+/**
+ * @brief Rejoins a string split by `c`, collapsing repeated delimiters.
+ */
 char	*ft_coalesce_char(char *str, char c, bool inplace)
 {
 	char	*coalesc;

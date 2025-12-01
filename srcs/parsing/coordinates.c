@@ -19,7 +19,7 @@
  * printing error messages.
  * 
  * @param d Current parsing state.
- * @param value Pointer to the double where the parsed value will be stored.
+ * @param v Pointer to the double where the parsed value will be stored.
  * @param comma If `true`, expects a comma immediately after the double.
  * @param verb Whether the parsing error message should actually be printed.
  */

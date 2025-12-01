@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+t_mat	*ft_getsubmat(t_mat	mat, size_t m, size_t n);
+
+/**
+ * @brief Builds the submatrix excluding row m and column n.
+ */
 t_mat	*ft_getsubmat(t_mat	mat, size_t m, size_t n)
 {
 	t_mat	*submat;

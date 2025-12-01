@@ -14,6 +14,13 @@
 
 int	ft_isalnum(int c);
 
+/**
+ * @brief Checks if a character is alphanumeric.
+ *
+ * @param c Character to test.
+ *
+ * @return Non-zero if `c` is a letter or digit, 0 otherwise.
+ */
 int	ft_isalnum(int c)
 {
 	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')

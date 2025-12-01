@@ -14,6 +14,9 @@
 
 double	ft_parse_as(void *ptr, t_Datatype dtype);
 
+/**
+ * @brief Casts a pointer to a numeric value as double based on dtype.
+ */
 double	ft_parse_as(void *ptr, t_Datatype dtype)
 {
 	double	val;

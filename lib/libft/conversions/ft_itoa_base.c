@@ -15,6 +15,9 @@
 char			*ft_itoa_base(long long n, char *base);
 static size_t	handle_neg(long long *number, char *number_str);
 
+/**
+ * @brief Converts a number to a string in the given base.
+ */
 char	*ft_itoa_base(long long n, char *base)
 {
 	char		*number_str;

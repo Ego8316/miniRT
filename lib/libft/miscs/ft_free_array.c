@@ -14,6 +14,9 @@
 
 void	ft_free_array(void **array, int size);
 
+/**
+ * @brief Frees an array of pointers of given size.
+ */
 void	ft_free_array(void **array, int size)
 {
 	int	i;

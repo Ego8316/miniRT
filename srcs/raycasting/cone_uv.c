@@ -12,6 +12,16 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Computes UV coordinates for a cone's cap.
+ *
+ * Builds tangent axes on the cap and projects the hit point to them.
+ *
+ * @param cone Cone object.
+ * @param h Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 t_uv	get_cone_cap_uv(t_object *cone, t_hit *h)
 {
 	t_uv	uv;
@@ -32,6 +42,14 @@ t_uv	get_cone_cap_uv(t_object *cone, t_hit *h)
 	return (uv);
 }
 
+/**
+ * @brief Computes UV coordinates for the side of a cone.
+ *
+ * @param cone Cone object.
+ * @param h Hit information.
+ *
+ * @return UV coordinates in [0, 1).
+ */
 t_uv	get_cone_side_uv(t_object *cone, t_hit *h)
 {
 	t_uv	uv;

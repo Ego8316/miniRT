@@ -14,6 +14,11 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 
+/**
+ * @brief Compares two memory blocks byte by byte.
+ *
+ * @return Difference between first differing bytes or 0 if equal.
+ */
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;

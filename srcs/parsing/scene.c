@@ -16,15 +16,9 @@
  * @brief Parses the ambient light information from the current line and stores
  * it in the scene's ambient light field.
  *
- * Sets appropriate boundary checks for each parameter:
- * @brief - Brightness ratio must be between `BRIGHTNESS_MIN` and
- * `BRIGHTNESS_MAX`.
- * @brief - Each color component (R, G, B) must be between `COLOR_MIN` and
- * `COLOR_MAX`.
- *
- * Any violation of boundaries or extra data at the end of the line will
- * produce an appropriate error message and stop parsing. Color is scaled down
- * to a 0.0-1.0 range by dividing each component by 255.0.
+ * Sets boundary checks for brightness and color components and validates that
+ * no trailing data remains after the expected values. Color is scaled to
+ * the 0.0-1.0 range.
  *
  * @param data  Pointer to the current parsing state.
  * @param scene Pointer to the scene structure where the parsed ambient light
@@ -53,16 +47,8 @@ static bool	get_ambient_light(t_parse_data *data, t_scene *scene)
  * @brief Parses the camera data from the current line and stores it in the
  * scene's camera field.
  *
- * Sets appropriate boundary checks:
- * @brief - Position coordinates must be between `COORD_MIN` and `COORD_MAX`.
- * @brief  - Direction vector components must be between `VECT_MIN` and
- * `VECT_MAX`.
- * @brief - The direction vector must not be a zero vector (norm check).
- * @brief - FOV must be between `FOV_MIN` and `FOV_MAX`.
- *
- * If normalization of the direction vector fails (norm zero), an error is
- * returned. Any extra data found after expected values will also cause an
- * error.
+ * Validates coordinate bounds, direction vector bounds and normalization, and
+ * FOV range, failing on trailing data.
  *
  * @param data  Pointer to the current parsing state.
  * @param scene Pointer to the scene structure where the parsed camera
@@ -100,10 +86,10 @@ static bool	get_camera(t_parse_data *data, t_scene *scene)
  * @brief Parses a single line from the scene file based on the identified
  * object. Uses the identifier parsed from the line to determine which parsing
  * delegate function to call.
- * 
- * @param Parsing data.
- * @param Pointer to the scene structure.
- * 
+ *
+ * @param data Parsing data.
+ * @param scene Pointer to the scene structure.
+ *
  * @return `true` on success, `false` otherwise.
  */
 static bool	parse_line(t_parse_data *data, t_scene *scene)
@@ -129,7 +115,7 @@ static bool	parse_line(t_parse_data *data, t_scene *scene)
  * @brief Builds up the scene structure from the filename.
  * Sets up all global fields of the given data structure to their initial
  * values before parsing the file.
- * 
+ *
  * @return `true` if everything goes fine,`false` otherwise.
  */
 static bool	parse_file(t_parse_data *data, t_scene *s)
@@ -160,10 +146,10 @@ static bool	parse_file(t_parse_data *data, t_scene *s)
  * Initializes the parsing data, opens the provided scene file and delegates
  * the file parsing to `parse_file`. After parsing, ensures there is a camera
  * and an ambient light.
- * 
+ *
  * @param filename Path to the scene description file.
  * @param s Pointer to the scene structure.
- * 
+ *
  * @return `true` if the scene was successfully initialized and parsed, `false`
  * otherwise.
  */

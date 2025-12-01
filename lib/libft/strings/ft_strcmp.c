@@ -14,6 +14,9 @@
 
 int	ft_strcmp(const char *s1, const char *s2);
 
+/**
+ * @brief Lexicographically compares two strings.
+ */
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	if (!s1 && !s2)

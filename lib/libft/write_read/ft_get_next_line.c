@@ -16,6 +16,9 @@ char		*ft_get_next_line(int fd);
 static char	*agglutinate(int fd, char *g_lst_files, char *line);
 char		*ft_strjoin_gnl(char const *s1, char const *s2, int in_place);
 
+/**
+ * @brief Returns the next line (including newline) from a file descriptor.
+ */
 char	*ft_get_next_line(int fd)
 {
 	char		*line;

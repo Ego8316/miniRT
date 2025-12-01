@@ -12,6 +12,17 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Samples the bump map at the given UV coordinates.
+ *
+ * Coordinates are clamped to the texture size to avoid overflows.
+ *
+ * @param hit Hit information including the object pointer.
+ * @param u U coordinate in [0, 1].
+ * @param v V coordinate in [0, 1].
+ *
+ * @return Height value from the bump map.
+ */
 static double	sample_bump_map(t_hit hit, double u, double v)
 {
 	int	bump_x;
@@ -30,6 +41,17 @@ static double	sample_bump_map(t_hit hit, double u, double v)
 	return (hit.inter.obj->color.bump[bump_y][bump_x]);
 }
 
+/**
+ * @brief Perturbs the surface normal using the bump map around the hit point.
+ *
+ * Computes finite differences in the U and V directions and adjusts the
+ * original normal by the bump strength of the object.
+ *
+ * @param original_normal Unmodified geometric normal.
+ * @param hit Hit data containing UVs, tangents and object reference.
+ *
+ * @return Normal vector adjusted by the bump map.
+ */
 t_coor	get_bump_normal(t_coor original_normal, t_hit hit)
 {
 	double			height_center;
@@ -46,8 +68,8 @@ t_coor	get_bump_normal(t_coor original_normal, t_hit hit)
 	dhdu = height_u - height_center;
 	dhdv = height_v - height_center;
 	return (ft_coornormalize(ft_coorsub(ft_coorsub(original_normal,
-					ft_coormult(hit.tangent_u,
-						dhdu * 5 * hit.inter.obj->bump_strength)),
+				ft_coormult(hit.tangent_u,
+					dhdu * 5 * hit.inter.obj->bump_strength)),
 				ft_coormult(hit.tangent_v,
 					dhdv * 5 * hit.inter.obj->bump_strength))));
 }

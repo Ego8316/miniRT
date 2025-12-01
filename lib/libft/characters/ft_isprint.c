@@ -14,6 +14,13 @@
 
 int	ft_isprint(int c);
 
+/**
+ * @brief Checks if a character is printable (including space).
+ *
+ * @param c Character code to test.
+ *
+ * @return Non-zero if `c` is between 32 and 126, 0 otherwise.
+ */
 int	ft_isprint(int c)
 {
 	return (32 <= c && c <= 126);

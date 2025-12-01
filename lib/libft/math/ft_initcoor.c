@@ -14,6 +14,9 @@
 
 t_coor	ft_initcoor(double x, double y, double z);
 
+/**
+ * @brief Initializes a coordinate struct with given components.
+ */
 t_coor	ft_initcoor(double x, double y, double z)
 {
 	t_coor	new_coor;

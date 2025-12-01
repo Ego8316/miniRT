@@ -14,6 +14,9 @@
 
 t_coor	ft_crossprod(t_coor v1, t_coor v2);
 
+/**
+ * @brief Computes the cross product of two 3D vectors.
+ */
 t_coor	ft_crossprod(t_coor v1, t_coor v2)
 {
 	t_coor	cross_prod;

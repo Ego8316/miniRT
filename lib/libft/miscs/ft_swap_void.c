@@ -14,6 +14,9 @@
 
 void	ft_swap_void(void **ptr1, void **ptr2);
 
+/**
+ * @brief Swaps two void* pointers.
+ */
 void	ft_swap_void(void **ptr1, void **ptr2)
 {
 	void	*tmp_ptr;

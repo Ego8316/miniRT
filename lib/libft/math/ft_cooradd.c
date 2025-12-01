@@ -14,6 +14,9 @@
 
 t_coor	ft_cooradd(t_coor v1, t_coor v2);
 
+/**
+ * @brief Adds two 3D coordinates component-wise.
+ */
 t_coor	ft_cooradd(t_coor v1, t_coor v2)
 {
 	t_coor	new_coor;

@@ -14,6 +14,9 @@
 
 t_list	*ft_lstnew_int(int i);
 
+/**
+ * @brief Creates a new list node storing an int.
+ */
 t_list	*ft_lstnew_int(int i)
 {
 	t_list	*newlst;

@@ -14,6 +14,9 @@
 
 double	ft_squarenorm(t_coor coor);
 
+/**
+ * @brief Returns squared magnitude of a 3D vector.
+ */
 double	ft_squarenorm(t_coor coor)
 {
 	double	norm;

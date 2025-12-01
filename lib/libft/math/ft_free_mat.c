@@ -14,6 +14,9 @@
 
 void	ft_free_mat(t_mat *mat);
 
+/**
+ * @brief Frees a matrix allocated by ft_initmat.
+ */
 void	ft_free_mat(t_mat *mat)
 {
 	size_t	i;

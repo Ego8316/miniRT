@@ -14,6 +14,11 @@
 
 float	ft_atof(char *str);
 
+/**
+ * @brief Converts a numeric string to a float.
+ *
+ * Accepts either '.' or ',' as decimal separator.
+ */
 float	ft_atof(char *str)
 {
 	float	integer;

@@ -14,6 +14,9 @@
 
 t_coor	ft_coornormalize(t_coor coor);
 
+/**
+ * @brief Returns the unit vector pointing in the same direction as `coor`.
+ */
 t_coor	ft_coornormalize(t_coor coor)
 {
 	double	norm_fac;

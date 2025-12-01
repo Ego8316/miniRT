@@ -14,6 +14,9 @@
 
 int	*ft_range(int min, int max);
 
+/**
+ * @brief Allocates an int array with values [min, max).
+ */
 int	*ft_range(int min, int max)
 {
 	int	*range;

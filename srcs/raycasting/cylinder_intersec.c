@@ -16,7 +16,7 @@
  * @brief Computes the intersection distances for a ray with an infinite
  * cylinder defined by `obj`. If no real solutions exist (ray misses the
  * cylinder sides), sets both of them to -1.
- * 
+ *
  * @param obj Cylinder object being tested.
  * @param ray Ray being cast.
  * @param t Array of two doubles to store the results.
@@ -52,9 +52,9 @@ static void	get_infinite_side_hits(t_object *obj, t_ray ray, double *t)
 
 /**
  * @brief Adds valid side hits to the intersection structure. First gets all
- * hits with the infinite cylinder, and keeps the ones withint the finite
+ * hits with the infinite cylinder, and keeps the ones within the finite
  * height of the actual cylinder.
- * 
+ *
  * @param obj Cylinder object.
  * @param ray Ray being cast.
  * @param inter Intersection structure to store the valid side hits.
@@ -84,8 +84,8 @@ static void	add_side_hits(t_object *obj, t_ray ray, t_inter *inter)
 
 /**
  * @brief Adds a valid cap hit to the intersection structure if the ray hits
- * one of the cylinder's.
- * 
+ * one of the cylinder's caps.
+ *
  * @param obj Cylinder.
  * @param ray Ray.
  * @param inter Intersection structure.
@@ -112,12 +112,12 @@ static void	add_cap_hit(t_object *obj, t_ray ray, t_inter *inter, t_coor c)
 /**
  * @brief Computes all valid intersections (sides and caps) of a ray with a
  * finite cylinder.
- * 
+ *
  * @param obj Cylinder being tested.
  * @param ray Ray being cast.
- * 
- * @return Allocated intersection structure containing the valid hits, `NULL`
- * if memory allocation fails.
+ *
+ * @return Intersection data containing the valid hits. `count` is zero when
+ *         the ray misses the cylinder.
  */
 t_inter	cylinder_intersec(t_object *obj, t_ray ray)
 {

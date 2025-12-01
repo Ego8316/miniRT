@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/**
+ * @brief Allocates a matrix with dimensions m x n, zero-initialized.
+ */
 t_mat	*ft_initmat(size_t m, size_t n)
 {
 	t_mat	*mat;

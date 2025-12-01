@@ -14,6 +14,9 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n);
 
+/**
+ * @brief Copies `n` bytes handling overlapping source and destination.
+ */
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
 	int						i;

@@ -18,7 +18,7 @@ t_inter	cone_intersec(t_object *obj, t_ray ray);
  * @brief Computes the intersection distances for a ray with an infinite cone
  * defined by `obj`. If no real solutions exist (ray misses the cone sides),
  * sets both of them to -1.
- * 
+ *
  * @param obj Cone object being tested.
  * @param ray Ray being cast.
  * @param t Array of two doubles to store the results.
@@ -52,9 +52,9 @@ static void	get_infinite_side_hits(t_object *obj, t_ray ray, double *t)
 
 /**
  * @brief Adds valid side hits to the intersection structure. First gets all
- * hits with the infinite cone, and keeps the ones withint the finite height
+ * hits with the infinite cone, and keeps the ones within the finite height
  * of the actual cone.
- * 
+ *
  * @param obj Cone object.
  * @param ray Ray being cast.
  * @param inter Intersection structure to store the valid side hits.
@@ -84,8 +84,8 @@ static void	add_side_hits(t_object *obj, t_ray ray, t_inter *inter)
 
 /**
  * @brief Adds a valid cap hit to the intersection structure if the ray hits
- * one of the cone's.
- * 
+ * one of the cone's caps.
+ *
  * @param obj Cone.
  * @param ray Ray.
  * @param inter Intersection structure.
@@ -112,12 +112,12 @@ static void	add_cap_hit(t_object *obj, t_ray ray, t_inter *inter, t_coor c)
 /**
  * @brief Computes all valid intersections (sides and caps) of a ray with a
  * finite cone.
- * 
+ *
  * @param obj Cone being tested.
  * @param ray Ray being cast.
- * 
- * @return Allocated intersection structure containing the valid hits, `NULL`
- * if memory allocation fails.
+ *
+ * @return Intersection data containing the valid hits. `count` is zero when
+ *         the ray misses the cone.
  */
 t_inter	cone_intersec(t_object *obj, t_ray ray)
 {

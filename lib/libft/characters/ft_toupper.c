@@ -14,6 +14,13 @@
 
 int	ft_toupper(int c);
 
+/**
+ * @brief Converts a lowercase letter to uppercase.
+ *
+ * @param c Character to convert.
+ *
+ * @return Uppercase equivalent if `c` is lowercase, otherwise `c`.
+ */
 int	ft_toupper(int c)
 {
 	if ('a' <= c && c <= 'z')

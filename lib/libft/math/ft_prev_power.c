@@ -14,6 +14,9 @@
 
 double	ft_prev_power(double n, int base_size);
 
+/**
+ * @brief Returns the highest power of `base_size` not exceeding `n`.
+ */
 double	ft_prev_power(double n, int base_size)
 {
 	double	sign;

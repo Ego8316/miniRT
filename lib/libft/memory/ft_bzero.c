@@ -14,6 +14,9 @@
 
 void	ft_bzero(void *s, unsigned int n);
 
+/**
+ * @brief Sets `n` bytes of the buffer to zero.
+ */
 void	ft_bzero(void *s, unsigned int n)
 {
 	size_t			i;

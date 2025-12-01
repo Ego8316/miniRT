@@ -14,6 +14,9 @@
 
 char	*ft_readfile(int fd);
 
+/**
+ * @brief Reads from a file descriptor into a newly allocated string.
+ */
 char	*ft_readfile(int fd)
 {
 	int		byte_read;

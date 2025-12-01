@@ -14,6 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
+/**
+ * @brief Allocates a new string joining `s1` and `s2`.
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*joined;

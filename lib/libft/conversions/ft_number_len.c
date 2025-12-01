@@ -14,6 +14,9 @@
 
 int	ft_number_len(long long n, int base_size);
 
+/**
+ * @brief Counts digits needed to represent `n` in the given base.
+ */
 int	ft_number_len(long long n, int base_size)
 {
 	int	size;
